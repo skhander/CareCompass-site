@@ -705,63 +705,142 @@ function shortBlurb(p) {
   return sentence.length > 110 ? `${sentence.slice(0, 107).trim()}…` : sentence;
 }
 
-function displayPrice(pr, slug) {
-  if (!pr) return { from: null, range: null };
-  let min = Number(pr.min_usd);
-  let max = Number(pr.max_usd);
-  if (slug === 'hair-transplant') {
-    min = Math.min(min, 4000);
-    max = Math.min(max, 4000);
-    if (min > max) min = max;
+/** Ranked destination list shown on every procedure page (demo editorial copy). */
+const PROC_DEST_RANKING = [
+  {
+    country: 'Turkey',
+    priceLabel: '$3,500',
+    copy: 'Skilled surgeons, accredited hospitals, low prices, and all-inclusive packages. The trade-off: low-cost clinics may have fewer safeguards. But at MediGo, we pick ones with safety standards comparable to the US.',
+    destSlugs: ['istanbul'],
+    fallbackClinics: [
+      { name: 'Bosphorus Follicle Institute', focus: 'Hair & aesthetics' },
+      { name: 'Marmara Aesthetic Hospital', focus: 'Multispecialty' },
+      { name: 'Kadikoy Graft Atelier', focus: 'Hair transplant' },
+    ],
+  },
+  {
+    country: 'Mexico',
+    priceLabel: '$3,202',
+    copy: 'Close and affordable for patients in the U.S. and Canada. An estimated 40 to 60 percent of medical tourists there come from the U.S.',
+    destSlugs: ['mexico-city', 'tijuana'],
+    fallbackClinics: [
+      { name: 'Reforma Aesthetic Institute', focus: 'Cosmetic surgery' },
+      { name: 'Pacific Border Surgery', focus: 'Surgical care' },
+      { name: 'Condesa Follicle Atelier', focus: 'Hair transplant' },
+    ],
+  },
+  {
+    country: 'South Korea',
+    priceLabel: '$6,000 to $8,000',
+    copy: 'Hundreds of thousands of medical tourists visit each year. Most come for dermatology or plastic surgery.',
+    destSlugs: ['seoul'],
+    fallbackClinics: [
+      { name: 'Gangnam Lumen Surgery', focus: 'Plastic surgery' },
+      { name: 'Cheongdam SoftLift Clinic', focus: 'Facial aesthetics' },
+      { name: 'Apgujeong Vector Surgery', focus: 'Contour surgery' },
+    ],
+  },
+  {
+    country: 'Thailand',
+    priceLabel: '$5,758',
+    copy: 'Clinics in Bangkok and Phuket. Easy to pair surgery with a vacation.',
+    destSlugs: ['bangkok'],
+    fallbackClinics: [
+      { name: 'Chao Phraya Care Pavilion', focus: 'Multispecialty' },
+      { name: 'Thonglor Follicle House', focus: 'Hair transplant' },
+      { name: 'Asok Crown Restoration', focus: 'Hair restoration' },
+    ],
+  },
+  {
+    country: 'Hungary',
+    priceLabel: '$3,650',
+    copy: 'A low-cost option. Medical tourism is projected to grow 15% a year through 2030.',
+    destSlugs: [],
+    fallbackClinics: [
+      { name: 'Budapest Contour Atelier', focus: 'Cosmetic surgery' },
+      { name: 'Danube Aesthetic Pavilion', focus: 'Aesthetics' },
+      { name: 'Pest Profile Clinic', focus: 'Facial procedures' },
+    ],
+  },
+  {
+    country: 'Germany',
+    priceLabel: '$7,372',
+    copy: 'Strict healthcare rules and clinics in Berlin. Known more for orthopedic surgery than cosmetic work.',
+    destSlugs: [],
+    fallbackClinics: [
+      { name: 'Berlin Ortho & Form Clinic', focus: 'Orthopedics' },
+      { name: 'Mitte Profile Institute', focus: 'Specialty surgery' },
+      { name: 'Spree Surgical Collective', focus: 'Hospital care' },
+    ],
+  },
+];
+
+function clinicsForRank(entry, procedureClinicList) {
+  const destIds = new Set(
+    entry.destSlugs
+      .map((slug) => destinations.find((d) => d.slug === slug)?.id)
+      .filter(Boolean)
+  );
+  const linked = procedureClinicList.filter((c) => destIds.has(c.destination_id)).slice(0, 3);
+  if (linked.length) {
+    return linked.map((c) => ({
+      name: c.name,
+      focus: c.focus || '',
+      href: `../clinics/${c.slug}.html`,
+      cover: destCover(
+        destinations.find((d) => d.id === c.destination_id)?.slug || entry.destSlugs[0] || 'istanbul',
+        1
+      ),
+    }));
   }
-  return { from: min, range: rangeLabel(min, max) };
+  const primarySlug = entry.destSlugs[0];
+  return entry.fallbackClinics.slice(0, 3).map((c) => ({
+    name: c.name,
+    focus: c.focus || '',
+    href: primarySlug ? `../destinations/${primarySlug}.html` : '../destinations.html',
+    cover: destCover(primarySlug || 'istanbul', 1),
+  }));
+}
+
+function renderRankedDestinations(procedureClinicList) {
+  return PROC_DEST_RANKING.map((entry, i) => {
+    const rank = i + 1;
+    const dest = entry.destSlugs[0]
+      ? destinations.find((d) => d.slug === entry.destSlugs[0])
+      : null;
+    const titleHref = dest ? `../destinations/${dest.slug}.html` : '../destinations.html';
+    const clinicCards = clinicsForRank(entry, procedureClinicList)
+      .map(
+        (c) => `<a class="proc-clinic-card" href="${c.href}">
+            <span class="proc-clinic-card__media" aria-hidden="true">
+              <img src="${c.cover}" alt="" width="320" height="214" loading="lazy" decoding="async">
+            </span>
+            <span class="proc-clinic-card__body">
+              <span class="proc-clinic-card__name">${esc(c.name)}</span>
+              ${c.focus ? `<span class="proc-clinic-card__focus">${esc(c.focus)}</span>` : ''}
+            </span>
+          </a>`
+      )
+      .join('');
+    return `<li class="proc-rank__item">
+        <h3 class="proc-rank__heading">
+          <span class="proc-rank__n">${rank}.</span>
+          <a class="proc-rank__title" href="${titleHref}">${esc(entry.country)}</a>
+          <span class="proc-rank__price">· ${esc(entry.priceLabel)}</span>
+        </h3>
+        <p class="proc-rank__copy">${esc(entry.copy)}</p>
+        <div class="proc-rank__clinics">${clinicCards}</div>
+      </li>`;
+  }).join('');
 }
 
 // ---------- Procedure detail ----------
 for (const p of procedures) {
-  const dests = (p.destination_ids || []).map((id) => byId.destination[id]).filter(Boolean);
   const clinicList = (p.clinic_ids || []).map((id) => byId.clinic[id]).filter(Boolean);
   const destPrices = prices.filter((x) => x.procedure_id === p.id && x.entity_type === 'destination');
   const stats = synthProcStats(p, destPrices);
   const blurb = shortBlurb(p);
-  const turkeyDests = dests.filter(
-    (d) => d.slug === 'istanbul' || /türkiye|turkiye|turkey/i.test(d.country || '')
-  );
-  const featuredDests = (turkeyDests.length ? turkeyDests : dests).slice(0, 4);
-  const featuredCountry = turkeyDests.length
-    ? 'Turkey'
-    : featuredDests[0]
-      ? /türkiye|turkiye/i.test(featuredDests[0].country || '')
-        ? 'Turkey'
-        : featuredDests[0].country
-      : 'top hubs';
-  const featuredClinicBlocks = featuredDests
-    .map((d) => {
-      const pr = destPrices.find((x) => x.entity_id === d.id);
-      const priced = displayPrice(pr, p.slug);
-      const cs = clinicList.filter((c) => c.destination_id === d.id).slice(0, 4);
-      const fromLabel = priced.from != null ? `From ${money(priced.from)}` : 'Pricing on request';
-      return `<article class="proc-hub-card">
-          <a class="proc-hub-card__media" href="../destinations/${d.slug}.html">
-            <img src="${destCover(d.slug, 1)}" alt="" width="640" height="427" loading="lazy" decoding="async">
-          </a>
-          <div class="proc-hub-card__body">
-            <h3 class="proc-hub-card__title"><a href="../destinations/${d.slug}.html">${esc(d.name)}</a></h3>
-            <p class="proc-hub-card__meta">${esc(fromLabel)}</p>
-            <ul class="proc-hub-card__clinics">
-              ${
-                cs
-                  .map(
-                    (c) =>
-                      `<li><a href="../clinics/${c.slug}.html">${esc(c.name)}</a></li>`
-                  )
-                  .join('') || '<li>Clinics coming soon</li>'
-              }
-            </ul>
-          </div>
-        </article>`;
-    })
-    .join('');
+  const rankedList = renderRankedDestinations(clinicList);
 
   const html =
     head({ title: `${p.name} — MediGo`, description: p.description, depth: 1 }) +
@@ -827,10 +906,10 @@ for (const p of procedures) {
       </section>
       <section class="section proc-hubs" aria-labelledby="proc-hubs-title">
         <div class="container" data-reveal>
-          <h2 id="proc-hubs-title" class="t-h2">Top destinations and clinics in ${esc(featuredCountry)}</h2>
-          <div class="proc-hubs__grid">
-            ${featuredClinicBlocks || '<p>No destinations linked yet.</p>'}
-          </div>
+          <h2 id="proc-hubs-title" class="t-h2">Top destinations</h2>
+          <ol class="proc-rank">
+            ${rankedList}
+          </ol>
         </div>
       </section>
       <section class="section">
