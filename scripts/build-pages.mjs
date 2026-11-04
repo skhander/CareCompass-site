@@ -683,8 +683,8 @@ function synthProcStats(p, destPrices) {
   let avgCost = mids.length
     ? Math.round(mids.reduce((a, b) => a + b, 0) / mids.length / 50) * 50
     : 2500 + (seed % 1500);
-  // Abroad package averages — keep hair transplant at or under $4,000
-  if (p.slug === 'hair-transplant') avgCost = Math.min(4000, avgCost);
+  // Abroad package averages — hair transplant aligns to Turkey list price
+  if (p.slug === 'hair-transplant') avgCost = 3500;
   const photos = 18 + (seed % 40);
   const questions = 12 + (seed % 28);
   const community = 3 + (seed % 10);
