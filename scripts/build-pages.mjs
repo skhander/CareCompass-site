@@ -720,7 +720,7 @@ const HAIR_TRANSPLANT_DEST_RANKING = [
     country: 'Turkey',
     priceLabel: '$3,500',
     avgUsd: 3500,
-    copy: 'Skilled surgeons, accredited hospitals, low prices, and all-inclusive packages. The trade-off: low-cost clinics may have fewer safeguards. But at MediGo, we pick ones with safety standards comparable to the US.',
+    copy: 'Skilled surgeons, accredited hospitals, low prices, and all-inclusive packages.',
     destSlugs: ['istanbul'],
     packageTypes: [
       'FUE',
