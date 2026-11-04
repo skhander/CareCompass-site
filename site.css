@@ -1438,41 +1438,25 @@ body.menu-open {
 }
 
 .filter-bar input,
-.filter-bar select,
 .suggest-form input,
-.suggest-form select,
 .inquiry-form input,
-.inquiry-form select,
-.find-dest-form input,
-.find-dest-form select {
+.find-dest-form input {
   font: inherit;
-  min-height: 2.75rem;
-  padding: var(--space-sm) var(--space-md);
+  min-height: 3rem;
+  padding: 0.7rem var(--space-md);
   border-radius: var(--radius-control);
   border: 1px solid var(--vanilla-faded-100);
   background-color: var(--white);
   color: var(--plum-100);
 }
 
+/* Selects inherit the polished caret/hover treatment from brand.css `.field select` */
 .filter-bar select,
 .suggest-form select,
 .inquiry-form select,
 .find-dest-form select {
-  -webkit-appearance: none;
-  appearance: none;
-  padding-right: 2.5rem;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1.5 1.75 6 6.25 10.5 1.75' stroke='%2340032b' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 0.9rem center;
-  background-size: 0.75rem 0.5rem;
-  cursor: pointer;
-}
-
-.filter-bar select::-ms-expand,
-.suggest-form select::-ms-expand,
-.inquiry-form select::-ms-expand,
-.find-dest-form select::-ms-expand {
-  display: none;
+  width: 100%;
+  max-width: 100%;
 }
 
 .filter-bar input { flex: 1; min-width: 12rem; }
