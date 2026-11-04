@@ -1768,7 +1768,7 @@ body.menu-open {
 
 /* Procedure overview (stats strip + hubs) */
 .proc-overview {
-  padding-block: var(--space-xl) var(--space-lg);
+  padding-block: var(--space-lg) var(--space-xl);
   text-align: center;
   background: #fffbe6;
   color: #40032b;
@@ -1776,9 +1776,22 @@ body.menu-open {
 
 .proc-overview__inner {
   display: grid;
-  gap: var(--space-lg);
+  gap: var(--space-md);
   justify-items: center;
   max-width: 56rem;
+}
+
+.proc-overview__destinations {
+  width: min(100%, 48rem);
+  margin-top: var(--space-sm);
+  text-align: left;
+  justify-self: stretch;
+}
+
+.proc-overview__destinations .t-h2 {
+  margin: 0;
+  text-align: left;
+  color: #40032b;
 }
 
 .proc-overview__title {
@@ -1886,7 +1899,7 @@ body.menu-open {
 
 .proc-rank {
   list-style: none;
-  margin: var(--space-lg) 0 0;
+  margin: var(--space-md) 0 0;
   padding: 0;
   display: grid;
   gap: var(--space-xl);

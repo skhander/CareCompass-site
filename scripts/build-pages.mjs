@@ -696,9 +696,7 @@ function synthProcStats(p, destPrices) {
 }
 
 function shortBlurb(p) {
-  if (p.slug === 'hair-transplant') {
-    return 'Move donor follicles to thin or bald areas for lasting density.';
-  }
+  if (p.slug === 'hair-transplant') return '';
   const t = String(p.description || '').trim();
   if (!t) return '';
   const sentence = (t.match(/^.*?[.!?](?:\s|$)/) || [t])[0].trim();
@@ -902,14 +900,12 @@ for (const p of procedures) {
             </button>
           </div>
           ${blurb ? `<p class="proc-overview__blurb">${esc(blurb)}</p>` : ''}
-        </div>
-      </section>
-      <section class="section proc-hubs" aria-labelledby="proc-hubs-title">
-        <div class="container" data-reveal>
-          <h2 id="proc-hubs-title" class="t-h2">Top destinations</h2>
-          <ol class="proc-rank">
-            ${rankedList}
-          </ol>
+          <div class="proc-overview__destinations" aria-labelledby="proc-hubs-title">
+            <h2 id="proc-hubs-title" class="t-h2">Top destinations</h2>
+            <ol class="proc-rank">
+              ${rankedList}
+            </ol>
+          </div>
         </div>
       </section>
       <section class="section">
