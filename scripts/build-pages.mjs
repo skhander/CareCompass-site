@@ -677,18 +677,14 @@ function hashSeed(str) {
 function synthProcStats(p, destPrices) {
   const seed = hashSeed(p.slug);
   const worth = 92 + (seed % 7);
-  const avgFromCatalog = destPrices.length
-    ? Math.round(
-        destPrices.reduce((sum, pr) => sum + (Number(pr.min_usd) + Number(pr.max_usd)) / 2, 0) /
-          destPrices.length
-      )
-    : 4500 + (seed % 5000);
-  const usMids = destPrices
-    .map((pr) => (Number(pr.us_compare_min_usd) + Number(pr.us_compare_max_usd)) / 2)
-    .filter((n) => Number.isFinite(n));
-  const avgCost = usMids.length
-    ? Math.round(usMids.reduce((a, b) => a + b, 0) / usMids.length / 50) * 50
-    : Math.round((avgFromCatalog * 2.4) / 50) * 50;
+  const mids = destPrices
+    .map((pr) => (Number(pr.min_usd) + Number(pr.max_usd)) / 2)
+    .filter((n) => Number.isFinite(n) && n > 0);
+  let avgCost = mids.length
+    ? Math.round(mids.reduce((a, b) => a + b, 0) / mids.length / 50) * 50
+    : 2500 + (seed % 1500);
+  // Abroad package averages — keep hair transplant at or under $4,000
+  if (p.slug === 'hair-transplant') avgCost = Math.min(4000, avgCost);
   const photos = 18 + (seed % 40);
   const questions = 12 + (seed % 28);
   const community = 3 + (seed % 10);
@@ -699,24 +695,35 @@ function synthProcStats(p, destPrices) {
   return { worth, avgCost, photos, questions, community, doctorsClinics };
 }
 
-function firstSentence(text) {
-  const t = String(text || '').trim();
+function shortBlurb(p) {
+  if (p.slug === 'hair-transplant') {
+    return 'Move donor follicles to thin or bald areas for lasting density.';
+  }
+  const t = String(p.description || '').trim();
   if (!t) return '';
-  const m = t.match(/^.*?[.!?](?:\s|$)/);
-  return (m ? m[0] : t).trim();
+  const sentence = (t.match(/^.*?[.!?](?:\s|$)/) || [t])[0].trim();
+  return sentence.length > 110 ? `${sentence.slice(0, 107).trim()}…` : sentence;
+}
+
+function displayPrice(pr, slug) {
+  if (!pr) return { from: null, range: null };
+  let min = Number(pr.min_usd);
+  let max = Number(pr.max_usd);
+  if (slug === 'hair-transplant') {
+    min = Math.min(min, 4000);
+    max = Math.min(max, 4000);
+    if (min > max) min = max;
+  }
+  return { from: min, range: rangeLabel(min, max) };
 }
 
 // ---------- Procedure detail ----------
 for (const p of procedures) {
   const dests = (p.destination_ids || []).map((id) => byId.destination[id]).filter(Boolean);
   const clinicList = (p.clinic_ids || []).map((id) => byId.clinic[id]).filter(Boolean);
-  const docList = (p.doctor_ids || []).map((id) => byId.doctor[id]).filter(Boolean);
   const destPrices = prices.filter((x) => x.procedure_id === p.id && x.entity_type === 'destination');
   const stats = synthProcStats(p, destPrices);
-  const blurb =
-    p.slug === 'hair-transplant'
-      ? 'The most long-lasting way to restore hair loss (and confidence) takes follicles from places they won’t be missed, to fill in thin or bald spots.'
-      : firstSentence(p.description) || p.description;
+  const blurb = shortBlurb(p);
   const turkeyDests = dests.filter(
     (d) => d.slug === 'istanbul' || /türkiye|turkiye|turkey/i.test(d.country || '')
   );
@@ -731,18 +738,16 @@ for (const p of procedures) {
   const featuredClinicBlocks = featuredDests
     .map((d) => {
       const pr = destPrices.find((x) => x.entity_id === d.id);
+      const priced = displayPrice(pr, p.slug);
       const cs = clinicList.filter((c) => c.destination_id === d.id).slice(0, 4);
-      const ds = docList.filter((doc) => doc.destination_id === d.id).slice(0, 3);
-      const fromLabel = pr ? `From ${money(pr.min_usd)}` : 'Pricing on request';
-      const range = pr ? rangeLabel(pr.min_usd, pr.max_usd) : '—';
+      const fromLabel = priced.from != null ? `From ${money(priced.from)}` : 'Pricing on request';
       return `<article class="proc-hub-card">
           <a class="proc-hub-card__media" href="../destinations/${d.slug}.html">
             <img src="${destCover(d.slug, 1)}" alt="" width="640" height="427" loading="lazy" decoding="async">
           </a>
           <div class="proc-hub-card__body">
             <h3 class="proc-hub-card__title"><a href="../destinations/${d.slug}.html">${esc(d.name)}</a></h3>
-            <p class="proc-hub-card__meta">${esc(d.country)} · ${esc(fromLabel)}</p>
-            <p class="proc-hub-card__range">Typical package ${esc(range)} <span class="t-caption">(demo, varies by region)</span></p>
+            <p class="proc-hub-card__meta">${esc(fromLabel)}</p>
             <ul class="proc-hub-card__clinics">
               ${
                 cs
@@ -753,13 +758,6 @@ for (const p of procedures) {
                   .join('') || '<li>Clinics coming soon</li>'
               }
             </ul>
-            ${
-              ds.length
-                ? `<p class="t-caption">Doctors: ${ds
-                    .map((doc) => `<a href="../doctors/${doc.slug}.html">${esc(doc.name)}</a>`)
-                    .join(', ')}</p>`
-                : ''
-            }
           </div>
         </article>`;
     })
@@ -824,14 +822,12 @@ for (const p of procedures) {
               <span aria-hidden="true">›</span>
             </button>
           </div>
-          <p class="proc-overview__blurb">${esc(blurb)}</p>
-          <p class="proc-overview__demo t-caption">Synthetic demo stats for product design — not medical advice or verified reviews.</p>
+          ${blurb ? `<p class="proc-overview__blurb">${esc(blurb)}</p>` : ''}
         </div>
       </section>
       <section class="section proc-hubs" aria-labelledby="proc-hubs-title">
         <div class="container" data-reveal>
           <h2 id="proc-hubs-title" class="t-h2">Top destinations and clinics in ${esc(featuredCountry)}</h2>
-          <p class="t-lead proc-hubs__lede">Starting prices vary by region. Figures below are synthetic demo packages.</p>
           <div class="proc-hubs__grid">
             ${featuredClinicBlocks || '<p>No destinations linked yet.</p>'}
           </div>
@@ -840,7 +836,6 @@ for (const p of procedures) {
       <section class="section">
         <div class="container" data-reveal>
           <h2 class="t-h3">Before / after</h2>
-          <p class="t-caption">${esc(p.slug === 'hair-transplant' ? 'Illustrative result for product design — not a verified clinical case.' : p.before_after_notes)}</p>
           <div class="placeholder-frame">
             <img src="${p.slug === 'hair-transplant' ? '../assets/procedure-hair-transplant-before-after.jpg' : '../assets/placeholders/before-after.svg'}" alt="${p.slug === 'hair-transplant' ? 'Hair transplant before and after' : 'Synthetic before and after placeholder'}" width="${p.slug === 'hair-transplant' ? 1774 : 1200}" height="${p.slug === 'hair-transplant' ? 887 : 600}" loading="lazy"${p.slug === 'hair-transplant' ? ' decoding="async"' : ''}>
           </div>
