@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Synthetic demo clinics across hub destinations.">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Clinics — MediGo</title>
+  <link rel="icon" href="./assets/logo-care-compass.png" type="image/png">
+  <link rel="apple-touch-icon" href="./assets/logo-care-compass.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Figtree:wght@600;700;800;900&display=swap">
+  <link rel="stylesheet" href="./brand.css">
+  <link rel="stylesheet" href="./site.css">
+  <style>body{margin:0;background:#fffbe6;color:#40032b;font-family:"DM Sans",system-ui,sans-serif}.section--dark{background:#40032b;color:#fffbe6}.t-display{font-family:"Figtree",system-ui,sans-serif;font-weight:900;letter-spacing:-0.03em}</style>
+</head>
+<body>
+  <header class="site-header" data-autohide>
+    <div class="nav container nav--bar">
+      <div class="nav__start">
+        <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-haspopup="dialog" data-nav-toggle>
+          <span class="visually-hidden">Open menu</span>
+          <span class="nav__toggle-icon" aria-hidden="true"></span>
+        </button>
+        <a class="nav__brand" href="./index.html"><img class="nav__logo" src="./assets/logo-care-compass-mark.png" alt="" width="44" height="44" decoding="async">MediGo</a>
+      </div>
+    </div>
+    <div id="site-menu" class="site-menu" data-site-menu hidden role="dialog" aria-modal="true" aria-label="Site menu">
+      <div class="site-menu__panel" data-site-menu-panel>
+        <div class="site-menu__top container">
+          <a class="nav__brand site-menu__brand" href="./index.html"><img class="nav__logo" src="./assets/logo-care-compass-mark.png" alt="" width="44" height="44" decoding="async">MediGo</a>
+          <button class="site-menu__close" type="button" data-nav-close>
+            <span class="visually-hidden">Close menu</span>
+            <span class="site-menu__close-icon" aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="site-menu__inner container">
+          <form class="site-menu__search" action="./procedures.html" method="get" role="search" data-menu-search>
+            <label class="visually-hidden" for="menu-search-input">Search destination, procedure, clinic, or doctor</label>
+            <div class="site-menu__search-shell">
+              <input id="menu-search-input" class="site-menu__search-input" name="q" type="search" inputmode="search" autocomplete="off" spellcheck="false" placeholder="Search destination, procedure, clinic, or doctor" aria-label="Search destination, procedure, clinic, or doctor" aria-expanded="false" aria-controls="menu-search-panel" aria-autocomplete="list">
+              <button class="site-menu__search-btn" type="submit">Search</button>
+            </div>
+            <div id="menu-search-panel" class="search-panel site-menu__suggest" data-search-panel hidden>
+              <div class="search-panel__hits search-suggest" data-search-suggest hidden></div>
+            </div>
+          </form>
+          <div class="site-menu__cols">
+            <nav class="site-menu__col site-menu__col--nav" aria-label="Navigation">
+              <a class="site-menu__link" href="./procedures.html">Procedures</a>
+              <a class="site-menu__link" href="./destinations.html">Destinations</a>
+              <a class="site-menu__link is-active" href="./clinics.html" aria-current="page">Clinics</a>
+            </nav>
+            <div class="site-menu__col site-menu__col--featured" aria-label="Top procedures and destinations">
+              <div class="site-menu__cards">
+                
+              <article class="site-menu__card">
+                <div class="site-menu__card-media">
+                  <img src="./assets/menu-istanbul-waterfront.jpg" alt="Istanbul waterfront at sunset" width="640" height="360" loading="lazy" decoding="async">
+                </div>
+                <div class="site-menu__card-body">
+                  <h3 class="site-menu__dest">Istanbul, Turkey</h3>
+                  <ul class="site-menu__procs">
+                    <li><a class="site-menu__proc" href="./procedures/breast-augmentation.html">Breast Augmentation</a></li><li><a class="site-menu__proc" href="./procedures/hair-transplant.html">Hairline Transplant</a></li><li><a class="site-menu__proc" href="./procedures/rhinoplasty.html">Rhinoplasty</a></li>
+                  </ul>
+                  <a class="site-menu__view-all" href="./destinations/istanbul.html">View all</a>
+                </div>
+              </article>
+                
+              <article class="site-menu__card">
+                <div class="site-menu__card-media">
+                  <img src="./assets/menu-seoul-gangnam.jpg" alt="Gangnam shopping district in Seoul" width="640" height="360" loading="lazy" decoding="async">
+                </div>
+                <div class="site-menu__card-body">
+                  <h3 class="site-menu__dest">Seoul, South Korea</h3>
+                  <ul class="site-menu__procs">
+                    <li><a class="site-menu__proc" href="./procedures/injectables.html">Lasers &amp; Injectables</a></li><li><a class="site-menu__proc" href="./procedures/facelift.html">Facelift</a></li><li><a class="site-menu__proc" href="./procedures/eyelid-surgery.html">Eyebrow Lift</a></li>
+                  </ul>
+                  <a class="site-menu__view-all" href="./destinations/seoul.html">View all</a>
+                </div>
+              </article>
+                
+              <article class="site-menu__card">
+                <div class="site-menu__card-media">
+                  <img src="./assets/menu-mexico-angel.jpg" alt="Angel of Independence in Mexico City" width="640" height="360" loading="lazy" decoding="async">
+                </div>
+                <div class="site-menu__card-body">
+                  <h3 class="site-menu__dest">Mexico City, MX</h3>
+                  <ul class="site-menu__procs">
+                    <li><a class="site-menu__proc" href="./procedures/injectables.html">Lasers &amp; Injectables</a></li><li><a class="site-menu__proc" href="./procedures/dental-implants.html">Dental Implants</a></li><li><a class="site-menu__proc" href="./procedures/smile-makeover.html">Invisalign</a></li><li><a class="site-menu__proc" href="./procedures/dental-implants.html">Root Canal</a></li>
+                  </ul>
+                  <a class="site-menu__view-all" href="./destinations/mexico-city.html">View all</a>
+                </div>
+              </article>
+              </div>
+            </div>
+            <nav class="site-menu__col site-menu__col--company" aria-label="Company">
+              <p class="site-menu__eyebrow">Company</p>
+              <a class="site-menu__link" href="./about.html">About Us</a>
+              <a class="site-menu__link" href="./contact.html">Contact</a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+<main>
+    <section class="section section--hero page-hero">
+      <div class="container" data-reveal data-reveal-eager>
+        <h1 class="t-display">Clinics</h1>
+        <p class="t-lead page-hero__lede">Demo treatment centers across 10 hubs. All names are invented.</p>
+        <form class="filter-bar" data-list-filter data-filter-target="#clinic-list">
+          <label class="visually-hidden" for="clinic-q">Search clinics</label>
+          <input id="clinic-q" name="q" type="search" placeholder="Search clinics" data-filter-input>
+        </form>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <ul id="clinic-list" class="clinic-rail">
+          <li data-name="agua caliente graft institute tijuana">
+                <a class="clinic-tile" href="./clinics/agua-caliente-graft-institute.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Agua Caliente Graft Institute</span>
+                    <span class="clinic-tile__meta">Tijuana, Mexico · Hair transplant</span>
+                  </span>
+                </a>
+              </li><li data-name="apgujeong vector surgery seoul">
+                <a class="clinic-tile" href="./clinics/apgujeong-vector-surgery.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Apgujeong Vector Surgery</span>
+                    <span class="clinic-tile__meta">Seoul, South Korea · Facial contour</span>
+                  </span>
+                </a>
+              </li><li data-name="asok crown restoration bangkok">
+                <a class="clinic-tile" href="./clinics/asok-crown-restoration.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Asok Crown Restoration</span>
+                    <span class="clinic-tile__meta">Bangkok, Thailand · Hair transplant</span>
+                  </span>
+                </a>
+              </li><li data-name="barrio amón contour san josé">
+                <a class="clinic-tile" href="./clinics/barrio-amon-contour.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Barrio Amón Contour</span>
+                    <span class="clinic-tile__meta">San José, Costa Rica · Cosmetic</span>
+                  </span>
+                </a>
+              </li><li data-name="besiktas follicle lab istanbul">
+                <a class="clinic-tile" href="./clinics/besiktas-follicle-lab.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Besiktas Follicle Lab</span>
+                    <span class="clinic-tile__meta">Istanbul, Türkiye · Hair transplant</span>
+                  </span>
+                </a>
+              </li><li data-name="bosphorus follicle institute istanbul">
+                <a class="clinic-tile" href="./clinics/bosphorus-follicle-institute.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Bosphorus Follicle Institute</span>
+                    <span class="clinic-tile__meta">Istanbul, Türkiye · Hair transplant</span>
+                  </span>
+                </a>
+              </li><li data-name="cengelkoy hair pavilion istanbul">
+                <a class="clinic-tile" href="./clinics/cengelkoy-hair-pavilion.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Cengelkoy Hair Pavilion</span>
+                    <span class="clinic-tile__meta">Istanbul, Türkiye · Hair transplant</span>
+                  </span>
+                </a>
+              </li><li data-name="chao phraya multicare hospital bangkok">
+                <a class="clinic-tile" href="./clinics/chao-phraya-multicare-hospital.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Chao Phraya Multicare Hospital</span>
+                    <span class="clinic-tile__meta">Bangkok, Thailand · Multispecialty</span>
+                  </span>
+                </a>
+              </li><li data-name="cheongdam lumen plastic seoul">
+                <a class="clinic-tile" href="./clinics/cheongdam-lumen-plastic.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Cheongdam Lumen Plastic</span>
+                    <span class="clinic-tile__meta">Seoul, South Korea · Plastic surgery</span>
+                  </span>
+                </a>
+              </li><li data-name="condesa follicle atelier mexico city">
+                <a class="clinic-tile" href="./clinics/condesa-follicle-atelier.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Condesa Follicle Atelier</span>
+                    <span class="clinic-tile__meta">Mexico City, Mexico · Hair transplant</span>
+                  </span>
+                </a>
+              </li><li data-name="connaught joint institute delhi">
+                <a class="clinic-tile" href="./clinics/connaught-joint-institute.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Connaught Joint Institute</span>
+                    <span class="clinic-tile__meta">Delhi, India · Orthopedics</span>
+                  </span>
+                </a>
+              </li><li data-name="defence colony fertility lab delhi">
+                <a class="clinic-tile" href="./clinics/defence-colony-fertility-lab.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Defence Colony Fertility Lab</span>
+                    <span class="clinic-tile__meta">Delhi, India · Fertility</span>
+                  </span>
+                </a>
+              </li><li data-name="diagonal reproductive medicine barcelona">
+                <a class="clinic-tile" href="./clinics/diagonal-reproductive-medicine.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Diagonal Reproductive Medicine</span>
+                    <span class="clinic-tile__meta">Barcelona, Spain · IVF</span>
+                  </span>
+                </a>
+              </li><li data-name="eixample fertility atelier barcelona">
+                <a class="clinic-tile" href="./clinics/eixample-fertility-atelier.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Eixample Fertility Atelier</span>
+                    <span class="clinic-tile__meta">Barcelona, Spain · IVF</span>
+                  </span>
+                </a>
+              </li><li data-name="el poblado form studio medellín">
+                <a class="clinic-tile" href="./clinics/el-poblado-form-studio.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">El Poblado Form Studio</span>
+                    <span class="clinic-tile__meta">Medellín, Colombia · Cosmetic</span>
+                  </span>
+                </a>
+              </li><li data-name="envigado graft pavilion medellín">
+                <a class="clinic-tile" href="./clinics/envigado-graft-pavilion.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Envigado Graft Pavilion</span>
+                    <span class="clinic-tile__meta">Medellín, Colombia · Hair transplant</span>
+                  </span>
+                </a>
+              </li><li data-name="escazú dental highlands san josé">
+                <a class="clinic-tile" href="./clinics/escazu-dental-highlands.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Escazú Dental Highlands</span>
+                    <span class="clinic-tile__meta">San José, Costa Rica · Dental</span>
+                  </span>
+                </a>
+              </li><li data-name="galata contour surgery istanbul">
+                <a class="clinic-tile" href="./clinics/galata-contour-surgery.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Galata Contour Surgery</span>
+                    <span class="clinic-tile__meta">Istanbul, Türkiye · Plastic surgery</span>
+                  </span>
+                </a>
+              </li><li data-name="gangnam pore &amp; glow derm seoul">
+                <a class="clinic-tile" href="./clinics/gangnam-pore-glow-derm.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Gangnam Pore &amp; Glow Derm</span>
+                    <span class="clinic-tile__meta">Seoul, South Korea · Dermatology</span>
+                  </span>
+                </a>
+              </li><li data-name="golden horn dental atelier istanbul">
+                <a class="clinic-tile" href="./clinics/golden-horn-dental-atelier.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Golden Horn Dental Atelier</span>
+                    <span class="clinic-tile__meta">Istanbul, Türkiye · Dental</span>
+                  </span>
+                </a>
+              </li><li data-name="gràcia embryo lab barcelona">
+                <a class="clinic-tile" href="./clinics/gracia-embryo-lab.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Gràcia Embryo Lab</span>
+                    <span class="clinic-tile__meta">Barcelona, Spain · IVF</span>
+                  </span>
+                </a>
+              </li><li data-name="hannam softlift clinic seoul">
+                <a class="clinic-tile" href="./clinics/hannam-softlift-clinic.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Hannam SoftLift Clinic</span>
+                    <span class="clinic-tile__meta">Seoul, South Korea · Rejuvenation</span>
+                  </span>
+                </a>
+              </li><li data-name="hauz khas smile &amp; face delhi">
+                <a class="clinic-tile" href="./clinics/hauz-khas-smile-face.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Hauz Khas Smile &amp; Face</span>
+                    <span class="clinic-tile__meta">Delhi, India · Dental &amp; cosmetic</span>
+                  </span>
+                </a>
+              </li><li data-name="hipodromo follicle hub tijuana">
+                <a class="clinic-tile" href="./clinics/hipodromo-follicle-hub.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Hipodromo Follicle Hub</span>
+                    <span class="clinic-tile__meta">Tijuana, Mexico · Hair transplant</span>
+                  </span>
+                </a>
+              </li><li data-name="insurgentes aesthetic pavilion mexico city">
+                <a class="clinic-tile" href="./clinics/insurgentes-aesthetic-pavilion.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Insurgentes Aesthetic Pavilion</span>
+                    <span class="clinic-tile__meta">Mexico City, Mexico · Cosmetic</span>
+                  </span>
+                </a>
+              </li><li data-name="kadikoy graft atelier istanbul">
+                <a class="clinic-tile" href="./clinics/kadikoy-graft-atelier.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Kadikoy Graft Atelier</span>
+                    <span class="clinic-tile__meta">Istanbul, Türkiye · Hair transplant</span>
+                  </span>
+                </a>
+              </li><li data-name="karlín reproductive clinic prague">
+                <a class="clinic-tile" href="./clinics/karlin-reproductive-clinic.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Karlín Reproductive Clinic</span>
+                    <span class="clinic-tile__meta">Prague, Czechia · IVF</span>
+                  </span>
+                </a>
+              </li><li data-name="laureles profile surgery medellín">
+                <a class="clinic-tile" href="./clinics/laureles-profile-surgery.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Laureles Profile Surgery</span>
+                    <span class="clinic-tile__meta">Medellín, Colombia · Facial</span>
+                  </span>
+                </a>
+              </li><li data-name="letná ivf pavilion prague">
+                <a class="clinic-tile" href="./clinics/letna-ivf-pavilion.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Letná IVF Pavilion</span>
+                    <span class="clinic-tile__meta">Prague, Czechia · IVF</span>
+                  </span>
+                </a>
+              </li><li data-name="lotus tertiary heart center delhi">
+                <a class="clinic-tile" href="./clinics/lotus-tertiary-heart-center.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Lotus Tertiary Heart Center</span>
+                    <span class="clinic-tile__meta">Delhi, India · Cardiac</span>
+                  </span>
+                </a>
+              </li><li data-name="marmara aesthetic hospital istanbul">
+                <a class="clinic-tile" href="./clinics/marmara-aesthetic-hospital.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Marmara Aesthetic Hospital</span>
+                    <span class="clinic-tile__meta">Istanbul, Türkiye · Multispecialty aesthetics</span>
+                  </span>
+                </a>
+              </li><li data-name="ortakoy density works istanbul">
+                <a class="clinic-tile" href="./clinics/ortakoy-density-works.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Ortakoy Density Works</span>
+                    <span class="clinic-tile__meta">Istanbul, Türkiye · Hair transplant</span>
+                  </span>
+                </a>
+              </li><li data-name="otay metabolic surgery tijuana">
+                <a class="clinic-tile" href="./clinics/otay-metabolic-surgery.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Otay Metabolic Surgery</span>
+                    <span class="clinic-tile__meta">Tijuana, Mexico · Bariatric</span>
+                  </span>
+                </a>
+              </li><li data-name="pedregal care hospital mexico city">
+                <a class="clinic-tile" href="./clinics/pedregal-care-hospital.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Pedregal Care Hospital</span>
+                    <span class="clinic-tile__meta">Mexico City, Mexico · Hospital</span>
+                  </span>
+                </a>
+              </li><li data-name="playas form clinic tijuana">
+                <a class="clinic-tile" href="./clinics/playas-form-clinic.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Playas Form Clinic</span>
+                    <span class="clinic-tile__meta">Tijuana, Mexico · Cosmetic</span>
+                  </span>
+                </a>
+              </li><li data-name="polanco vision works mexico city">
+                <a class="clinic-tile" href="./clinics/polanco-vision-works.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Polanco Vision Works</span>
+                    <span class="clinic-tile__meta">Mexico City, Mexico · Eye</span>
+                  </span>
+                </a>
+              </li><li data-name="provenza multidisciplinary care medellín">
+                <a class="clinic-tile" href="./clinics/provenza-multidisciplinary-care.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Provenza Multidisciplinary Care</span>
+                    <span class="clinic-tile__meta">Medellín, Colombia · Multidisciplinary</span>
+                  </span>
+                </a>
+              </li><li data-name="riverside contour center bangkok">
+                <a class="clinic-tile" href="./clinics/riverside-contour-center.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Riverside Contour Center</span>
+                    <span class="clinic-tile__meta">Bangkok, Thailand · Cosmetic</span>
+                  </span>
+                </a>
+              </li><li data-name="roma norte dental atelier mexico city">
+                <a class="clinic-tile" href="./clinics/roma-norte-dental-atelier.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Roma Norte Dental Atelier</span>
+                    <span class="clinic-tile__meta">Mexico City, Mexico · Dental</span>
+                  </span>
+                </a>
+              </li><li data-name="sabana ortho institute san josé">
+                <a class="clinic-tile" href="./clinics/sabana-ortho-institute.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Sabana Ortho Institute</span>
+                    <span class="clinic-tile__meta">San José, Costa Rica · Orthopedics</span>
+                  </span>
+                </a>
+              </li><li data-name="silom fertility pavilion bangkok">
+                <a class="clinic-tile" href="./clinics/silom-fertility-pavilion.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Silom Fertility Pavilion</span>
+                    <span class="clinic-tile__meta">Bangkok, Thailand · Fertility</span>
+                  </span>
+                </a>
+              </li><li data-name="sukhumvit smile lab bangkok">
+                <a class="clinic-tile" href="./clinics/sukhumvit-smile-lab.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Sukhumvit Smile Lab</span>
+                    <span class="clinic-tile__meta">Bangkok, Thailand · Dental</span>
+                  </span>
+                </a>
+              </li><li data-name="thonglor follicle house bangkok">
+                <a class="clinic-tile" href="./clinics/thonglor-follicle-house.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Thonglor Follicle House</span>
+                    <span class="clinic-tile__meta">Bangkok, Thailand · Hair transplant</span>
+                  </span>
+                </a>
+              </li><li data-name="vinohrady fertility house prague">
+                <a class="clinic-tile" href="./clinics/vinohrady-fertility-house.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Vinohrady Fertility House</span>
+                    <span class="clinic-tile__meta">Prague, Czechia · IVF</span>
+                  </span>
+                </a>
+              </li><li data-name="yamuna oncology collective delhi">
+                <a class="clinic-tile" href="./clinics/yamuna-oncology-collective.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Yamuna Oncology Collective</span>
+                    <span class="clinic-tile__meta">Delhi, India · Oncology</span>
+                  </span>
+                </a>
+              </li><li data-name="zona río dental bridge tijuana">
+                <a class="clinic-tile" href="./clinics/zona-rio-dental-bridge.html">
+                  <span class="clinic-tile__body">
+                    <span class="clinic-tile__name">Zona Río Dental Bridge</span>
+                    <span class="clinic-tile__meta">Tijuana, Mexico · Dental</span>
+                  </span>
+                </a>
+              </li>
+        </ul>
+      </div>
+    </section>
+  </main>  <footer class="site-footer section section--flame">
+    <div class="container footer-grid">
+      <div>
+        <p class="footer-brand"><img class="footer-brand__logo" src="./assets/logo-care-compass-mark.png" alt="" width="32" height="32" decoding="async">MediGo</p>
+      </div>
+      <div class="footer-links">
+        <a href="./destinations.html">Destinations</a>
+        <a href="./procedures.html">Procedures</a>
+        <a href="./clinics.html">Clinics</a>
+        <a href="./about.html">About</a>
+        <a href="./contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+  <aside class="demo-badge" data-demo-badge aria-label="Demo">
+    <span class="demo-badge__pill">Demo</span>
+  </aside>
+  <script src="./brand.js" defer></script>
+  <script src="./app.js" defer></script>
+</body>
+</html>

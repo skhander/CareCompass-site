@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-label="Synthetic clinic facade placeholder">
+  <rect width="1200" height="800" fill="#fffbe6"/>
+  <rect x="120" y="180" width="960" height="480" rx="8" fill="#40032b" opacity="0.92"/>
+  <rect x="180" y="240" width="200" height="280" fill="#fffbe6" opacity="0.15"/>
+  <rect x="420" y="240" width="200" height="280" fill="#fffbe6" opacity="0.12"/>
+  <rect x="660" y="240" width="200" height="280" fill="#fffbe6" opacity="0.15"/>
+  <rect x="900" y="240" width="120" height="280" fill="#fd5711" opacity="0.85"/>
+  <text x="600" y="720" text-anchor="middle" fill="#40032b" font-family="Figtree,sans-serif" font-size="28" font-weight="700">Synthetic clinic photo</text>
+</svg>

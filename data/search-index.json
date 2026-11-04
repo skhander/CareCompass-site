@@ -1,0 +1,1978 @@
+{
+  "updated": "2026-10-31",
+  "items": [
+    {
+      "type": "procedure",
+      "id": "proc_hair_transplant",
+      "slug": "hair-transplant",
+      "name": "Hair transplant",
+      "href": "./procedures/hair-transplant.html",
+      "category": "Aesthetics"
+    },
+    {
+      "type": "procedure",
+      "id": "proc_rhinoplasty",
+      "slug": "rhinoplasty",
+      "name": "Rhinoplasty",
+      "href": "./procedures/rhinoplasty.html",
+      "category": "Plastic surgery"
+    },
+    {
+      "type": "procedure",
+      "id": "proc_blepharoplasty",
+      "slug": "eyelid-surgery",
+      "name": "Eyelid surgery",
+      "href": "./procedures/eyelid-surgery.html",
+      "category": "Plastic surgery"
+    },
+    {
+      "type": "procedure",
+      "id": "proc_tummy_tuck",
+      "slug": "tummy-tuck",
+      "name": "Tummy tuck",
+      "href": "./procedures/tummy-tuck.html",
+      "category": "Plastic surgery"
+    },
+    {
+      "type": "procedure",
+      "id": "proc_facelift",
+      "slug": "facelift",
+      "name": "Facelift",
+      "href": "./procedures/facelift.html",
+      "category": "Plastic surgery"
+    },
+    {
+      "type": "procedure",
+      "id": "proc_dental_implants",
+      "slug": "dental-implants",
+      "name": "Dental implants",
+      "href": "./procedures/dental-implants.html",
+      "category": "Dental"
+    },
+    {
+      "type": "procedure",
+      "id": "proc_smile_makeover",
+      "slug": "smile-makeover",
+      "name": "Smile makeover",
+      "href": "./procedures/smile-makeover.html",
+      "category": "Dental"
+    },
+    {
+      "type": "procedure",
+      "id": "proc_ivf",
+      "slug": "ivf",
+      "name": "IVF",
+      "href": "./procedures/ivf.html",
+      "category": "Fertility"
+    },
+    {
+      "type": "procedure",
+      "id": "proc_breast_augmentation",
+      "slug": "breast-augmentation",
+      "name": "Breast augmentation",
+      "href": "./procedures/breast-augmentation.html",
+      "category": "Plastic surgery"
+    },
+    {
+      "type": "procedure",
+      "id": "proc_liposuction",
+      "slug": "liposuction",
+      "name": "Liposuction",
+      "href": "./procedures/liposuction.html",
+      "category": "Plastic surgery"
+    },
+    {
+      "type": "procedure",
+      "id": "proc_bariatric",
+      "slug": "gastric-sleeve",
+      "name": "Gastric sleeve",
+      "href": "./procedures/gastric-sleeve.html",
+      "category": "Bariatric"
+    },
+    {
+      "type": "procedure",
+      "id": "proc_lasik",
+      "slug": "lasik",
+      "name": "LASIK",
+      "href": "./procedures/lasik.html",
+      "category": "Eye"
+    },
+    {
+      "type": "procedure",
+      "id": "proc_cardiac",
+      "slug": "cardiac-bypass",
+      "name": "Cardiac bypass",
+      "href": "./procedures/cardiac-bypass.html",
+      "category": "Cardiac"
+    },
+    {
+      "type": "procedure",
+      "id": "proc_knee",
+      "slug": "knee-replacement",
+      "name": "Knee replacement",
+      "href": "./procedures/knee-replacement.html",
+      "category": "Orthopedics"
+    },
+    {
+      "type": "procedure",
+      "id": "proc_jaw",
+      "slug": "jaw-contouring",
+      "name": "Jaw contouring",
+      "href": "./procedures/jaw-contouring.html",
+      "category": "Plastic surgery"
+    },
+    {
+      "type": "procedure",
+      "id": "proc_injectables",
+      "slug": "injectables",
+      "name": "Injectables",
+      "href": "./procedures/injectables.html",
+      "category": "Dermatology"
+    },
+    {
+      "type": "procedure",
+      "id": "proc_oncology",
+      "slug": "oncology-care",
+      "name": "Oncology care pathway",
+      "href": "./procedures/oncology-care.html",
+      "category": "Oncology"
+    },
+    {
+      "type": "procedure",
+      "id": "proc_hip",
+      "slug": "hip-replacement",
+      "name": "Hip replacement",
+      "href": "./procedures/hip-replacement.html",
+      "category": "Orthopedics"
+    },
+    {
+      "type": "destination",
+      "id": "dest_istanbul",
+      "slug": "istanbul",
+      "name": "Istanbul, Türkiye",
+      "href": "./destinations/istanbul.html",
+      "category": "Aesthetics, hair, dental, and broad specialty care"
+    },
+    {
+      "type": "destination",
+      "id": "dest_seoul",
+      "slug": "seoul",
+      "name": "Seoul, South Korea",
+      "href": "./destinations/seoul.html",
+      "category": "Dermatology and plastic surgery (destination-first for skincare)"
+    },
+    {
+      "type": "destination",
+      "id": "dest_bangkok",
+      "slug": "bangkok",
+      "name": "Bangkok, Thailand",
+      "href": "./destinations/bangkok.html",
+      "category": "Cosmetic, dental, fertility, hair, and multispecialty hospitals"
+    },
+    {
+      "type": "destination",
+      "id": "dest_tijuana",
+      "slug": "tijuana",
+      "name": "Tijuana, Mexico",
+      "href": "./destinations/tijuana.html",
+      "category": "Dental, cosmetic, bariatric, and hair care near the US border"
+    },
+    {
+      "type": "destination",
+      "id": "dest_mexico_city",
+      "slug": "mexico-city",
+      "name": "Mexico City, Mexico",
+      "href": "./destinations/mexico-city.html",
+      "category": "Cosmetic, dental, eye care, hair, and full hospitals"
+    },
+    {
+      "type": "destination",
+      "id": "dest_medellin",
+      "slug": "medellin",
+      "name": "Medellín, Colombia",
+      "href": "./destinations/medellin.html",
+      "category": "Cosmetic surgery, hair restoration, and multidisciplinary support"
+    },
+    {
+      "type": "destination",
+      "id": "dest_san_jose",
+      "slug": "san-jose",
+      "name": "San José, Costa Rica",
+      "href": "./destinations/san-jose.html",
+      "category": "Dental, cosmetic, and orthopedic care"
+    },
+    {
+      "type": "destination",
+      "id": "dest_delhi",
+      "slug": "delhi",
+      "name": "Delhi, India",
+      "href": "./destinations/delhi.html",
+      "category": "Cardiac, ortho, cancer, cosmetic, dental, and fertility"
+    },
+    {
+      "type": "destination",
+      "id": "dest_barcelona",
+      "slug": "barcelona",
+      "name": "Barcelona, Spain",
+      "href": "./destinations/barcelona.html",
+      "category": "Fertility and IVF"
+    },
+    {
+      "type": "destination",
+      "id": "dest_prague",
+      "slug": "prague",
+      "name": "Prague, Czechia",
+      "href": "./destinations/prague.html",
+      "category": "Fertility and IVF"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_istanbul_bosphorus-follicle-institute",
+      "slug": "bosphorus-follicle-institute",
+      "name": "Bosphorus Follicle Institute",
+      "href": "./clinics/bosphorus-follicle-institute.html",
+      "category": "Istanbul"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_istanbul_galata-contour-surgery",
+      "slug": "galata-contour-surgery",
+      "name": "Galata Contour Surgery",
+      "href": "./clinics/galata-contour-surgery.html",
+      "category": "Istanbul"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_istanbul_golden-horn-dental-atelier",
+      "slug": "golden-horn-dental-atelier",
+      "name": "Golden Horn Dental Atelier",
+      "href": "./clinics/golden-horn-dental-atelier.html",
+      "category": "Istanbul"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_istanbul_marmara-aesthetic-hospital",
+      "slug": "marmara-aesthetic-hospital",
+      "name": "Marmara Aesthetic Hospital",
+      "href": "./clinics/marmara-aesthetic-hospital.html",
+      "category": "Istanbul"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_istanbul_kadikoy-graft-atelier",
+      "slug": "kadikoy-graft-atelier",
+      "name": "Kadikoy Graft Atelier",
+      "href": "./clinics/kadikoy-graft-atelier.html",
+      "category": "Istanbul"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_istanbul_besiktas-follicle-lab",
+      "slug": "besiktas-follicle-lab",
+      "name": "Besiktas Follicle Lab",
+      "href": "./clinics/besiktas-follicle-lab.html",
+      "category": "Istanbul"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_istanbul_cengelkoy-hair-pavilion",
+      "slug": "cengelkoy-hair-pavilion",
+      "name": "Cengelkoy Hair Pavilion",
+      "href": "./clinics/cengelkoy-hair-pavilion.html",
+      "category": "Istanbul"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_istanbul_ortakoy-density-works",
+      "slug": "ortakoy-density-works",
+      "name": "Ortakoy Density Works",
+      "href": "./clinics/ortakoy-density-works.html",
+      "category": "Istanbul"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_seoul_cheongdam-lumen-plastic",
+      "slug": "cheongdam-lumen-plastic",
+      "name": "Cheongdam Lumen Plastic",
+      "href": "./clinics/cheongdam-lumen-plastic.html",
+      "category": "Seoul"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_seoul_gangnam-pore-glow-derm",
+      "slug": "gangnam-pore-glow-derm",
+      "name": "Gangnam Pore & Glow Derm",
+      "href": "./clinics/gangnam-pore-glow-derm.html",
+      "category": "Seoul"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_seoul_apgujeong-vector-surgery",
+      "slug": "apgujeong-vector-surgery",
+      "name": "Apgujeong Vector Surgery",
+      "href": "./clinics/apgujeong-vector-surgery.html",
+      "category": "Seoul"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_seoul_hannam-softlift-clinic",
+      "slug": "hannam-softlift-clinic",
+      "name": "Hannam SoftLift Clinic",
+      "href": "./clinics/hannam-softlift-clinic.html",
+      "category": "Seoul"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_bangkok_chao-phraya-multicare-hospital",
+      "slug": "chao-phraya-multicare-hospital",
+      "name": "Chao Phraya Multicare Hospital",
+      "href": "./clinics/chao-phraya-multicare-hospital.html",
+      "category": "Bangkok"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_bangkok_sukhumvit-smile-lab",
+      "slug": "sukhumvit-smile-lab",
+      "name": "Sukhumvit Smile Lab",
+      "href": "./clinics/sukhumvit-smile-lab.html",
+      "category": "Bangkok"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_bangkok_silom-fertility-pavilion",
+      "slug": "silom-fertility-pavilion",
+      "name": "Silom Fertility Pavilion",
+      "href": "./clinics/silom-fertility-pavilion.html",
+      "category": "Bangkok"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_bangkok_riverside-contour-center",
+      "slug": "riverside-contour-center",
+      "name": "Riverside Contour Center",
+      "href": "./clinics/riverside-contour-center.html",
+      "category": "Bangkok"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_bangkok_thonglor-follicle-house",
+      "slug": "thonglor-follicle-house",
+      "name": "Thonglor Follicle House",
+      "href": "./clinics/thonglor-follicle-house.html",
+      "category": "Bangkok"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_bangkok_asok-crown-restoration",
+      "slug": "asok-crown-restoration",
+      "name": "Asok Crown Restoration",
+      "href": "./clinics/asok-crown-restoration.html",
+      "category": "Bangkok"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_tijuana_zona-rio-dental-bridge",
+      "slug": "zona-rio-dental-bridge",
+      "name": "Zona Río Dental Bridge",
+      "href": "./clinics/zona-rio-dental-bridge.html",
+      "category": "Tijuana"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_tijuana_otay-metabolic-surgery",
+      "slug": "otay-metabolic-surgery",
+      "name": "Otay Metabolic Surgery",
+      "href": "./clinics/otay-metabolic-surgery.html",
+      "category": "Tijuana"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_tijuana_playas-form-clinic",
+      "slug": "playas-form-clinic",
+      "name": "Playas Form Clinic",
+      "href": "./clinics/playas-form-clinic.html",
+      "category": "Tijuana"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_tijuana_agua-caliente-graft-institute",
+      "slug": "agua-caliente-graft-institute",
+      "name": "Agua Caliente Graft Institute",
+      "href": "./clinics/agua-caliente-graft-institute.html",
+      "category": "Tijuana"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_tijuana_hipodromo-follicle-hub",
+      "slug": "hipodromo-follicle-hub",
+      "name": "Hipodromo Follicle Hub",
+      "href": "./clinics/hipodromo-follicle-hub.html",
+      "category": "Tijuana"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_mexico-city_polanco-vision-works",
+      "slug": "polanco-vision-works",
+      "name": "Polanco Vision Works",
+      "href": "./clinics/polanco-vision-works.html",
+      "category": "Mexico City"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_mexico-city_roma-norte-dental-atelier",
+      "slug": "roma-norte-dental-atelier",
+      "name": "Roma Norte Dental Atelier",
+      "href": "./clinics/roma-norte-dental-atelier.html",
+      "category": "Mexico City"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_mexico-city_insurgentes-aesthetic-pavilion",
+      "slug": "insurgentes-aesthetic-pavilion",
+      "name": "Insurgentes Aesthetic Pavilion",
+      "href": "./clinics/insurgentes-aesthetic-pavilion.html",
+      "category": "Mexico City"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_mexico-city_pedregal-care-hospital",
+      "slug": "pedregal-care-hospital",
+      "name": "Pedregal Care Hospital",
+      "href": "./clinics/pedregal-care-hospital.html",
+      "category": "Mexico City"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_mexico-city_condesa-follicle-atelier",
+      "slug": "condesa-follicle-atelier",
+      "name": "Condesa Follicle Atelier",
+      "href": "./clinics/condesa-follicle-atelier.html",
+      "category": "Mexico City"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_medellin_el-poblado-form-studio",
+      "slug": "el-poblado-form-studio",
+      "name": "El Poblado Form Studio",
+      "href": "./clinics/el-poblado-form-studio.html",
+      "category": "Medellín"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_medellin_laureles-profile-surgery",
+      "slug": "laureles-profile-surgery",
+      "name": "Laureles Profile Surgery",
+      "href": "./clinics/laureles-profile-surgery.html",
+      "category": "Medellín"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_medellin_provenza-multidisciplinary-care",
+      "slug": "provenza-multidisciplinary-care",
+      "name": "Provenza Multidisciplinary Care",
+      "href": "./clinics/provenza-multidisciplinary-care.html",
+      "category": "Medellín"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_medellin_envigado-graft-pavilion",
+      "slug": "envigado-graft-pavilion",
+      "name": "Envigado Graft Pavilion",
+      "href": "./clinics/envigado-graft-pavilion.html",
+      "category": "Medellín"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_san-jose_escazu-dental-highlands",
+      "slug": "escazu-dental-highlands",
+      "name": "Escazú Dental Highlands",
+      "href": "./clinics/escazu-dental-highlands.html",
+      "category": "San José"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_san-jose_sabana-ortho-institute",
+      "slug": "sabana-ortho-institute",
+      "name": "Sabana Ortho Institute",
+      "href": "./clinics/sabana-ortho-institute.html",
+      "category": "San José"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_san-jose_barrio-amon-contour",
+      "slug": "barrio-amon-contour",
+      "name": "Barrio Amón Contour",
+      "href": "./clinics/barrio-amon-contour.html",
+      "category": "San José"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_delhi_lotus-tertiary-heart-center",
+      "slug": "lotus-tertiary-heart-center",
+      "name": "Lotus Tertiary Heart Center",
+      "href": "./clinics/lotus-tertiary-heart-center.html",
+      "category": "Delhi"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_delhi_yamuna-oncology-collective",
+      "slug": "yamuna-oncology-collective",
+      "name": "Yamuna Oncology Collective",
+      "href": "./clinics/yamuna-oncology-collective.html",
+      "category": "Delhi"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_delhi_connaught-joint-institute",
+      "slug": "connaught-joint-institute",
+      "name": "Connaught Joint Institute",
+      "href": "./clinics/connaught-joint-institute.html",
+      "category": "Delhi"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_delhi_defence-colony-fertility-lab",
+      "slug": "defence-colony-fertility-lab",
+      "name": "Defence Colony Fertility Lab",
+      "href": "./clinics/defence-colony-fertility-lab.html",
+      "category": "Delhi"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_delhi_hauz-khas-smile-face",
+      "slug": "hauz-khas-smile-face",
+      "name": "Hauz Khas Smile & Face",
+      "href": "./clinics/hauz-khas-smile-face.html",
+      "category": "Delhi"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_barcelona_eixample-fertility-atelier",
+      "slug": "eixample-fertility-atelier",
+      "name": "Eixample Fertility Atelier",
+      "href": "./clinics/eixample-fertility-atelier.html",
+      "category": "Barcelona"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_barcelona_diagonal-reproductive-medicine",
+      "slug": "diagonal-reproductive-medicine",
+      "name": "Diagonal Reproductive Medicine",
+      "href": "./clinics/diagonal-reproductive-medicine.html",
+      "category": "Barcelona"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_barcelona_gracia-embryo-lab",
+      "slug": "gracia-embryo-lab",
+      "name": "Gràcia Embryo Lab",
+      "href": "./clinics/gracia-embryo-lab.html",
+      "category": "Barcelona"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_prague_vinohrady-fertility-house",
+      "slug": "vinohrady-fertility-house",
+      "name": "Vinohrady Fertility House",
+      "href": "./clinics/vinohrady-fertility-house.html",
+      "category": "Prague"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_prague_karlin-reproductive-clinic",
+      "slug": "karlin-reproductive-clinic",
+      "name": "Karlín Reproductive Clinic",
+      "href": "./clinics/karlin-reproductive-clinic.html",
+      "category": "Prague"
+    },
+    {
+      "type": "clinic",
+      "id": "clinic_prague_letna-ivf-pavilion",
+      "slug": "letna-ivf-pavilion",
+      "name": "Letná IVF Pavilion",
+      "href": "./clinics/letna-ivf-pavilion.html",
+      "category": "Prague"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_amira-okada-istanbul",
+      "slug": "amira-okada-istanbul",
+      "name": "Dr. Amira Okada",
+      "href": "./doctors/amira-okada-istanbul.html",
+      "category": "Hair transplant"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_kenji-hassan-istanbul",
+      "slug": "kenji-hassan-istanbul",
+      "name": "Dr. Kenji Hassan",
+      "href": "./doctors/kenji-hassan-istanbul.html",
+      "category": "Plastic surgery"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_sofia-petrov-istanbul",
+      "slug": "sofia-petrov-istanbul",
+      "name": "Dr. Sofia Petrov",
+      "href": "./doctors/sofia-petrov-istanbul.html",
+      "category": "Plastic surgery"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_mateo-costa-istanbul",
+      "slug": "mateo-costa-istanbul",
+      "name": "Dr. Mateo Costa",
+      "href": "./doctors/mateo-costa-istanbul.html",
+      "category": "Dental"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_hana-horvath-istanbul",
+      "slug": "hana-horvath-istanbul",
+      "name": "Dr. Hana Horvath",
+      "href": "./doctors/hana-horvath-istanbul.html",
+      "category": "Multispecialty aesthetics"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_omar-demir-istanbul",
+      "slug": "omar-demir-istanbul",
+      "name": "Dr. Omar Demir",
+      "href": "./doctors/omar-demir-istanbul.html",
+      "category": "Multispecialty aesthetics"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_elena-novakova-istanbul",
+      "slug": "elena-novakova-istanbul",
+      "name": "Dr. Elena Nováková",
+      "href": "./doctors/elena-novakova-istanbul.html",
+      "category": "Hair transplant"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_priya-reyes-istanbul",
+      "slug": "priya-reyes-istanbul",
+      "name": "Dr. Priya Reyes",
+      "href": "./doctors/priya-reyes-istanbul.html",
+      "category": "Hair transplant"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_luca-petrov-istanbul",
+      "slug": "luca-petrov-istanbul",
+      "name": "Dr. Luca Petrov",
+      "href": "./doctors/luca-petrov-istanbul.html",
+      "category": "Hair transplant"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_yuri-kim-istanbul",
+      "slug": "yuri-kim-istanbul",
+      "name": "Dr. Yuri Kim",
+      "href": "./doctors/yuri-kim-istanbul.html",
+      "category": "Hair transplant"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_nadia-nakamura-seoul",
+      "slug": "nadia-nakamura-seoul",
+      "name": "Dr. Nadia Nakamura",
+      "href": "./doctors/nadia-nakamura-seoul.html",
+      "category": "Plastic surgery"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_carlos-vargas-seoul",
+      "slug": "carlos-vargas-seoul",
+      "name": "Dr. Carlos Vargas",
+      "href": "./doctors/carlos-vargas-seoul.html",
+      "category": "Plastic surgery"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_ines-cho-seoul",
+      "slug": "ines-cho-seoul",
+      "name": "Dr. Ines Cho",
+      "href": "./doctors/ines-cho-seoul.html",
+      "category": "Dermatology"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_arjun-garcia-seoul",
+      "slug": "arjun-garcia-seoul",
+      "name": "Dr. Arjun García",
+      "href": "./doctors/arjun-garcia-seoul.html",
+      "category": "Facial contour"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_mila-okada-seoul",
+      "slug": "mila-okada-seoul",
+      "name": "Dr. Mila Okada",
+      "href": "./doctors/mila-okada-seoul.html",
+      "category": "Facial contour"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_diego-singh-seoul",
+      "slug": "diego-singh-seoul",
+      "name": "Dr. Diego Singh",
+      "href": "./doctors/diego-singh-seoul.html",
+      "category": "Rejuvenation"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_sora-moreau-seoul",
+      "slug": "sora-moreau-seoul",
+      "name": "Dr. Sora Moreau",
+      "href": "./doctors/sora-moreau-seoul.html",
+      "category": "Rejuvenation"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_leila-vargas-bangkok",
+      "slug": "leila-vargas-bangkok",
+      "name": "Dr. Leila Vargas",
+      "href": "./doctors/leila-vargas-bangkok.html",
+      "category": "Multispecialty"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_tomas-horvath-bangkok",
+      "slug": "tomas-horvath-bangkok",
+      "name": "Dr. Tomas Horvath",
+      "href": "./doctors/tomas-horvath-bangkok.html",
+      "category": "Multispecialty"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_ayla-ibrahim-bangkok",
+      "slug": "ayla-ibrahim-bangkok",
+      "name": "Dr. Ayla Ibrahim",
+      "href": "./doctors/ayla-ibrahim-bangkok.html",
+      "category": "Dental"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_amira-okada-bangkok",
+      "slug": "amira-okada-bangkok",
+      "name": "Dr. Amira Okada",
+      "href": "./doctors/amira-okada-bangkok.html",
+      "category": "Fertility"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_kenji-hassan-bangkok",
+      "slug": "kenji-hassan-bangkok",
+      "name": "Dr. Kenji Hassan",
+      "href": "./doctors/kenji-hassan-bangkok.html",
+      "category": "Cosmetic"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_sofia-petrov-bangkok",
+      "slug": "sofia-petrov-bangkok",
+      "name": "Dr. Sofia Petrov",
+      "href": "./doctors/sofia-petrov-bangkok.html",
+      "category": "Cosmetic"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_mateo-costa-bangkok",
+      "slug": "mateo-costa-bangkok",
+      "name": "Dr. Mateo Costa",
+      "href": "./doctors/mateo-costa-bangkok.html",
+      "category": "Hair transplant"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_hana-horvath-bangkok",
+      "slug": "hana-horvath-bangkok",
+      "name": "Dr. Hana Horvath",
+      "href": "./doctors/hana-horvath-bangkok.html",
+      "category": "Hair transplant"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_omar-almeida-tijuana",
+      "slug": "omar-almeida-tijuana",
+      "name": "Dr. Omar Almeida",
+      "href": "./doctors/omar-almeida-tijuana.html",
+      "category": "Dental"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_elena-novakova-tijuana",
+      "slug": "elena-novakova-tijuana",
+      "name": "Dr. Elena Nováková",
+      "href": "./doctors/elena-novakova-tijuana.html",
+      "category": "Bariatric"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_priya-reyes-tijuana",
+      "slug": "priya-reyes-tijuana",
+      "name": "Dr. Priya Reyes",
+      "href": "./doctors/priya-reyes-tijuana.html",
+      "category": "Cosmetic"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_luca-novak-tijuana",
+      "slug": "luca-novak-tijuana",
+      "name": "Dr. Luca Novak",
+      "href": "./doctors/luca-novak-tijuana.html",
+      "category": "Cosmetic"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_yuri-kim-tijuana",
+      "slug": "yuri-kim-tijuana",
+      "name": "Dr. Yuri Kim",
+      "href": "./doctors/yuri-kim-tijuana.html",
+      "category": "Hair transplant"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_nadia-nakamura-tijuana",
+      "slug": "nadia-nakamura-tijuana",
+      "name": "Dr. Nadia Nakamura",
+      "href": "./doctors/nadia-nakamura-tijuana.html",
+      "category": "Hair transplant"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_carlos-demir-mexico-city",
+      "slug": "carlos-demir-mexico-city",
+      "name": "Dr. Carlos Demir",
+      "href": "./doctors/carlos-demir-mexico-city.html",
+      "category": "Eye"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_ines-cho-mexico-city",
+      "slug": "ines-cho-mexico-city",
+      "name": "Dr. Ines Cho",
+      "href": "./doctors/ines-cho-mexico-city.html",
+      "category": "Dental"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_arjun-garcia-mexico-city",
+      "slug": "arjun-garcia-mexico-city",
+      "name": "Dr. Arjun García",
+      "href": "./doctors/arjun-garcia-mexico-city.html",
+      "category": "Cosmetic"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_mila-okada-mexico-city",
+      "slug": "mila-okada-mexico-city",
+      "name": "Dr. Mila Okada",
+      "href": "./doctors/mila-okada-mexico-city.html",
+      "category": "Cosmetic"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_diego-singh-mexico-city",
+      "slug": "diego-singh-mexico-city",
+      "name": "Dr. Diego Singh",
+      "href": "./doctors/diego-singh-mexico-city.html",
+      "category": "Hospital"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_sora-moreau-mexico-city",
+      "slug": "sora-moreau-mexico-city",
+      "name": "Dr. Sora Moreau",
+      "href": "./doctors/sora-moreau-mexico-city.html",
+      "category": "Hospital"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_leila-vargas-mexico-city",
+      "slug": "leila-vargas-mexico-city",
+      "name": "Dr. Leila Vargas",
+      "href": "./doctors/leila-vargas-mexico-city.html",
+      "category": "Hair transplant"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_tomas-park-medellin",
+      "slug": "tomas-park-medellin",
+      "name": "Dr. Tomas Park",
+      "href": "./doctors/tomas-park-medellin.html",
+      "category": "Cosmetic"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_ayla-almeida-medellin",
+      "slug": "ayla-almeida-medellin",
+      "name": "Dr. Ayla Almeida",
+      "href": "./doctors/ayla-almeida-medellin.html",
+      "category": "Cosmetic"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_amira-okada-medellin",
+      "slug": "amira-okada-medellin",
+      "name": "Dr. Amira Okada",
+      "href": "./doctors/amira-okada-medellin.html",
+      "category": "Facial"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_kenji-hassan-medellin",
+      "slug": "kenji-hassan-medellin",
+      "name": "Dr. Kenji Hassan",
+      "href": "./doctors/kenji-hassan-medellin.html",
+      "category": "Multidisciplinary"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_sofia-petrov-medellin",
+      "slug": "sofia-petrov-medellin",
+      "name": "Dr. Sofia Petrov",
+      "href": "./doctors/sofia-petrov-medellin.html",
+      "category": "Multidisciplinary"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_mateo-costa-medellin",
+      "slug": "mateo-costa-medellin",
+      "name": "Dr. Mateo Costa",
+      "href": "./doctors/mateo-costa-medellin.html",
+      "category": "Hair transplant"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_hana-horvath-san-jose",
+      "slug": "hana-horvath-san-jose",
+      "name": "Dr. Hana Horvath",
+      "href": "./doctors/hana-horvath-san-jose.html",
+      "category": "Dental"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_omar-almeida-san-jose",
+      "slug": "omar-almeida-san-jose",
+      "name": "Dr. Omar Almeida",
+      "href": "./doctors/omar-almeida-san-jose.html",
+      "category": "Orthopedics"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_elena-novakova-san-jose",
+      "slug": "elena-novakova-san-jose",
+      "name": "Dr. Elena Nováková",
+      "href": "./doctors/elena-novakova-san-jose.html",
+      "category": "Cosmetic"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_priya-reyes-delhi",
+      "slug": "priya-reyes-delhi",
+      "name": "Dr. Priya Reyes",
+      "href": "./doctors/priya-reyes-delhi.html",
+      "category": "Cardiac"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_luca-petrov-delhi",
+      "slug": "luca-petrov-delhi",
+      "name": "Dr. Luca Petrov",
+      "href": "./doctors/luca-petrov-delhi.html",
+      "category": "Oncology"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_yuri-kim-delhi",
+      "slug": "yuri-kim-delhi",
+      "name": "Dr. Yuri Kim",
+      "href": "./doctors/yuri-kim-delhi.html",
+      "category": "Orthopedics"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_nadia-nakamura-delhi",
+      "slug": "nadia-nakamura-delhi",
+      "name": "Dr. Nadia Nakamura",
+      "href": "./doctors/nadia-nakamura-delhi.html",
+      "category": "Fertility"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_carlos-demir-delhi",
+      "slug": "carlos-demir-delhi",
+      "name": "Dr. Carlos Demir",
+      "href": "./doctors/carlos-demir-delhi.html",
+      "category": "Dental & cosmetic"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_ines-cho-barcelona",
+      "slug": "ines-cho-barcelona",
+      "name": "Dr. Ines Cho",
+      "href": "./doctors/ines-cho-barcelona.html",
+      "category": "IVF"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_arjun-garcia-barcelona",
+      "slug": "arjun-garcia-barcelona",
+      "name": "Dr. Arjun García",
+      "href": "./doctors/arjun-garcia-barcelona.html",
+      "category": "IVF"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_mila-novak-barcelona",
+      "slug": "mila-novak-barcelona",
+      "name": "Dr. Mila Novak",
+      "href": "./doctors/mila-novak-barcelona.html",
+      "category": "IVF"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_diego-singh-prague",
+      "slug": "diego-singh-prague",
+      "name": "Dr. Diego Singh",
+      "href": "./doctors/diego-singh-prague.html",
+      "category": "IVF"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_sora-silva-prague",
+      "slug": "sora-silva-prague",
+      "name": "Dr. Sora Silva",
+      "href": "./doctors/sora-silva-prague.html",
+      "category": "IVF"
+    },
+    {
+      "type": "doctor",
+      "id": "doc_leila-vargas-prague",
+      "slug": "leila-vargas-prague",
+      "name": "Dr. Leila Vargas",
+      "href": "./doctors/leila-vargas-prague.html",
+      "category": "IVF"
+    }
+  ],
+  "destination_prices": [
+    {
+      "id": "price_dest_istanbul_proc_hair_transplant",
+      "entity_type": "destination",
+      "entity_id": "dest_istanbul",
+      "procedure_id": "proc_hair_transplant",
+      "min_usd": 2200,
+      "max_usd": 4500,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 5280,
+      "us_compare_max_usd": 12600,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_istanbul_proc_rhinoplasty",
+      "entity_type": "destination",
+      "entity_id": "dest_istanbul",
+      "procedure_id": "proc_rhinoplasty",
+      "min_usd": 2800,
+      "max_usd": 5500,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 6720,
+      "us_compare_max_usd": 15400,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_istanbul_proc_dental_implants",
+      "entity_type": "destination",
+      "entity_id": "dest_istanbul",
+      "procedure_id": "proc_dental_implants",
+      "min_usd": 700,
+      "max_usd": 1600,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 1680,
+      "us_compare_max_usd": 4480,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_istanbul_proc_tummy_tuck",
+      "entity_type": "destination",
+      "entity_id": "dest_istanbul",
+      "procedure_id": "proc_tummy_tuck",
+      "min_usd": 3500,
+      "max_usd": 7000,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 8400,
+      "us_compare_max_usd": 19600,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_istanbul_proc_breast_augmentation",
+      "entity_type": "destination",
+      "entity_id": "dest_istanbul",
+      "procedure_id": "proc_breast_augmentation",
+      "min_usd": 3200,
+      "max_usd": 6200,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 7680,
+      "us_compare_max_usd": 17360,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_seoul_proc_blepharoplasty",
+      "entity_type": "destination",
+      "entity_id": "dest_seoul",
+      "procedure_id": "proc_blepharoplasty",
+      "min_usd": 1800,
+      "max_usd": 4200,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 4320,
+      "us_compare_max_usd": 11760,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_seoul_proc_rhinoplasty",
+      "entity_type": "destination",
+      "entity_id": "dest_seoul",
+      "procedure_id": "proc_rhinoplasty",
+      "min_usd": 3500,
+      "max_usd": 8500,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 8400,
+      "us_compare_max_usd": 23800,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_seoul_proc_jaw",
+      "entity_type": "destination",
+      "entity_id": "dest_seoul",
+      "procedure_id": "proc_jaw",
+      "min_usd": 5000,
+      "max_usd": 12000,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 12000,
+      "us_compare_max_usd": 33600,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_seoul_proc_injectables",
+      "entity_type": "destination",
+      "entity_id": "dest_seoul",
+      "procedure_id": "proc_injectables",
+      "min_usd": 200,
+      "max_usd": 900,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 480,
+      "us_compare_max_usd": 2520,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_seoul_proc_facelift",
+      "entity_type": "destination",
+      "entity_id": "dest_seoul",
+      "procedure_id": "proc_facelift",
+      "min_usd": 7000,
+      "max_usd": 16000,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 16800,
+      "us_compare_max_usd": 44800,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_bangkok_proc_dental_implants",
+      "entity_type": "destination",
+      "entity_id": "dest_bangkok",
+      "procedure_id": "proc_dental_implants",
+      "min_usd": 800,
+      "max_usd": 1800,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 1920,
+      "us_compare_max_usd": 5040,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_bangkok_proc_ivf",
+      "entity_type": "destination",
+      "entity_id": "dest_bangkok",
+      "procedure_id": "proc_ivf",
+      "min_usd": 4500,
+      "max_usd": 9000,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 10800,
+      "us_compare_max_usd": 25200,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_bangkok_proc_rhinoplasty",
+      "entity_type": "destination",
+      "entity_id": "dest_bangkok",
+      "procedure_id": "proc_rhinoplasty",
+      "min_usd": 3000,
+      "max_usd": 6500,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 7200,
+      "us_compare_max_usd": 18200,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_bangkok_proc_breast_augmentation",
+      "entity_type": "destination",
+      "entity_id": "dest_bangkok",
+      "procedure_id": "proc_breast_augmentation",
+      "min_usd": 3500,
+      "max_usd": 7000,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 8400,
+      "us_compare_max_usd": 19600,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_bangkok_proc_lasik",
+      "entity_type": "destination",
+      "entity_id": "dest_bangkok",
+      "procedure_id": "proc_lasik",
+      "min_usd": 1200,
+      "max_usd": 2800,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 2880,
+      "us_compare_max_usd": 7840,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_bangkok_proc_hair_transplant",
+      "entity_type": "destination",
+      "entity_id": "dest_bangkok",
+      "procedure_id": "proc_hair_transplant",
+      "min_usd": 2400,
+      "max_usd": 4800,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 5760,
+      "us_compare_max_usd": 13440,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_tijuana_proc_dental_implants",
+      "entity_type": "destination",
+      "entity_id": "dest_tijuana",
+      "procedure_id": "proc_dental_implants",
+      "min_usd": 600,
+      "max_usd": 1400,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 1440,
+      "us_compare_max_usd": 3920,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_tijuana_proc_bariatric",
+      "entity_type": "destination",
+      "entity_id": "dest_tijuana",
+      "procedure_id": "proc_bariatric",
+      "min_usd": 4500,
+      "max_usd": 8500,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 10800,
+      "us_compare_max_usd": 23800,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_tijuana_proc_smile_makeover",
+      "entity_type": "destination",
+      "entity_id": "dest_tijuana",
+      "procedure_id": "proc_smile_makeover",
+      "min_usd": 2500,
+      "max_usd": 7000,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 6000,
+      "us_compare_max_usd": 19600,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_tijuana_proc_tummy_tuck",
+      "entity_type": "destination",
+      "entity_id": "dest_tijuana",
+      "procedure_id": "proc_tummy_tuck",
+      "min_usd": 3200,
+      "max_usd": 6500,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 7680,
+      "us_compare_max_usd": 18200,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_tijuana_proc_liposuction",
+      "entity_type": "destination",
+      "entity_id": "dest_tijuana",
+      "procedure_id": "proc_liposuction",
+      "min_usd": 2200,
+      "max_usd": 5000,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 5280,
+      "us_compare_max_usd": 14000,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_tijuana_proc_hair_transplant",
+      "entity_type": "destination",
+      "entity_id": "dest_tijuana",
+      "procedure_id": "proc_hair_transplant",
+      "min_usd": 2100,
+      "max_usd": 4200,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 5040,
+      "us_compare_max_usd": 11760,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_mexico-city_proc_lasik",
+      "entity_type": "destination",
+      "entity_id": "dest_mexico_city",
+      "procedure_id": "proc_lasik",
+      "min_usd": 900,
+      "max_usd": 2200,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 2160,
+      "us_compare_max_usd": 6160,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_mexico-city_proc_dental_implants",
+      "entity_type": "destination",
+      "entity_id": "dest_mexico_city",
+      "procedure_id": "proc_dental_implants",
+      "min_usd": 650,
+      "max_usd": 1500,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 1560,
+      "us_compare_max_usd": 4200,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_mexico-city_proc_rhinoplasty",
+      "entity_type": "destination",
+      "entity_id": "dest_mexico_city",
+      "procedure_id": "proc_rhinoplasty",
+      "min_usd": 2800,
+      "max_usd": 5800,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 6720,
+      "us_compare_max_usd": 16240,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_mexico-city_proc_breast_augmentation",
+      "entity_type": "destination",
+      "entity_id": "dest_mexico_city",
+      "procedure_id": "proc_breast_augmentation",
+      "min_usd": 3000,
+      "max_usd": 6000,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 7200,
+      "us_compare_max_usd": 16800,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_mexico-city_proc_facelift",
+      "entity_type": "destination",
+      "entity_id": "dest_mexico_city",
+      "procedure_id": "proc_facelift",
+      "min_usd": 5500,
+      "max_usd": 12000,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 13200,
+      "us_compare_max_usd": 33600,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_mexico-city_proc_hair_transplant",
+      "entity_type": "destination",
+      "entity_id": "dest_mexico_city",
+      "procedure_id": "proc_hair_transplant",
+      "min_usd": 2300,
+      "max_usd": 4600,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 5520,
+      "us_compare_max_usd": 12880,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_medellin_proc_tummy_tuck",
+      "entity_type": "destination",
+      "entity_id": "dest_medellin",
+      "procedure_id": "proc_tummy_tuck",
+      "min_usd": 3000,
+      "max_usd": 6200,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 7200,
+      "us_compare_max_usd": 17360,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_medellin_proc_breast_augmentation",
+      "entity_type": "destination",
+      "entity_id": "dest_medellin",
+      "procedure_id": "proc_breast_augmentation",
+      "min_usd": 2800,
+      "max_usd": 5500,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 6720,
+      "us_compare_max_usd": 15400,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_medellin_proc_rhinoplasty",
+      "entity_type": "destination",
+      "entity_id": "dest_medellin",
+      "procedure_id": "proc_rhinoplasty",
+      "min_usd": 2500,
+      "max_usd": 5200,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 6000,
+      "us_compare_max_usd": 14560,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_medellin_proc_liposuction",
+      "entity_type": "destination",
+      "entity_id": "dest_medellin",
+      "procedure_id": "proc_liposuction",
+      "min_usd": 2000,
+      "max_usd": 4500,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 4800,
+      "us_compare_max_usd": 12600,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_medellin_proc_facelift",
+      "entity_type": "destination",
+      "entity_id": "dest_medellin",
+      "procedure_id": "proc_facelift",
+      "min_usd": 5000,
+      "max_usd": 11000,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 12000,
+      "us_compare_max_usd": 30800,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_medellin_proc_hair_transplant",
+      "entity_type": "destination",
+      "entity_id": "dest_medellin",
+      "procedure_id": "proc_hair_transplant",
+      "min_usd": 2000,
+      "max_usd": 4300,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 4800,
+      "us_compare_max_usd": 12040,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_san-jose_proc_dental_implants",
+      "entity_type": "destination",
+      "entity_id": "dest_san_jose",
+      "procedure_id": "proc_dental_implants",
+      "min_usd": 750,
+      "max_usd": 1700,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 1800,
+      "us_compare_max_usd": 4760,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_san-jose_proc_knee",
+      "entity_type": "destination",
+      "entity_id": "dest_san_jose",
+      "procedure_id": "proc_knee",
+      "min_usd": 9000,
+      "max_usd": 16000,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 21600,
+      "us_compare_max_usd": 44800,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_san-jose_proc_hip",
+      "entity_type": "destination",
+      "entity_id": "dest_san_jose",
+      "procedure_id": "proc_hip",
+      "min_usd": 9500,
+      "max_usd": 17000,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 22800,
+      "us_compare_max_usd": 47600,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_san-jose_proc_smile_makeover",
+      "entity_type": "destination",
+      "entity_id": "dest_san_jose",
+      "procedure_id": "proc_smile_makeover",
+      "min_usd": 2800,
+      "max_usd": 7500,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 6720,
+      "us_compare_max_usd": 21000,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_san-jose_proc_rhinoplasty",
+      "entity_type": "destination",
+      "entity_id": "dest_san_jose",
+      "procedure_id": "proc_rhinoplasty",
+      "min_usd": 3200,
+      "max_usd": 6000,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 7680,
+      "us_compare_max_usd": 16800,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_delhi_proc_cardiac",
+      "entity_type": "destination",
+      "entity_id": "dest_delhi",
+      "procedure_id": "proc_cardiac",
+      "min_usd": 5500,
+      "max_usd": 12000,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 13200,
+      "us_compare_max_usd": 33600,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_delhi_proc_oncology",
+      "entity_type": "destination",
+      "entity_id": "dest_delhi",
+      "procedure_id": "proc_oncology",
+      "min_usd": 4000,
+      "max_usd": 18000,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 9600,
+      "us_compare_max_usd": 50400,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_delhi_proc_knee",
+      "entity_type": "destination",
+      "entity_id": "dest_delhi",
+      "procedure_id": "proc_knee",
+      "min_usd": 4500,
+      "max_usd": 9000,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 10800,
+      "us_compare_max_usd": 25200,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_delhi_proc_ivf",
+      "entity_type": "destination",
+      "entity_id": "dest_delhi",
+      "procedure_id": "proc_ivf",
+      "min_usd": 2500,
+      "max_usd": 5500,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 6000,
+      "us_compare_max_usd": 15400,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_delhi_proc_dental_implants",
+      "entity_type": "destination",
+      "entity_id": "dest_delhi",
+      "procedure_id": "proc_dental_implants",
+      "min_usd": 400,
+      "max_usd": 1100,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 960,
+      "us_compare_max_usd": 3080,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_delhi_proc_rhinoplasty",
+      "entity_type": "destination",
+      "entity_id": "dest_delhi",
+      "procedure_id": "proc_rhinoplasty",
+      "min_usd": 2200,
+      "max_usd": 4800,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 5280,
+      "us_compare_max_usd": 13440,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_barcelona_proc_ivf",
+      "entity_type": "destination",
+      "entity_id": "dest_barcelona",
+      "procedure_id": "proc_ivf",
+      "min_usd": 4500,
+      "max_usd": 8500,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 10800,
+      "us_compare_max_usd": 23800,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    },
+    {
+      "id": "price_dest_prague_proc_ivf",
+      "entity_type": "destination",
+      "entity_id": "dest_prague",
+      "procedure_id": "proc_ivf",
+      "min_usd": 3200,
+      "max_usd": 6500,
+      "currency": "USD",
+      "includes": "Synthetic package sketch: consult, procedure, basic meds; hotel/transfers vary.",
+      "us_compare_min_usd": 7680,
+      "us_compare_max_usd": 18200,
+      "what_we_could_not_confirm": "Demo ranges only — not clinic quotes.",
+      "source_url": null,
+      "date_seen": "2026-10-31"
+    }
+  ],
+  "destinations": [
+    {
+      "id": "dest_istanbul",
+      "name": "Istanbul",
+      "country": "Türkiye",
+      "slug": "istanbul",
+      "specialties": [
+        "Aesthetics",
+        "Hair",
+        "Dental",
+        "Plastic surgery"
+      ]
+    },
+    {
+      "id": "dest_seoul",
+      "name": "Seoul",
+      "country": "South Korea",
+      "slug": "seoul",
+      "specialties": [
+        "Dermatology",
+        "Plastic surgery"
+      ]
+    },
+    {
+      "id": "dest_bangkok",
+      "name": "Bangkok",
+      "country": "Thailand",
+      "slug": "bangkok",
+      "specialties": [
+        "Cosmetic",
+        "Dental",
+        "Fertility",
+        "Hair",
+        "Multispecialty"
+      ]
+    },
+    {
+      "id": "dest_tijuana",
+      "name": "Tijuana",
+      "country": "Mexico",
+      "slug": "tijuana",
+      "specialties": [
+        "Dental",
+        "Cosmetic",
+        "Bariatric",
+        "Hair"
+      ]
+    },
+    {
+      "id": "dest_mexico_city",
+      "name": "Mexico City",
+      "country": "Mexico",
+      "slug": "mexico-city",
+      "specialties": [
+        "Cosmetic",
+        "Dental",
+        "Eye",
+        "Hair",
+        "Hospital"
+      ]
+    },
+    {
+      "id": "dest_medellin",
+      "name": "Medellín",
+      "country": "Colombia",
+      "slug": "medellin",
+      "specialties": [
+        "Cosmetic",
+        "Hair",
+        "Multidisciplinary"
+      ]
+    },
+    {
+      "id": "dest_san_jose",
+      "name": "San José",
+      "country": "Costa Rica",
+      "slug": "san-jose",
+      "specialties": [
+        "Dental",
+        "Cosmetic",
+        "Orthopedics"
+      ]
+    },
+    {
+      "id": "dest_delhi",
+      "name": "Delhi",
+      "country": "India",
+      "slug": "delhi",
+      "specialties": [
+        "Cardiac",
+        "Orthopedics",
+        "Oncology",
+        "Cosmetic",
+        "Dental",
+        "Fertility"
+      ]
+    },
+    {
+      "id": "dest_barcelona",
+      "name": "Barcelona",
+      "country": "Spain",
+      "slug": "barcelona",
+      "specialties": [
+        "Fertility",
+        "IVF"
+      ]
+    },
+    {
+      "id": "dest_prague",
+      "name": "Prague",
+      "country": "Czechia",
+      "slug": "prague",
+      "specialties": [
+        "Fertility",
+        "IVF"
+      ]
+    }
+  ],
+  "procedures": [
+    {
+      "id": "proc_hair_transplant",
+      "name": "Hair transplant",
+      "slug": "hair-transplant"
+    },
+    {
+      "id": "proc_rhinoplasty",
+      "name": "Rhinoplasty",
+      "slug": "rhinoplasty"
+    },
+    {
+      "id": "proc_blepharoplasty",
+      "name": "Eyelid surgery",
+      "slug": "eyelid-surgery"
+    },
+    {
+      "id": "proc_tummy_tuck",
+      "name": "Tummy tuck",
+      "slug": "tummy-tuck"
+    },
+    {
+      "id": "proc_facelift",
+      "name": "Facelift",
+      "slug": "facelift"
+    },
+    {
+      "id": "proc_dental_implants",
+      "name": "Dental implants",
+      "slug": "dental-implants"
+    },
+    {
+      "id": "proc_smile_makeover",
+      "name": "Smile makeover",
+      "slug": "smile-makeover"
+    },
+    {
+      "id": "proc_ivf",
+      "name": "IVF",
+      "slug": "ivf"
+    },
+    {
+      "id": "proc_breast_augmentation",
+      "name": "Breast augmentation",
+      "slug": "breast-augmentation"
+    },
+    {
+      "id": "proc_liposuction",
+      "name": "Liposuction",
+      "slug": "liposuction"
+    },
+    {
+      "id": "proc_bariatric",
+      "name": "Gastric sleeve",
+      "slug": "gastric-sleeve"
+    },
+    {
+      "id": "proc_lasik",
+      "name": "LASIK",
+      "slug": "lasik"
+    },
+    {
+      "id": "proc_cardiac",
+      "name": "Cardiac bypass",
+      "slug": "cardiac-bypass"
+    },
+    {
+      "id": "proc_knee",
+      "name": "Knee replacement",
+      "slug": "knee-replacement"
+    },
+    {
+      "id": "proc_jaw",
+      "name": "Jaw contouring",
+      "slug": "jaw-contouring"
+    },
+    {
+      "id": "proc_injectables",
+      "name": "Injectables",
+      "slug": "injectables"
+    },
+    {
+      "id": "proc_oncology",
+      "name": "Oncology care pathway",
+      "slug": "oncology-care"
+    },
+    {
+      "id": "proc_hip",
+      "name": "Hip replacement",
+      "slug": "hip-replacement"
+    }
+  ]
+}

@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="MediGo helps you compare procedures, destinations, clinics, and doctors abroad — with trip planning and AI research over public social sources.">
+  <meta name="robots" content="noindex,nofollow">
+  <title>MediGo — Medical travel, made easy</title>
+  <link rel="icon" href="./assets/logo-care-compass.png" type="image/png">
+  <link rel="apple-touch-icon" href="./assets/logo-care-compass.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Figtree:wght@600;700;800;900&display=swap">
+  <link rel="stylesheet" href="./brand.css">
+  <link rel="stylesheet" href="./site.css">
+  <style>body{margin:0;background:#fffbe6;color:#40032b;font-family:"DM Sans",system-ui,sans-serif}.section--dark{background:#40032b;color:#fffbe6}.t-display{font-family:"Figtree",system-ui,sans-serif;font-weight:900;letter-spacing:-0.03em}</style>
+</head>
+<body>
+  <header class="site-header" data-autohide>
+    <div class="nav container nav--bar">
+      <div class="nav__start">
+        <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-haspopup="dialog" data-nav-toggle>
+          <span class="visually-hidden">Open menu</span>
+          <span class="nav__toggle-icon" aria-hidden="true"></span>
+        </button>
+        <a class="nav__brand" href="./index.html"><img class="nav__logo" src="./assets/logo-care-compass-mark.png" alt="" width="44" height="44" decoding="async">MediGo</a>
+      </div>
+    </div>
+    <div id="site-menu" class="site-menu" data-site-menu hidden role="dialog" aria-modal="true" aria-label="Site menu">
+      <div class="site-menu__panel" data-site-menu-panel>
+        <div class="site-menu__top container">
+          <a class="nav__brand site-menu__brand" href="./index.html"><img class="nav__logo" src="./assets/logo-care-compass-mark.png" alt="" width="44" height="44" decoding="async">MediGo</a>
+          <button class="site-menu__close" type="button" data-nav-close>
+            <span class="visually-hidden">Close menu</span>
+            <span class="site-menu__close-icon" aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="site-menu__inner container">
+          <form class="site-menu__search" action="./procedures.html" method="get" role="search" data-menu-search>
+            <label class="visually-hidden" for="menu-search-input">Search destination, procedure, clinic, or doctor</label>
+            <div class="site-menu__search-shell">
+              <input id="menu-search-input" class="site-menu__search-input" name="q" type="search" inputmode="search" autocomplete="off" spellcheck="false" placeholder="Search destination, procedure, clinic, or doctor" aria-label="Search destination, procedure, clinic, or doctor" aria-expanded="false" aria-controls="menu-search-panel" aria-autocomplete="list">
+              <button class="site-menu__search-btn" type="submit">Search</button>
+            </div>
+            <div id="menu-search-panel" class="search-panel site-menu__suggest" data-search-panel hidden>
+              <div class="search-panel__hits search-suggest" data-search-suggest hidden></div>
+            </div>
+          </form>
+          <div class="site-menu__cols">
+            <nav class="site-menu__col site-menu__col--nav" aria-label="Navigation">
+              <a class="site-menu__link" href="./procedures.html">Procedures</a>
+              <a class="site-menu__link" href="./destinations.html">Destinations</a>
+              <a class="site-menu__link" href="./clinics.html">Clinics</a>
+            </nav>
+            <div class="site-menu__col site-menu__col--featured" aria-label="Top procedures and destinations">
+              <div class="site-menu__cards">
+                
+              <article class="site-menu__card">
+                <div class="site-menu__card-media">
+                  <img src="./assets/menu-istanbul-waterfront.jpg" alt="Istanbul waterfront at sunset" width="640" height="360" loading="lazy" decoding="async">
+                </div>
+                <div class="site-menu__card-body">
+                  <h3 class="site-menu__dest">Istanbul, Turkey</h3>
+                  <ul class="site-menu__procs">
+                    <li><a class="site-menu__proc" href="./procedures/breast-augmentation.html">Breast Augmentation</a></li><li><a class="site-menu__proc" href="./procedures/hair-transplant.html">Hairline Transplant</a></li><li><a class="site-menu__proc" href="./procedures/rhinoplasty.html">Rhinoplasty</a></li>
+                  </ul>
+                  <a class="site-menu__view-all" href="./destinations/istanbul.html">View all</a>
+                </div>
+              </article>
+                
+              <article class="site-menu__card">
+                <div class="site-menu__card-media">
+                  <img src="./assets/menu-seoul-gangnam.jpg" alt="Gangnam shopping district in Seoul" width="640" height="360" loading="lazy" decoding="async">
+                </div>
+                <div class="site-menu__card-body">
+                  <h3 class="site-menu__dest">Seoul, South Korea</h3>
+                  <ul class="site-menu__procs">
+                    <li><a class="site-menu__proc" href="./procedures/injectables.html">Lasers &amp; Injectables</a></li><li><a class="site-menu__proc" href="./procedures/facelift.html">Facelift</a></li><li><a class="site-menu__proc" href="./procedures/eyelid-surgery.html">Eyebrow Lift</a></li>
+                  </ul>
+                  <a class="site-menu__view-all" href="./destinations/seoul.html">View all</a>
+                </div>
+              </article>
+                
+              <article class="site-menu__card">
+                <div class="site-menu__card-media">
+                  <img src="./assets/menu-mexico-angel.jpg" alt="Angel of Independence in Mexico City" width="640" height="360" loading="lazy" decoding="async">
+                </div>
+                <div class="site-menu__card-body">
+                  <h3 class="site-menu__dest">Mexico City, MX</h3>
+                  <ul class="site-menu__procs">
+                    <li><a class="site-menu__proc" href="./procedures/injectables.html">Lasers &amp; Injectables</a></li><li><a class="site-menu__proc" href="./procedures/dental-implants.html">Dental Implants</a></li><li><a class="site-menu__proc" href="./procedures/smile-makeover.html">Invisalign</a></li><li><a class="site-menu__proc" href="./procedures/dental-implants.html">Root Canal</a></li>
+                  </ul>
+                  <a class="site-menu__view-all" href="./destinations/mexico-city.html">View all</a>
+                </div>
+              </article>
+              </div>
+            </div>
+            <nav class="site-menu__col site-menu__col--company" aria-label="Company">
+              <p class="site-menu__eyebrow">Company</p>
+              <a class="site-menu__link" href="./about.html">About Us</a>
+              <a class="site-menu__link" href="./contact.html">Contact</a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+<main id="top">
+    <section class="section section--hero hero-band hero-band--atmosphere" aria-labelledby="hero-title">
+      <div class="hero-atmosphere" aria-hidden="true"></div>
+      <div class="container hero hero--solo">
+        <h1 id="hero-title" class="t-display" data-reveal data-reveal-eager>Medical travel, made easy.</h1>
+        <form id="search" class="hero-search" data-reveal data-reveal-eager action="./procedures.html" method="get" role="search" data-global-search>
+          <label class="visually-hidden" for="hero-search-input">Search destination, procedure, clinic, or doctor</label>
+          <div class="hero-search__shell">
+            <div class="hero-search__field">
+              <span class="hero-search__rotator" data-search-rotator aria-hidden="true">
+                <span class="hero-search__slot" data-rotate-slot></span><span class="hero-search__caret" aria-hidden="true"></span>
+              </span>
+              <input id="hero-search-input" class="hero-search__input" name="q" type="text" inputmode="search" autocomplete="off" spellcheck="false" placeholder="" aria-label="Search destination, procedure, clinic, or doctor" aria-expanded="false" aria-controls="hero-search-panel" aria-autocomplete="list">
+            </div>
+            <button class="hero-search__icon" type="submit" aria-label="Search">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
+                <path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </button>
+          </div>
+          <div id="hero-search-panel" class="search-panel" data-search-panel hidden>
+            <div class="search-panel__trending" data-search-trending>
+              <div class="search-panel__section">
+                <h3 class="search-panel__heading">Popular procedures</h3>
+                <ul class="search-panel__list">
+                  <li><a class="search-panel__item" href="./procedures/hair-transplant.html"><span class="search-panel__icon search-panel__icon--plum" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="12" rx="8.5" ry="9.5" stroke="currentColor" stroke-width="2"/><path fill="currentColor" d="M9 18.2c.15-1.5 1.15-2.55 2.25-3.25-.15-.55-.25-1.2-.25-1.95 0-1.7.55-3.15 1.55-4 .35-.3.8-.4 1.15-.25.25-.65.8-1.1 1.55-1.1.65 0 1.2.35 1.5.9.3-.2.75-.15 1.05.25.55.55.45 1.4 0 1.9.7.55 1.15 1.4 1.15 2.4 0 .95-.4 1.8-1.15 2.4v.25c1.05.7 1.8 1.75 1.8 3.1 0 .45-.35.75-.8.75H9.75c-.5 0-.85-.4-.75-.95z"/></svg></span><span class="search-panel__copy"><span class="search-panel__title">Hair transplant</span><span class="search-panel__sub">Aesthetics</span></span></a></li>
+                  <li><a class="search-panel__item" href="./procedures/rhinoplasty.html"><span class="search-panel__icon search-panel__icon--flame" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M8.5 4v8.2c0 1.1.55 2.1 1.7 3L15 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.5 12.5c2.8.6 5.4 2.2 7 4.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M15 19c-1.1.9-2.1 2.1-2.6 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span class="search-panel__copy"><span class="search-panel__title">Rhinoplasty</span><span class="search-panel__sub">Plastic surgery</span></span></a></li>
+                  <li><a class="search-panel__item" href="./procedures/ivf.html"><span class="search-panel__icon search-panel__icon--pink" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="9.5" r="5.5" stroke="currentColor" stroke-width="2"/><circle cx="9.8" cy="9.2" r="1.1" fill="currentColor"/><circle cx="14.2" cy="9.2" r="1.1" fill="currentColor"/><path d="M9.6 11.8c.9 1.3 1.9 1.9 2.4 1.9s1.5-.6 2.4-1.9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M7.5 18.5c1.3 1.8 2.8 2.7 4.5 2.7s3.2-.9 4.5-2.7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 4V2.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span class="search-panel__copy"><span class="search-panel__title">IVF</span><span class="search-panel__sub">Fertility</span></span></a></li>
+                  <li><a class="search-panel__item" href="./procedures/dental-implants.html"><span class="search-panel__icon search-panel__icon--blue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 3.5c-1.9 0-3.2 1.5-3.2 3.4 0 1.7.4 3.8 1.1 6.2L8.2 21h2.4l.9-6.5.9 6.5h2.4l1.3-7.9c.7-2.4 1.1-4.5 1.1-6.2 0-1.9-1.3-3.4-3.2-3.4-1.1 0-2 .5-2.2 1-.2-.5-1.1-1-2.2-1z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span><span class="search-panel__copy"><span class="search-panel__title">Dental implants</span><span class="search-panel__sub">Dental</span></span></a></li>
+                </ul>
+              </div>
+              <div class="search-panel__section">
+                <h3 class="search-panel__heading">Top destinations</h3>
+                <ul class="search-panel__list">
+                  <li><a class="search-panel__item" href="./destinations/istanbul.html"><span class="search-panel__icon search-panel__icon--sunglow" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M2 20.2h20M3.8 22.3h16.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M4.8 20.2V7.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M3.3 9.6h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M3.3 7.8 4.8 4.8 6.3 7.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M4.8 4.8V3.3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M8.2 20.2v-6.2h12.2v6.2" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8.2 14c0-4.4 2.8-7.4 6.1-7.4S20.4 9.6 20.4 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M14.3 6.6V5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M11.2 14c0-2.2 1.4-3.6 3.1-3.6s3.1 1.4 3.1 3.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M12.6 20.2v-2.6a1.7 1.7 0 0 1 3.4 0v2.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M21.2 20.2V11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M20.2 12.8h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M20.2 11.5 21.2 9.6 22.2 11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="search-panel__copy"><span class="search-panel__title">Istanbul</span><span class="search-panel__sub">Türkiye</span></span></a></li>
+                  <li><a class="search-panel__item" href="./destinations/seoul.html"><span class="search-panel__icon search-panel__icon--tangerine" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M2.5 20.2h19M4.5 22.3h15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M2 15.2 12 10.2 22 15.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.8 15.2v3.8h16.4v-3.8" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M4.6 11.2 12 6.8 19.4 11.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 11.2v2.6h12v-2.6" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7 7.2 12 3.4 17 7.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.4 7.2v1.8h7.2V7.2" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 3.4V1.9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M9.2 19h5.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span><span class="search-panel__copy"><span class="search-panel__title">Seoul</span><span class="search-panel__sub">South Korea</span></span></a></li>
+                  <li><a class="search-panel__item" href="./destinations/bangkok.html"><span class="search-panel__icon search-panel__icon--forest" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M2 18.2c1.6 1.3 3.2 1.3 4.8 0s3.2-1.3 4.8 0 3.2 1.3 4.8 0 3.2-1.3 4.8 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M3 20.8c1.4 1.1 2.9 1.1 4.3 0s2.9-1.1 4.3 0 2.9 1.1 4.3 0 2.9-1.1 4.3 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M3.2 16.8V9.2h7.4v7.6" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M3.2 9.2 6.9 5.4 10.6 9.2" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="5.5" cy="12" r="0.9" fill="currentColor"/><circle cx="8.3" cy="12" r="0.9" fill="currentColor"/><path d="M6.2 16.8v-2.2h1.6v2.2" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M17 16.8V8.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M17 9C13.6 6.8 12 4.2 11.4 2.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M17 9C20.4 6.8 22 4.2 22.6 2.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M17 9C15 5.8 14.6 3.4 15.4 1.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M17 9C19 5.8 19.4 3.4 18.6 1.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M17 9C13.2 8.4 11 9 9.4 10.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M17 9C20.8 8.4 23 9 24.6 10.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span><span class="search-panel__copy"><span class="search-panel__title">Bangkok</span><span class="search-panel__sub">Thailand</span></span></a></li>
+                  <li><a class="search-panel__item" href="./destinations/tijuana.html"><span class="search-panel__icon search-panel__icon--plum-soft" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M2 20.2h20M3.8 22.3h16.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="19.8" cy="5.8" r="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M2.8 20.2V13h6.2v7.2" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M2.8 13 5.9 9.8 9 13" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M5 20.2v-2.4h1.6v2.4" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="4.4" cy="15.2" r="0.7" fill="currentColor"/><circle cx="7.2" cy="15.2" r="0.7" fill="currentColor"/><path d="M12.2 13.6V8.2a3.8 3.4 0 0 1 7.6 0v5.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M12.6 12.8h6.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M9.4 15c1.6-1.2 4-1.9 6.6-1.9s5 0.7 6.6 1.9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M9.4 15c1.8 3.2 4.6 4.8 6.6 4.8s4.8-1.6 6.6-4.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M11.2 16.6h11.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span><span class="search-panel__copy"><span class="search-panel__title">Tijuana</span><span class="search-panel__sub">Mexico</span></span></a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="search-panel__hits search-suggest" data-search-suggest hidden></div>
+          </div>
+        </form>
+        <div class="hero-cta-row" data-reveal data-reveal-eager>
+          <a class="btn btn--dark-bg" href="./procedures.html">Browse procedures</a>
+          <a class="btn btn--dark-bg" href="./destinations.html">Explore destinations</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="proc-home-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <h2 id="proc-home-title" class="t-h2">Popular procedures</h2>
+          <a class="text-link" href="./procedures.html">View All</a>
+        </div>
+        <ul class="proc-rail">
+          <li>
+              <a class="proc-tile" href="./procedures/hair-transplant.html">
+                <span class="proc-tile__media">
+                  <img class="proc-photo" src="./assets/procedure-hair-transplant.jpg" alt="" width="400" height="500" loading="lazy" decoding="async">
+                </span>
+                <span class="proc-tile__body">
+                  <span class="proc-tile__name">Hair Transplants</span>
+                  <span class="proc-tile__meta">From $1,800</span>
+                </span>
+              </a>
+            </li><li>
+              <a class="proc-tile" href="./procedures/rhinoplasty.html">
+                <span class="proc-tile__media">
+                  <img class="proc-photo" src="./assets/procedure-rhinoplasty.jpg" alt="" width="400" height="500" loading="lazy" decoding="async">
+                </span>
+                <span class="proc-tile__body">
+                  <span class="proc-tile__name">Rhinoplasty</span>
+                  <span class="proc-tile__meta">From $2,150</span>
+                </span>
+              </a>
+            </li><li>
+              <a class="proc-tile" href="./procedures/eyelid-surgery.html">
+                <span class="proc-tile__media">
+                  <img class="proc-photo" src="./assets/procedure-blepharoplasty.jpg" alt="" width="400" height="500" loading="lazy" decoding="async">
+                </span>
+                <span class="proc-tile__body">
+                  <span class="proc-tile__name">Eyelid Surgery</span>
+                  <span class="proc-tile__meta">From $1,200</span>
+                </span>
+              </a>
+            </li><li>
+              <a class="proc-tile" href="./procedures/dental-implants.html">
+                <span class="proc-tile__media">
+                  <img class="proc-photo" src="./assets/procedure-dental-implants.jpg" alt="" width="400" height="500" loading="lazy" decoding="async">
+                </span>
+                <span class="proc-tile__body">
+                  <span class="proc-tile__name">Dental Implants</span>
+                  <span class="proc-tile__meta">From $700</span>
+                </span>
+              </a>
+            </li><li>
+              <a class="proc-tile" href="./procedures/ivf.html">
+                <span class="proc-tile__media">
+                  <img class="proc-photo" src="./assets/procedure-ivf.jpg" alt="" width="400" height="500" loading="lazy" decoding="async">
+                </span>
+                <span class="proc-tile__body">
+                  <span class="proc-tile__name">IVF</span>
+                  <span class="proc-tile__meta">From $2,500</span>
+                </span>
+              </a>
+            </li><li>
+              <a class="proc-tile" href="./procedures/injectables.html">
+                <span class="proc-tile__media">
+                  <img class="proc-photo" src="./assets/procedure-injectables.jpg" alt="" width="400" height="500" loading="lazy" decoding="async">
+                </span>
+                <span class="proc-tile__body">
+                  <span class="proc-tile__name">Injectables</span>
+                  <span class="proc-tile__meta">From $150</span>
+                </span>
+              </a>
+            </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section--lavender" aria-labelledby="dest-home-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <h2 id="dest-home-title" class="t-h2">Destinations</h2>
+          <a class="text-link" href="./destinations.html">View All</a>
+        </div>
+        <ul class="dest-rail">
+          <li>
+              <a class="dest-tile" href="./destinations/istanbul.html">
+                <span class="dest-tile__media">
+                  <img src="./assets/destination-turkey.jpg" alt="" width="600" height="400" loading="lazy" decoding="async">
+                </span>
+                <span class="dest-tile__body">
+                  <span class="dest-tile__name">Istanbul</span>
+                  <span class="dest-tile__country">Türkiye</span>
+                  <span class="dest-tile__focus">Aesthetics, Hair, Dental</span>
+                </span>
+              </a>
+            </li><li>
+              <a class="dest-tile" href="./destinations/seoul.html">
+                <span class="dest-tile__media">
+                  <img src="./assets/destination-south-korea.jpg" alt="" width="600" height="400" loading="lazy" decoding="async">
+                </span>
+                <span class="dest-tile__body">
+                  <span class="dest-tile__name">Seoul</span>
+                  <span class="dest-tile__country">South Korea</span>
+                  <span class="dest-tile__focus">Dermatology, Plastic surgery</span>
+                </span>
+              </a>
+            </li><li>
+              <a class="dest-tile" href="./destinations/bangkok.html">
+                <span class="dest-tile__media">
+                  <img src="./assets/destination-thailand.jpg" alt="" width="600" height="400" loading="lazy" decoding="async">
+                </span>
+                <span class="dest-tile__body">
+                  <span class="dest-tile__name">Bangkok</span>
+                  <span class="dest-tile__country">Thailand</span>
+                  <span class="dest-tile__focus">Cosmetic, Dental, Fertility</span>
+                </span>
+              </a>
+            </li><li>
+              <a class="dest-tile" href="./destinations/tijuana.html">
+                <span class="dest-tile__media">
+                  <img src="./assets/destination-tijuana.jpg" alt="" width="600" height="400" loading="lazy" decoding="async">
+                </span>
+                <span class="dest-tile__body">
+                  <span class="dest-tile__name">Tijuana</span>
+                  <span class="dest-tile__country">Mexico</span>
+                  <span class="dest-tile__focus">Dental, Cosmetic, Bariatric</span>
+                </span>
+              </a>
+            </li><li>
+              <a class="dest-tile" href="./destinations/mexico-city.html">
+                <span class="dest-tile__media">
+                  <img src="./assets/destination-mexico-city.jpg" alt="" width="600" height="400" loading="lazy" decoding="async">
+                </span>
+                <span class="dest-tile__body">
+                  <span class="dest-tile__name">Mexico City</span>
+                  <span class="dest-tile__country">Mexico</span>
+                  <span class="dest-tile__focus">Cosmetic, Dental, Eye</span>
+                </span>
+              </a>
+            </li><li>
+              <a class="dest-tile" href="./destinations/delhi.html">
+                <span class="dest-tile__media">
+                  <img src="./assets/destination-delhi.jpg" alt="" width="600" height="400" loading="lazy" decoding="async">
+                </span>
+                <span class="dest-tile__body">
+                  <span class="dest-tile__name">Delhi</span>
+                  <span class="dest-tile__country">India</span>
+                  <span class="dest-tile__focus">Cardiac, Orthopedics, Oncology</span>
+                </span>
+              </a>
+            </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="inquiry section section--lavender" id="inquire" data-reveal>
+    <div class="container inquiry-wrap">
+      <div class="inquiry-copy">
+        <h2 class="t-h2">Plan your trip.</h2>
+        <p class="t-body">Tell us the procedure, destination, and budget. A concierge can help shape a full trip plan — demo form only, nothing is sent.</p>
+      </div>
+      <form class="inquiry-form" action="./contact.html" method="get" data-inquiry>
+        <div class="field field--light">
+          <label for="inq-procedure">Procedure</label>
+          <select id="inq-procedure" name="procedure" required>
+            <option value="">Select</option>
+            <option value="Hair transplant">Hair transplant</option><option value="Rhinoplasty">Rhinoplasty</option><option value="Eyelid surgery">Eyelid surgery</option><option value="Tummy tuck">Tummy tuck</option><option value="Facelift">Facelift</option><option value="Dental implants">Dental implants</option><option value="Smile makeover">Smile makeover</option><option value="IVF">IVF</option><option value="Breast augmentation">Breast augmentation</option><option value="Liposuction">Liposuction</option><option value="Gastric sleeve">Gastric sleeve</option><option value="LASIK">LASIK</option><option value="Cardiac bypass">Cardiac bypass</option><option value="Knee replacement">Knee replacement</option><option value="Jaw contouring">Jaw contouring</option><option value="Injectables">Injectables</option><option value="Oncology care pathway">Oncology care pathway</option><option value="Hip replacement">Hip replacement</option>
+          </select>
+        </div>
+        <div class="field field--light">
+          <label for="inq-destination">Destination</label>
+          <select id="inq-destination" name="destination" required>
+            <option value="">Select</option>
+            <option value="Istanbul, Türkiye">Istanbul, Türkiye</option><option value="Seoul, South Korea">Seoul, South Korea</option><option value="Bangkok, Thailand">Bangkok, Thailand</option><option value="Tijuana, Mexico">Tijuana, Mexico</option><option value="Mexico City, Mexico">Mexico City, Mexico</option><option value="Medellín, Colombia">Medellín, Colombia</option><option value="San José, Costa Rica">San José, Costa Rica</option><option value="Delhi, India">Delhi, India</option><option value="Barcelona, Spain">Barcelona, Spain</option><option value="Prague, Czechia">Prague, Czechia</option>
+          </select>
+        </div>
+        <div class="field field--light">
+          <label for="inq-budget">Budget (USD)</label>
+          <input id="inq-budget" name="budget" type="text" inputmode="numeric" placeholder="e.g. 8000" required>
+        </div>
+        <div class="field field--light">
+          <label for="inq-email">Email</label>
+          <input id="inq-email" name="email" type="email" placeholder="you@example.com" required>
+        </div>
+        <button class="btn btn--plum" type="submit">Request a plan</button>
+        <p class="t-caption inquiry-note">Demo inquiry — submissions stay on this page / contact confirmation. Not a medical booking.</p>
+      </form>
+    </div>
+  </section>
+  </main>
+  <footer class="site-footer section section--flame">
+    <div class="container footer-grid">
+      <div>
+        <p class="footer-brand"><img class="footer-brand__logo" src="./assets/logo-care-compass-mark.png" alt="" width="32" height="32" decoding="async">MediGo</p>
+      </div>
+      <div class="footer-links">
+        <a href="./destinations.html">Destinations</a>
+        <a href="./procedures.html">Procedures</a>
+        <a href="./clinics.html">Clinics</a>
+        <a href="./about.html">About</a>
+        <a href="./contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+  <aside class="demo-badge" data-demo-badge aria-label="Demo">
+    <span class="demo-badge__pill">Demo</span>
+  </aside>
+  <script src="./brand.js" defer></script>
+  <script src="./app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@900&display=swap">
+<style>
+  body { margin: 0; }
+  .box { border: 1px solid red; margin: 20px; }
+  h1 {
+    font-family: Figtree, sans-serif;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin: 0;
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<script>
+document.fonts.ready.then(() => {
+  const text = "Doctors abroad you can trust.";
+  const sizes = [72, 64, 56, 48, 42, 40, 36, 34, 32, 30, 28, 26, 24, 22, 20];
+  const widths = [335, 350, 390, 430, 500, 536, 576, 640, 720, 800, 960, 1024, 1200];
+  // Available content widths approx: viewport - 2*gutter(20) = vw-40, capped by hero__copy 36rem=576
+  const results = [];
+  for (const px of sizes) {
+    const span = document.createElement('span');
+    span.style.cssText = `font-family:Figtree,sans-serif;font-weight:900;letter-spacing:-0.03em;font-size:${px}px;white-space:nowrap;position:absolute;left:-9999px;`;
+    span.textContent = text;
+    document.body.appendChild(span);
+    const w = span.getBoundingClientRect().width;
+    results.push({px, width: Math.ceil(w)});
+    span.remove();
+  }
+  // Also check with wrapping in constrained boxes
+  const fits = [];
+  for (const boxW of [335, 390, 536, 576]) {
+    for (const px of sizes) {
+      const el = document.createElement('h1');
+      el.style.cssText = `font-size:${px}px;width:${boxW}px;white-space:normal;`;
+      el.textContent = text;
+      document.body.appendChild(el);
+      const cs = getComputedStyle(el);
+      const lh = parseFloat(cs.lineHeight) || px * 1.1;
+      const lines = Math.round(el.getBoundingClientRect().height / lh);
+      fits.push({boxW, px, lines, h: Math.ceil(el.getBoundingClientRect().height)});
+      el.remove();
+    }
+  }
+  document.body.textContent = JSON.stringify({results, fits: fits.filter(f => f.lines === 1)}, null, 2);
+});
+</script>
+</body>
+</html>

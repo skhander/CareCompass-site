@@ -1,0 +1,12 @@
+# Local Netlify folder
+.netlify
+
+# Vite / npm
+node_modules
+dist
+
+# OS / editor
+.DS_Store
+*.zip
+* 2
+assets 2

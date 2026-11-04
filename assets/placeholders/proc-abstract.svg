@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000">
+  <rect width="800" height="1000" fill="#ecceff"/>
+  <ellipse cx="400" cy="420" rx="180" ry="240" fill="#40032b" opacity="0.12"/>
+  <ellipse cx="400" cy="400" rx="120" ry="160" fill="none" stroke="#40032b" stroke-width="3"/>
+  <text x="400" y="820" text-anchor="middle" fill="#40032b" font-family="Figtree,sans-serif" font-size="28" font-weight="700">Procedure visual</text>
+  <text x="400" y="860" text-anchor="middle" fill="#75485f" font-family="DM Sans,sans-serif" font-size="16">Synthetic placeholder</text>
+</svg>

@@ -1,0 +1,499 @@
+/* ==========================================================================
+   MediGo: brand.css
+   Tags used in DESIGN.md and below:
+     [M]  measured from reference computed styles
+     [I]  inferred from the measured pattern; not seen as a single value
+     [X]  invented for this kit; not from measurement
+   Fonts: load DM Sans / Figtree via <link> in HTML (not @import) so file://
+   and offline opens do not block or drop the rest of this stylesheet.
+   ========================================================================== */
+
+:root {
+  /* ---- Palette: names copied from the site's own tokens [M] -------------- */
+  --plum-100: #40032b;
+  --plum-110: #75485f;
+  --plum-80: #953363;
+  --plum-faded-100: #702b54;
+  --plum-faded-50: #d9cdd5;
+
+  --vanilla-00: #fffcf1;
+  --vanilla-10: #fffbe6;
+  --vanilla-12: #ffeeb7;
+  --vanilla-faded-50: #ede0b6;
+  --vanilla-faded-100: #b5ab8b;
+
+  --cool-pink-40: #faf1ff;
+  --cool-pink-80: #ecceff;
+  --cool-pink-faded-50: #cdb3de;
+
+  --flame-100: #fd5711;
+  --flame-110: #c03c1a;
+  --flame-faded-50: #ff8552;
+
+  --sunglow-80: #ffd75e;
+  --sunglow-40: #f0ca59;
+
+  --night-100: #1d1a1c;
+  --night-90: #5a5a5a;
+  --night-50: #c6c6c6;
+  --white: #fff;
+
+  /* Defined in the site's CSS but not seen on the pages read [M token, unseen in use] */
+  --forest-80: #057d5f;
+  --forest-100: #023e43;
+  --soft-blue-80: #3752cd;
+  --soft-blue-100: #7089fd;
+  --error: #ca0d0d;
+  --success: #1dddad;
+  --alert: #fdee43;
+  --tangerine-80: #ffa238;
+
+  /* ---- Semantic roles -------------------------------------------------- */
+  --color-bg: var(--vanilla-10);                 /* page background [M] */
+  --color-text: var(--plum-100);                 /* body and headings [M] */
+  --color-text-muted: var(--plum-110);           /* secondary text [M] */
+  --color-text-on-dark: var(--vanilla-10);       /* text on plum [M] */
+  --color-text-muted-on-dark: var(--plum-faded-50); /* description on plum [M] */
+  --color-surface-dark: var(--plum-100);         /* hero and dark bands [M] */
+  --color-surface-soft: var(--vanilla-12);       /* nav and soft chips [M] */
+  --color-surface-lavender: var(--cool-pink-40); /* light lavender band [M] */
+  --color-surface-pink: var(--cool-pink-80);     /* compare and tag fills [M] */
+  --color-surface-card: var(--vanilla-00);       /* card fill [I] */
+  --color-line: var(--vanilla-faded-50);         /* dividers and card borders [M] */
+  --color-line-strong: var(--plum-faded-100);    /* outline buttons [M] */
+  --color-eyebrow: var(--plum-80);               /* eyebrow labels on light [M] */
+  --color-eyebrow-on-dark: var(--cool-pink-80);  /* eyebrow labels on plum [M] */
+  --color-footer: var(--flame-100);              /* footer band [M] */
+  --color-highlight: var(--sunglow-80);          /* highlight CTA fill [M] */
+  --color-focus: var(--plum-100);                /* focus ring: measured outline. Token says night-50 (see DESIGN.md) */
+  --color-input-bg: var(--plum-faded-100);       /* form field fill on plum [M] */
+  --color-input-text: var(--vanilla-10);         /* [M] */
+  --color-input-placeholder: var(--plum-faded-50); /* [M] */
+
+  /* ---- Type families --------------------------------------------------- */
+  --font-display: "Roobert", "Figtree", "Helvetica Neue", Arial, sans-serif;   /* Roobert, commercial; Figtree is the free substitute */
+  --font-text: "Circular", "DM Sans", -apple-system, "system-ui", "Segoe UI", Roboto, sans-serif; /* Circular, commercial; DM Sans is the free substitute */
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; /* [M] token */
+
+  /* ---- Type weights ---------------------------------------------------- */
+  /* The site loads only Roobert 600 and 900. 700 and 800 in CSS resolve to 900 [M, from loaded font faces]. */
+  --weight-display: 900;
+  --weight-display-semi: 600;
+  --weight-text: 400;
+  --weight-text-medium: 500;
+  --weight-text-semi: 600;
+
+  /* ---- Type scale ------------------------------------------------------ */
+  --type-display: clamp(2.625rem, 1.9rem + 3vw, 4.5rem);   /* 42 to 72px fluid [M, token] */
+  --type-h2: clamp(2rem, 1.6rem + 1.8vw, 3rem);             /* measured 47.7px at tablet-desktop [M] */
+  --type-h3: 1.79rem;                                       /* 28.66px [M] */
+  --type-lead: 1.3rem;                                      /* 20.76px [M] */
+  --type-stat: 2.1rem;                                      /* 33.5px [M] */
+  --type-body: 1rem;                                        /* 16px [M] */
+  --type-body-lg: clamp(1rem, 0.95rem + 0.25vw, 1.125rem); /* 16 to 18px [M, token] */
+  --type-button: 1rem;                                      /* 16px [M] */
+  --type-button-sm: 0.875rem;                               /* 14px [M] */
+  --type-caption: 0.75rem;                                  /* 12px [M] */
+
+  --leading-display: 1.1;   /* [M, token] */
+  --leading-heading: 1.3;   /* [M] */
+  --leading-lead: 1.3;      /* [M] */
+  --leading-body: 1.5;      /* 24px at 16px [M] */
+  --leading-caption: 1.3;   /* [M] */
+
+  --tracking-display: -0.03em;   /* [M] applies to every Roobert size above 20px */
+  --tracking-normal: 0em;        /* [M] body and Circular text */
+
+  /* ---- Spacing --------------------------------------------------------- */
+  --space-2xs: 0.25rem;  /* [I] */
+  --space-xs: 0.5rem;    /* [M] 8px button padding */
+  --space-sm: 0.75rem;   /* [M] 12px button padding */
+  --space-md: 1rem;      /* [M] 16px button padding */
+  --space-lg: 2rem;      /* [M] 32px half-section padding */
+  --space-xl: 3.6rem;    /* [M] 57.6px section padding */
+  --space-2xl: 7.5rem;   /* [M] 120px hero top padding */
+
+  --gutter: 1.25rem;     /* [X] page side padding; site value not measured */
+  --container-max: 64rem;   /* [M] --container-5xl token = 1024px */
+  --header-height: 62px;    /* [M] --header-height-base */
+  --banner-height: 40px;    /* [M] --site-banner-height */
+
+  /* ---- Shape ----------------------------------------------------------- */
+  --radius-chip: 2px;     /* [M] 15 elements */
+  --radius-control: 4px;  /* [M] 32 elements: buttons, inputs */
+  --radius-card: 8px;     /* [M] 19 elements */
+  --radius-soft: 16px;    /* [M] 2 elements, used sparingly */
+
+  --border-width: 1px;    /* [M] */
+
+  --shadow-nav: 0 9px 19px 0 #40032b0f, 0 34px 34px 0 #40032b0d, 0 77px 46px 0 #40032b08, 0 137px 55px 0 #40032b03; /* [M] --shadow-header */
+  --shadow-soft: 0 1px 2px 0 rgba(0, 0, 0, 0.05);  /* [M] the only content shadow found */
+
+  /* ---- Motion ---------------------------------------------------------- */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);  /* [M] 0.15s default for colour, bg, opacity */
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);         /* [M] 0.3s header, 0.5s reveals */
+
+  --dur-fast: 0.15s;    /* [M] hover and focus colour */
+  --dur-base: 0.2s;     /* [M] */
+  --dur-slow: 0.3s;     /* [M] header transform, accordion open [I] */
+  --dur-reveal: 0.5s;   /* [M] opacity and padding reveals */
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-text);
+  font-size: var(--type-body);
+  font-weight: var(--weight-text);
+  line-height: var(--leading-body);
+  letter-spacing: var(--tracking-normal);
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* ==========================================================================
+   Type classes
+   ========================================================================== */
+
+.t-display {
+  font-family: var(--font-display);
+  font-size: var(--type-display);
+  font-weight: var(--weight-display);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  margin: 0;
+}
+
+.t-h2 {
+  font-family: var(--font-display);
+  font-size: var(--type-h2);
+  font-weight: var(--weight-display);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  margin: 0;
+}
+
+.t-h3 {
+  font-family: var(--font-display);
+  font-size: var(--type-h3);
+  font-weight: var(--weight-display);
+  line-height: var(--leading-heading);
+  letter-spacing: var(--tracking-display);
+  margin: 0;
+}
+
+.t-lead {
+  font-family: var(--font-display);
+  font-size: var(--type-lead);
+  font-weight: var(--weight-display);
+  line-height: var(--leading-lead);
+  letter-spacing: var(--tracking-display);
+}
+
+.t-stat {
+  font-family: var(--font-display);
+  font-size: var(--type-stat);
+  font-weight: var(--weight-display-semi);
+  line-height: 1.4;
+  letter-spacing: var(--tracking-display);
+}
+
+.t-body { font-size: var(--type-body); line-height: var(--leading-body); }
+.t-body-lg { font-size: var(--type-body-lg); line-height: 1.4; }
+
+.t-eyebrow {
+  font-size: var(--type-caption);
+  font-weight: var(--weight-text-medium);
+  line-height: var(--leading-caption);
+  color: var(--color-eyebrow);
+  margin: 0;
+}
+
+.t-caption {
+  font-size: var(--type-caption);
+  line-height: var(--leading-caption);
+  color: var(--color-text-muted);
+}
+
+.on-dark { background: var(--color-surface-dark); color: var(--color-text-on-dark); }
+.on-dark .t-eyebrow { color: var(--color-eyebrow-on-dark); }
+.on-dark .t-body-muted,
+.on-dark .t-caption { color: var(--color-text-muted-on-dark); }
+
+/* ==========================================================================
+   Buttons. Base is the vanilla "soft" fill; variants change fill only.
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  min-height: 2.5rem;
+  padding: var(--space-xs) var(--space-md);
+  font-family: var(--font-text);
+  font-size: var(--type-button);
+  font-weight: var(--weight-text-semi);
+  line-height: 1.5;
+  color: var(--color-text);
+  background: var(--vanilla-faded-50);       /* [M] "Create an account" */
+  border: var(--border-width) solid transparent;
+  border-radius: var(--radius-control);
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-fast) var(--ease-standard),
+    color var(--dur-fast) var(--ease-standard),
+    border-color var(--dur-fast) var(--ease-standard);
+}
+
+.btn--plum {                                  /* [M] "Log in" */
+  background: var(--plum-100);
+  color: var(--color-text-on-dark);
+  font-size: var(--type-button-sm);
+  min-height: 0;
+  padding: 0 var(--space-sm);
+  line-height: 2.25rem;
+}
+
+.btn--highlight {                             /* [M] sunglow CTA */
+  background: var(--color-highlight);
+}
+
+.btn--outline {                               /* [M] token: secondary outline */
+  background: transparent;
+  border-color: var(--color-line-strong);
+  color: var(--plum-100);
+}
+.btn--outline:hover { border-color: var(--plum-110); }
+
+.btn--small {                                 /* [M] 14px, 500 to 600 weight */
+  font-size: var(--type-button-sm);
+  font-weight: 500;
+  min-height: 0;
+  padding: var(--space-xs) var(--space-sm);
+  line-height: 1.3;
+  border-radius: var(--radius-chip);
+}
+
+.btn--dark-bg {                               /* dark bands: outline in vanilla [I] */
+  background: transparent;
+  border-color: var(--vanilla-faded-100);
+  color: var(--color-text-on-dark);
+}
+
+.btn:hover { background-color: var(--plum-faded-50); }
+.btn--plum:hover { background-color: var(--plum-110); }
+.btn--highlight:hover { background-color: var(--sunglow-40); }
+.btn--outline:hover,
+.btn--dark-bg:hover { background-color: transparent; }
+
+/* Focus: the measured outline is 3px plum; token says night-50 (grey). Plum is used here so it reads on cream. */
+.btn:focus-visible,
+a:focus-visible,
+summary:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Chips, tags, links
+   ========================================================================== */
+
+.chip {                                       /* [M] "Overview" tab */
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--type-button-sm);
+  font-weight: var(--weight-text-medium);
+  line-height: 1.3;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-chip);
+  background: var(--plum-faded-50);
+  color: var(--plum-100);
+}
+
+.tag-pill {                                   /* [M] label tag fill */
+  display: inline-flex;
+  padding: var(--space-2xs) var(--space-xs);
+  border-radius: var(--radius-chip);
+  background: var(--cool-pink-80);
+  color: var(--plum-100);
+  font-size: var(--type-caption);
+  font-weight: var(--weight-text-medium);
+}
+
+a {
+  color: var(--plum-100);
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-standard);
+}
+
+/* ==========================================================================
+   Cards, sections, dividers
+   ========================================================================== */
+
+.card {                                       /* radius [M], fill and padding [I] */
+  background: var(--color-surface-card);
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--radius-card);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-soft);
+}
+
+.section {
+  padding-block: var(--space-xl);               /* [M] 57.6px */
+}
+.section--half { padding-block: var(--space-lg); } /* [M] 32px */
+.section--hero { padding-top: var(--space-2xl); }  /* [M] 120px */
+
+.section--dark { background: var(--color-surface-dark); color: var(--color-text-on-dark); }
+.section--flame { background: var(--color-footer); color: var(--plum-100); }
+.section--lavender { background: var(--color-surface-lavender); }
+.section--pink { background: var(--color-surface-pink); }
+
+.divider {
+  border: 0;
+  border-top: var(--border-width) solid var(--color-line);
+  margin: 0;
+}
+
+/* ==========================================================================
+   Navigation
+   ========================================================================== */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: transparent;                    /* [M] */
+  transition: transform var(--dur-slow) var(--ease-out);  /* [M] */
+}
+.site-header.is-hidden { transform: translateY(-100%); }   /* [I] used by brand.js */
+.site-header.has-shadow { box-shadow: var(--shadow-nav); } /* [M] token */
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  min-height: var(--header-height);
+  padding-inline: var(--gutter);
+}
+
+.nav__link {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-xs) var(--space-sm);
+  font-size: var(--type-button-sm);
+  font-weight: var(--weight-text-medium);
+  color: var(--plum-100);
+  border-radius: var(--radius-chip);
+  background: transparent;
+  transition: background-color var(--dur-fast) var(--ease-standard);
+}
+.nav__link:hover { background: var(--vanilla-12); }  /* [M] soft nav fill */
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+
+.field { display: grid; gap: var(--space-xs); }
+.field label { font-size: var(--type-button-sm); font-weight: var(--weight-text-medium); }
+.field input,
+.field select,
+.field textarea {
+  font: inherit;
+  font-size: var(--type-body);
+  color: var(--color-input-text);
+  background: var(--color-input-bg);
+  border: var(--border-width) solid var(--white);
+  border-radius: var(--radius-control);
+  padding: var(--space-sm) var(--space-md);
+  min-height: 2.75rem;
+}
+.field textarea {
+  min-height: 8rem;
+  resize: vertical;
+  line-height: 1.5;
+}
+.field input::placeholder,
+.field textarea::placeholder { color: var(--color-input-placeholder); }
+.field--light input,
+.field--light select,
+.field--light textarea {
+  background: var(--white);
+  color: var(--plum-100);
+  border-color: var(--vanilla-faded-100);
+}
+
+/* ==========================================================================
+   FAQ accordion (native details, animated by brand.js)
+   ========================================================================== */
+
+.faq details { border-bottom: var(--border-width) solid var(--color-line); }
+.faq summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md) 0;
+  font-size: var(--type-body);
+  font-weight: var(--weight-text);
+  cursor: pointer;
+  list-style: none;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font-size: 1.25rem; line-height: 1; transition: transform var(--dur-slow) var(--ease-out); } /* [I] icon */
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq .faq__body { overflow: hidden; padding-bottom: var(--space-md); color: var(--color-text-muted); }
+
+/* ==========================================================================
+   Motion hooks used by brand.js
+   ========================================================================== */
+
+/* Reveal only after JS marks readiness; without .js content stays fully visible (file:// / blocked script). */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(12px);                 /* [I] distance; fade and timing [M] */
+  transition:
+    opacity var(--dur-reveal) var(--ease-out),
+    transform var(--dur-reveal) var(--ease-out);
+}
+.js [data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Safety net: never leave above-the-fold copy invisible if IO never fires */
+.js [data-reveal][data-reveal-eager].is-in,
+.js [data-reveal-eager] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+  .js [data-reveal] { opacity: 1; transform: none; }
+}
