@@ -1966,10 +1966,26 @@ body.menu-open {
   color: #40032b;
 }
 
+.proc-rank__copy + .proc-rank__copy {
+  margin-top: 0.65rem;
+}
+
+.proc-rank__why {
+  margin: 0.65rem 0 0;
+  max-width: 42rem;
+  font-size: var(--type-body);
+  line-height: 1.5;
+  color: #40032b;
+}
+
+.proc-rank__why-label {
+  font-weight: var(--weight-text-semi, 600);
+}
+
 .proc-rank__clinics {
   display: grid;
   gap: var(--space-sm);
-  margin-top: var(--space-xs);
+  margin-top: var(--space-sm);
 }
 
 .proc-clinic-card {

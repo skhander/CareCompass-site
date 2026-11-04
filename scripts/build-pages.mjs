@@ -685,26 +685,37 @@ function synthProcStats(p, destPrices) {
     : 2500 + (seed % 1500);
   // Abroad package averages — hair transplant aligns to Turkey list price
   if (p.slug === 'hair-transplant') avgCost = 3500;
-  const photos = 18 + (seed % 40);
-  const questions = 12 + (seed % 28);
-  const community = 3 + (seed % 10);
-  const doctorsClinics = Math.max(
+  let photos = 18 + (seed % 40);
+  let questions = 12 + (seed % 28);
+  let community = 3 + (seed % 10);
+  let doctorsClinics = Math.max(
     3,
     Math.min(8, (p.clinic_ids || []).length || 3 + (seed % 4))
   );
+  // Rhinoplasty: smaller marketplace stats; broad US avg from ASPS surgeon fee (~$7,637)
+  if (p.slug === 'rhinoplasty') {
+    return {
+      worth: 91,
+      avgCost: 7650,
+      photos: 48,
+      questions: 26,
+      community: 7,
+      doctorsClinics: 12,
+    };
+  }
   return { worth, avgCost, photos, questions, community, doctorsClinics };
 }
 
 function shortBlurb(p) {
-  if (p.slug === 'hair-transplant') return '';
+  if (p.slug === 'hair-transplant' || p.slug === 'rhinoplasty') return '';
   const t = String(p.description || '').trim();
   if (!t) return '';
   const sentence = (t.match(/^.*?[.!?](?:\s|$)/) || [t])[0].trim();
   return sentence.length > 110 ? `${sentence.slice(0, 107).trim()}…` : sentence;
 }
 
-/** Ranked destination list shown on every procedure page (demo editorial copy). */
-const PROC_DEST_RANKING = [
+/** Ranked destinations for hair transplant (demo editorial copy). */
+const HAIR_TRANSPLANT_DEST_RANKING = [
   {
     country: 'Turkey',
     priceLabel: '$3,500',
@@ -829,6 +840,117 @@ const PROC_DEST_RANKING = [
   },
 ];
 
+/** Ranked destinations for rhinoplasty (demo editorial copy). */
+const RHINOPLASTY_DEST_RANKING = [
+  {
+    country: 'Turkey',
+    city: 'Istanbul',
+    priceLabel: '$4,150',
+    avgUsd: 4150,
+    paragraphs: [
+      "Turkey is probably the strongest starting point for MediGo's rhinoplasty category.",
+      'Istanbul has a large concentration of plastic surgery clinics catering to international patients. Patients can find surgeons offering primary and revision rhinoplasty, with a wide range of aesthetic approaches.',
+    ],
+    why: 'Competitive pricing, surgeon availability, and established medical tourism infrastructure.',
+    destSlugs: ['istanbul'],
+    packageTypes: [
+      'Primary rhinoplasty',
+      'Revision rhinoplasty',
+      'Septorhinoplasty',
+      'Tip rhinoplasty',
+      'Open rhinoplasty',
+      'Closed rhinoplasty',
+    ],
+    fallbackClinics: [
+      { name: 'Galata Contour Surgery', focus: 'Plastic surgery' },
+      { name: 'Marmara Aesthetic Hospital', focus: 'Multispecialty' },
+      { name: 'Nisantasi Profile Institute', focus: 'Facial surgery' },
+    ],
+  },
+  {
+    country: 'South Korea',
+    city: 'Seoul',
+    priceLabel: '$6,000',
+    avgUsd: 6000,
+    priceMinUsd: 3500,
+    priceMaxUsd: 8500,
+    paragraphs: [
+      'South Korea is internationally recognized for cosmetic facial surgery. Seoul has a particularly developed aesthetic surgery industry.',
+    ],
+    why: 'Facial aesthetics expertise, detailed surgical planning, and experience with Asian rhinoplasty.',
+    destSlugs: ['seoul'],
+    packageTypes: [
+      'Primary rhinoplasty',
+      'Revision rhinoplasty',
+      'Augmentation rhinoplasty',
+      'Tip rhinoplasty',
+      'Septorhinoplasty',
+      'Alar base reduction',
+    ],
+    fallbackClinics: [
+      { name: 'Cheongdam Lumen Plastic', focus: 'Plastic surgery' },
+      { name: 'Apgujeong Vector Surgery', focus: 'Facial surgery' },
+      { name: 'Gangnam Profile Atelier', focus: 'Facial aesthetics' },
+    ],
+  },
+  {
+    country: 'Colombia',
+    city: 'Bogotá',
+    priceLabel: '$3,850',
+    avgUsd: 3850,
+    paragraphs: [
+      'Colombia has a well-established cosmetic surgery industry, with Bogotá serving as a major hub for plastic and facial surgery. The city attracts international patients seeking experienced surgeons and more affordable treatment.',
+    ],
+    why: 'Established plastic surgery expertise, competitive pricing, and proximity to the United States.',
+    // No Bogotá hub in catalog yet — synthetic clinics; Colombia cover from Medellín asset.
+    destSlugs: [],
+    coverSlug: 'medellin',
+    packageTypes: [
+      'Primary rhinoplasty',
+      'Revision rhinoplasty',
+      'Septorhinoplasty',
+      'Functional rhinoplasty',
+      'Tip rhinoplasty',
+      'Closed rhinoplasty',
+    ],
+    fallbackClinics: [
+      { name: 'Chapinero Contour Surgery', focus: 'Plastic surgery' },
+      { name: 'Zona T Facial Institute', focus: 'Facial surgery' },
+      { name: 'Usaquén Profile Clinic', focus: 'Rhinoplasty' },
+    ],
+  },
+  {
+    country: 'Mexico',
+    city: 'Mexico City',
+    priceLabel: '$4,300',
+    avgUsd: 4300,
+    paragraphs: [
+      'Mexico is an established destination for Americans seeking more affordable elective procedures.',
+    ],
+    why: 'Geographic proximity, established private healthcare infrastructure, and competitive pricing.',
+    destSlugs: ['mexico-city'],
+    packageTypes: [
+      'Primary rhinoplasty',
+      'Revision rhinoplasty',
+      'Septorhinoplasty',
+      'Tip rhinoplasty',
+      'Open rhinoplasty',
+      'Functional rhinoplasty',
+    ],
+    fallbackClinics: [
+      { name: 'Insurgentes Aesthetic Pavilion', focus: 'Cosmetic surgery' },
+      { name: 'Pedregal Care Hospital', focus: 'Surgical care' },
+      { name: 'Polanco Profile Surgery', focus: 'Facial surgery' },
+    ],
+  },
+];
+
+function rankingForProcedure(p) {
+  if (p.slug === 'rhinoplasty') return RHINOPLASTY_DEST_RANKING;
+  if (p.slug === 'hair-transplant') return HAIR_TRANSPLANT_DEST_RANKING;
+  return HAIR_TRANSPLANT_DEST_RANKING;
+}
+
 /** Synthetic packages for a clinic; prices cluster around the destination average. */
 function packagesForClinic(entry, clinicIndex, clinicName) {
   const types = entry.packageTypes || [];
@@ -885,7 +1007,7 @@ function clinicsForRank(entry, procedureClinicList) {
       packages: packagesForClinic(entry, i, c.name),
     }));
   }
-  const primarySlug = entry.destSlugs[0];
+  const primarySlug = entry.destSlugs[0] || entry.coverSlug;
   return entry.fallbackClinics.slice(0, 3).map((c, i) => ({
     name: c.name,
     focus: c.focus || '',
@@ -909,13 +1031,28 @@ function renderClinicPackages(packages) {
             </ul>`;
 }
 
-function renderRankedDestinations(procedureClinicList) {
-  return PROC_DEST_RANKING.map((entry, i) => {
+function renderRankCopy(entry) {
+  const paras = entry.paragraphs?.length
+    ? entry.paragraphs
+    : entry.copy
+      ? [entry.copy]
+      : [];
+  const body = paras
+    .map((t) => `<p class="proc-rank__copy">${esc(t)}</p>`)
+    .join('');
+  const why = entry.why
+    ? `<p class="proc-rank__why"><span class="proc-rank__why-label">Why it stands out:</span> ${esc(entry.why)}</p>`
+    : '';
+  return body + why;
+}
+
+function renderRankedDestinations(ranking, procedureClinicList) {
+  return ranking.map((entry, i) => {
     const rank = i + 1;
-    const dest = entry.destSlugs[0]
-      ? destinations.find((d) => d.slug === entry.destSlugs[0])
-      : null;
+    const destSlug = entry.destSlugs[0] || entry.coverSlug;
+    const dest = destSlug ? destinations.find((d) => d.slug === destSlug) : null;
     const titleHref = dest ? `../destinations/${dest.slug}.html` : '../destinations.html';
+    const title = entry.city ? `${entry.country}: ${entry.city}` : entry.country;
     const clinicCards = clinicsForRank(entry, procedureClinicList)
       .map(
         (c) => `<a class="proc-clinic-card" href="${c.href}">
@@ -933,10 +1070,10 @@ function renderRankedDestinations(procedureClinicList) {
     return `<li class="proc-rank__item">
         <h3 class="proc-rank__heading">
           <span class="proc-rank__n">${rank}.</span>
-          <a class="proc-rank__title" href="${titleHref}">${esc(entry.country)}</a>
-          <span class="proc-rank__price">· ${esc(entry.priceLabel)}</span>
+          <a class="proc-rank__title" href="${titleHref}">${esc(title)}</a>
+          ${entry.priceLabel ? `<span class="proc-rank__price">· ${esc(entry.priceLabel)}</span>` : ''}
         </h3>
-        <p class="proc-rank__copy">${esc(entry.copy)}</p>
+        ${renderRankCopy(entry)}
         <div class="proc-rank__clinics">${clinicCards}</div>
       </li>`;
   }).join('');
@@ -948,7 +1085,7 @@ for (const p of procedures) {
   const destPrices = prices.filter((x) => x.procedure_id === p.id && x.entity_type === 'destination');
   const stats = synthProcStats(p, destPrices);
   const blurb = shortBlurb(p);
-  const rankedList = renderRankedDestinations(clinicList);
+  const rankedList = renderRankedDestinations(rankingForProcedure(p), clinicList);
 
   const html =
     head({ title: `${p.name} — MediGo`, description: p.description, depth: 1 }) +
