@@ -1766,6 +1766,235 @@ body.menu-open {
 .dest-rail li.is-hidden,
 .proc-rail li.is-hidden { display: none; }
 
+/* Procedure overview (stats strip + hubs) */
+.proc-overview {
+  padding-block: var(--space-xl) var(--space-lg);
+  text-align: center;
+  background: #fffbe6;
+  color: #40032b;
+}
+
+.proc-overview__inner {
+  display: grid;
+  gap: var(--space-lg);
+  justify-items: center;
+  max-width: 56rem;
+}
+
+.proc-overview__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2rem, 1.4rem + 2.4vw, 3.25rem);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: #40032b;
+}
+
+.proc-stats {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-xs);
+  width: min(100%, 52rem);
+}
+
+.proc-stats__nav {
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 0;
+  background: transparent;
+  color: #40032b;
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.proc-stats__nav:focus-visible {
+  outline: 2px solid #ffd75e;
+  outline-offset: 2px;
+}
+
+.proc-stats__track {
+  list-style: none;
+  margin: 0;
+  padding: 0.25rem 0;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(7.5rem, 1fr);
+  gap: 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.proc-stats__track::-webkit-scrollbar {
+  display: none;
+}
+
+.proc-stats__item {
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: 0.35rem;
+  min-height: 7.5rem;
+  padding: 0.5rem 0.85rem;
+  scroll-snap-align: start;
+  border-right: 1px solid #ede0b6;
+}
+
+.proc-stats__item:last-child {
+  border-right: 0;
+}
+
+.proc-stats__icon {
+  display: inline-flex;
+  color: #40032b;
+}
+
+.proc-stats__value {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.35rem;
+  line-height: 1.1;
+  color: #40032b;
+}
+
+.proc-stats__label {
+  font-size: 0.68rem;
+  font-weight: var(--weight-text-medium);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.25;
+  color: #40032b;
+}
+
+.proc-overview__blurb {
+  margin: 0;
+  max-width: 40rem;
+  font-size: var(--type-body-lg);
+  line-height: 1.5;
+  color: #40032b;
+}
+
+.proc-overview__demo {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+.proc-overview__cta {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
+  color: #40032b;
+}
+
+.proc-overview__cta:hover,
+.proc-overview__cta:focus-visible {
+  color: var(--plum-80);
+}
+
+.proc-overview__cta:focus-visible {
+  outline: 2px solid #ffd75e;
+  outline-offset: 4px;
+}
+
+.proc-hubs__lede {
+  margin-top: 0;
+  max-width: 36rem;
+}
+
+.proc-hubs__grid {
+  display: grid;
+  gap: var(--space-lg);
+  margin-top: var(--space-lg);
+}
+
+.proc-hub-card {
+  display: grid;
+  border: 1px solid #ede0b6;
+  background: #fffbe6;
+  overflow: hidden;
+}
+
+.proc-hub-card__media {
+  display: block;
+  aspect-ratio: 3 / 2;
+  background: #ede0b6;
+  overflow: hidden;
+}
+
+.proc-hub-card__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.proc-hub-card__body {
+  display: grid;
+  gap: 0.4rem;
+  padding: var(--space-md);
+}
+
+.proc-hub-card__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.proc-hub-card__title a {
+  color: #40032b;
+  text-decoration: none;
+}
+
+.proc-hub-card__title a:hover,
+.proc-hub-card__title a:focus-visible {
+  color: var(--plum-80);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.proc-hub-card__meta,
+.proc-hub-card__range {
+  margin: 0;
+  color: #40032b;
+}
+
+.proc-hub-card__clinics {
+  list-style: none;
+  margin: 0.35rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.25rem;
+}
+
+.proc-hub-card__clinics a {
+  color: #40032b;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+@media (min-width: 720px) {
+  .proc-hubs__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 639px) {
+  .proc-stats__item {
+    min-width: 8rem;
+  }
+}
+
 .detail-grid {
   display: grid;
   gap: var(--space-md);

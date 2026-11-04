@@ -665,36 +665,103 @@ const proceduresIndex =
   footer(0);
 writeFileSync(join(SITE, 'procedures.html'), proceduresIndex);
 
+function hashSeed(str) {
+  let h = 2166136261;
+  for (let i = 0; i < String(str).length; i++) {
+    h ^= String(str).charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+
+function synthProcStats(p, destPrices) {
+  const seed = hashSeed(p.slug);
+  const worth = 92 + (seed % 7);
+  const avgFromCatalog = destPrices.length
+    ? Math.round(
+        destPrices.reduce((sum, pr) => sum + (Number(pr.min_usd) + Number(pr.max_usd)) / 2, 0) /
+          destPrices.length
+      )
+    : 4500 + (seed % 5000);
+  const usMids = destPrices
+    .map((pr) => (Number(pr.us_compare_min_usd) + Number(pr.us_compare_max_usd)) / 2)
+    .filter((n) => Number.isFinite(n));
+  const avgCost = usMids.length
+    ? Math.round(usMids.reduce((a, b) => a + b, 0) / usMids.length / 50) * 50
+    : Math.round((avgFromCatalog * 2.4) / 50) * 50;
+  const photos = 18 + (seed % 40);
+  const questions = 12 + (seed % 28);
+  const community = 3 + (seed % 10);
+  const doctorsClinics = Math.max(
+    3,
+    Math.min(8, (p.clinic_ids || []).length || 3 + (seed % 4))
+  );
+  return { worth, avgCost, photos, questions, community, doctorsClinics };
+}
+
+function firstSentence(text) {
+  const t = String(text || '').trim();
+  if (!t) return '';
+  const m = t.match(/^.*?[.!?](?:\s|$)/);
+  return (m ? m[0] : t).trim();
+}
+
 // ---------- Procedure detail ----------
 for (const p of procedures) {
   const dests = (p.destination_ids || []).map((id) => byId.destination[id]).filter(Boolean);
   const clinicList = (p.clinic_ids || []).map((id) => byId.clinic[id]).filter(Boolean);
   const docList = (p.doctor_ids || []).map((id) => byId.doctor[id]).filter(Boolean);
   const destPrices = prices.filter((x) => x.procedure_id === p.id && x.entity_type === 'destination');
-
-  const destPriceRows = destPrices
-    .map((pr) => {
-      const d = byId.destination[pr.entity_id];
-      if (!d) return '';
-      return `<tr>
-        <td><a href="../destinations/${d.slug}.html">${esc(d.name)}</a></td>
-        <td>${rangeLabel(pr.min_usd, pr.max_usd)}</td>
-        <td class="t-caption">US compare ~ ${rangeLabel(pr.us_compare_min_usd, pr.us_compare_max_usd)}</td>
-      </tr>`;
-    })
-    .join('');
-
-  const clinicsByDest = dests
+  const stats = synthProcStats(p, destPrices);
+  const blurb =
+    p.slug === 'hair-transplant'
+      ? 'The most long-lasting way to restore hair loss (and confidence) takes follicles from places they won’t be missed, to fill in thin or bald spots.'
+      : firstSentence(p.description) || p.description;
+  const turkeyDests = dests.filter(
+    (d) => d.slug === 'istanbul' || /türkiye|turkiye|turkey/i.test(d.country || '')
+  );
+  const featuredDests = (turkeyDests.length ? turkeyDests : dests).slice(0, 4);
+  const featuredCountry = turkeyDests.length
+    ? 'Turkey'
+    : featuredDests[0]
+      ? /türkiye|turkiye/i.test(featuredDests[0].country || '')
+        ? 'Turkey'
+        : featuredDests[0].country
+      : 'top hubs';
+  const featuredClinicBlocks = featuredDests
     .map((d) => {
-      const cs = clinicList.filter((c) => c.destination_id === d.id);
-      const ds = docList.filter((doc) => doc.destination_id === d.id).slice(0, 6);
-      return `<div class="stack-block">
-        <h3 class="t-h3">${esc(d.name)}</h3>
-        <ul class="plain-list">
-          ${cs.map((c) => `<li><a href="../clinics/${c.slug}.html">${esc(c.name)}</a> · ${esc(c.focus)}</li>`).join('') || '<li>No demo clinics</li>'}
-        </ul>
-        <p class="t-caption">Doctors: ${ds.map((doc) => `<a href="../doctors/${doc.slug}.html">${esc(doc.name)}</a>`).join(', ') || '—'}</p>
-      </div>`;
+      const pr = destPrices.find((x) => x.entity_id === d.id);
+      const cs = clinicList.filter((c) => c.destination_id === d.id).slice(0, 4);
+      const ds = docList.filter((doc) => doc.destination_id === d.id).slice(0, 3);
+      const fromLabel = pr ? `From ${money(pr.min_usd)}` : 'Pricing on request';
+      const range = pr ? rangeLabel(pr.min_usd, pr.max_usd) : '—';
+      return `<article class="proc-hub-card">
+          <a class="proc-hub-card__media" href="../destinations/${d.slug}.html">
+            <img src="${destCover(d.slug, 1)}" alt="" width="640" height="427" loading="lazy" decoding="async">
+          </a>
+          <div class="proc-hub-card__body">
+            <h3 class="proc-hub-card__title"><a href="../destinations/${d.slug}.html">${esc(d.name)}</a></h3>
+            <p class="proc-hub-card__meta">${esc(d.country)} · ${esc(fromLabel)}</p>
+            <p class="proc-hub-card__range">Typical package ${esc(range)} <span class="t-caption">(demo, varies by region)</span></p>
+            <ul class="proc-hub-card__clinics">
+              ${
+                cs
+                  .map(
+                    (c) =>
+                      `<li><a href="../clinics/${c.slug}.html">${esc(c.name)}</a></li>`
+                  )
+                  .join('') || '<li>Clinics coming soon</li>'
+              }
+            </ul>
+            ${
+              ds.length
+                ? `<p class="t-caption">Doctors: ${ds
+                    .map((doc) => `<a href="../doctors/${doc.slug}.html">${esc(doc.name)}</a>`)
+                    .join(', ')}</p>`
+                : ''
+            }
+          </div>
+        </article>`;
     })
     .join('');
 
@@ -702,39 +769,73 @@ for (const p of procedures) {
     head({ title: `${p.name} — MediGo`, description: p.description, depth: 1 }) +
     nav(1, 'procedures') +
     `<main>
-      <section class="section section--hero page-hero page-hero--split">
-        <div class="container page-hero__grid" data-reveal data-reveal-eager>
-          <div>
-            <p class="t-eyebrow">${esc(p.category)}</p>
-            <h1 class="t-display">${esc(p.name)}</h1>
-            <p class="t-body-lg">${esc(p.description)}</p>
-            <p class="banner-demo">Synthetic overview for product design — not medical advice.</p>
+      <section class="section proc-overview" aria-labelledby="proc-title">
+        <div class="container proc-overview__inner" data-reveal data-reveal-eager>
+          <h1 id="proc-title" class="proc-overview__title">${esc(p.name)}</h1>
+          <div class="proc-stats" data-proc-stats>
+            <button class="proc-stats__nav proc-stats__nav--prev" type="button" aria-label="Previous stats" data-proc-stats-prev>
+              <span aria-hidden="true">‹</span>
+            </button>
+            <ul class="proc-stats__track" data-proc-stats-track>
+              <li class="proc-stats__item">
+                <span class="proc-stats__icon" aria-hidden="true">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M8 10v10H5.5A1.5 1.5 0 0 1 4 18.5v-5A1.5 1.5 0 0 1 5.5 12H8Zm0 0V9a3 3 0 0 1 3-3h.4c.9 0 1.7.5 2.1 1.3L15 11h3.5A1.5 1.5 0 0 1 20 12.5v2.2c0 .4-.1.7-.4 1l-2.3 3.1c-.4.5-1 .8-1.6.8H10a2 2 0 0 1-2-2v-7.6Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                </span>
+                <span class="proc-stats__value">${stats.worth}%</span>
+                <span class="proc-stats__label">Worth it rating</span>
+              </li>
+              <li class="proc-stats__item">
+                <span class="proc-stats__icon" aria-hidden="true">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.25" stroke="currentColor" stroke-width="1.6"/><path d="M12 7.5v9M14.2 9.2c-.5-.6-1.2-.9-2.2-.9-1.4 0-2.3.7-2.3 1.8s.9 1.6 2.5 1.9c1.7.3 2.7.8 2.7 2.1s-1 2-2.6 2c-1.1 0-1.9-.4-2.4-1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                </span>
+                <span class="proc-stats__value">${money(stats.avgCost)}</span>
+                <span class="proc-stats__label">Average cost</span>
+              </li>
+              <li class="proc-stats__item">
+                <span class="proc-stats__icon" aria-hidden="true">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="6.5" width="17" height="12" rx="2" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12.5" r="3.2" stroke="currentColor" stroke-width="1.6"/><path d="M8 6.5 9.2 4.8h5.6L16 6.5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                </span>
+                <span class="proc-stats__value">${stats.photos.toLocaleString('en-US')}</span>
+                <span class="proc-stats__label">Before &amp; after photos</span>
+              </li>
+              <li class="proc-stats__item">
+                <span class="proc-stats__icon" aria-hidden="true">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M6.5 14.5c1.8-1.4 3.7-2.1 5.5-2.1s3.7.7 5.5 2.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="8.2" r="2.6" stroke="currentColor" stroke-width="1.6"/><path d="M5 18.5h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M8 18.5v-1.2c0-1 .6-1.8 1.5-2.1M16 18.5v-1.2c0-1-.6-1.8-1.5-2.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                </span>
+                <span class="proc-stats__value">${stats.doctorsClinics}</span>
+                <span class="proc-stats__label">Doctors &amp; clinics</span>
+              </li>
+              <li class="proc-stats__item">
+                <span class="proc-stats__icon" aria-hidden="true">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M6 7.5h12a2 2 0 0 1 2 2V14a2 2 0 0 1-2 2h-5.2L8 19.2V16H6a2 2 0 0 1-2-2V9.5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M10.2 11.2h.01M12 11.2h.01M13.8 11.2h.01" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+                </span>
+                <span class="proc-stats__value">${stats.questions.toLocaleString('en-US')}</span>
+                <span class="proc-stats__label">Questions asked</span>
+              </li>
+              <li class="proc-stats__item">
+                <span class="proc-stats__icon" aria-hidden="true">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M5.5 8.2h8.2A1.8 1.8 0 0 1 15.5 10v3.2a1.8 1.8 0 0 1-1.8 1.8H9.2L6.8 17v-2H5.5A1.8 1.8 0 0 1 3.7 13.2V10A1.8 1.8 0 0 1 5.5 8.2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M10.8 6.2h7.7A1.8 1.8 0 0 1 20.3 8v3a1.8 1.8 0 0 1-1.8 1.8h-.4" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                </span>
+                <span class="proc-stats__value">${stats.community}</span>
+                <span class="proc-stats__label">Community discussions</span>
+              </li>
+            </ul>
+            <button class="proc-stats__nav proc-stats__nav--next" type="button" aria-label="Next stats" data-proc-stats-next>
+              <span aria-hidden="true">›</span>
+            </button>
           </div>
-          <div class="placeholder-frame placeholder-frame--portrait" aria-hidden="true">
-            <img src="../assets/placeholders/proc-abstract.svg" alt="" width="400" height="500" loading="lazy">
-          </div>
+          <p class="proc-overview__blurb">${esc(blurb)}</p>
+          <p class="proc-overview__demo t-caption">Synthetic demo stats for product design — not medical advice or verified reviews.</p>
+          <a class="proc-overview__cta" href="#inquire">Find a ${esc(p.name)} provider near you</a>
         </div>
       </section>
-      <section class="section">
-        <div class="container detail-grid">
-          <div class="panel" data-reveal>
-            <h2 class="t-h3">Process, recovery & timeline</h2>
-            <p>${esc(p.process_recovery_timeline)}</p>
-          </div>
-          <div class="panel" data-reveal>
-            <h2 class="t-h3">Price range estimator</h2>
-            <p class="t-caption">Synthetic USD ranges by destination (demo).</p>
-            <div class="table-wrap"><table class="data-table">
-              <thead><tr><th>Destination</th><th>Est. range</th><th>US compare (demo)</th></tr></thead>
-              <tbody>${destPriceRows || '<tr><td colspan="3">No ranges</td></tr>'}</tbody>
-            </table></div>
-          </div>
-        </div>
-      </section>
-      <section class="section section--lavender">
+      <section class="section proc-hubs" aria-labelledby="proc-hubs-title">
         <div class="container" data-reveal>
-          <h2 class="t-h2">Top destinations & clinics</h2>
-          <div class="stack-grid">${clinicsByDest || '<p>No hubs linked yet.</p>'}</div>
+          <h2 id="proc-hubs-title" class="t-h2">Top destinations and clinics in ${esc(featuredCountry)}</h2>
+          <p class="t-lead proc-hubs__lede">Starting prices vary by region. Figures below are synthetic demo packages.</p>
+          <div class="proc-hubs__grid">
+            ${featuredClinicBlocks || '<p>No destinations linked yet.</p>'}
+          </div>
         </div>
       </section>
       <section class="section">
