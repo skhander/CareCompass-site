@@ -826,7 +826,6 @@ for (const p of procedures) {
           </div>
           <p class="proc-overview__blurb">${esc(blurb)}</p>
           <p class="proc-overview__demo t-caption">Synthetic demo stats for product design — not medical advice or verified reviews.</p>
-          <a class="proc-overview__cta" href="#inquire">Find a ${esc(p.name)} provider near you</a>
         </div>
       </section>
       <section class="section proc-hubs" aria-labelledby="proc-hubs-title">

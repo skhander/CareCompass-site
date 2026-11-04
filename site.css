@@ -1884,27 +1884,6 @@ body.menu-open {
   color: var(--color-text-muted);
 }
 
-.proc-overview__cta {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 0.95rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  text-decoration: underline;
-  text-underline-offset: 0.22em;
-  color: #40032b;
-}
-
-.proc-overview__cta:hover,
-.proc-overview__cta:focus-visible {
-  color: var(--plum-80);
-}
-
-.proc-overview__cta:focus-visible {
-  outline: 2px solid #ffd75e;
-  outline-offset: 4px;
-}
-
 .proc-hubs__lede {
   margin-top: 0;
   max-width: 36rem;
