@@ -1969,7 +1969,7 @@ body.menu-open {
   display: grid;
   grid-template-columns: 5.5rem minmax(0, 1fr);
   gap: var(--space-sm);
-  align-items: center;
+  align-items: stretch;
   border: 1px solid #ede0b6;
   background: #fffbe6;
   color: #40032b;
@@ -2022,6 +2022,36 @@ body.menu-open {
   line-height: 1.3;
 }
 
+.proc-clinic-card__packages {
+  list-style: none;
+  margin: 0.45rem 0 0;
+  padding: 0.4rem 0 0;
+  border-top: 1px solid #ede0b6;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.proc-clinic-card__pkg {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.5rem;
+  align-items: baseline;
+  font-size: 0.72rem;
+  line-height: 1.3;
+}
+
+.proc-clinic-card__pkg-name {
+  color: #40032b;
+  min-width: 0;
+}
+
+.proc-clinic-card__pkg-price {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  color: #40032b;
+}
+
 @media (min-width: 640px) {
   .proc-rank__clinics {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2040,6 +2070,7 @@ body.menu-open {
 
   .proc-clinic-card__body {
     padding: 0.65rem 0.75rem 0.85rem;
+    align-content: start;
   }
 }
 

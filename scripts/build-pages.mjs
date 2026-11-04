@@ -708,8 +708,17 @@ const PROC_DEST_RANKING = [
   {
     country: 'Turkey',
     priceLabel: '$3,500',
+    avgUsd: 3500,
     copy: 'Skilled surgeons, accredited hospitals, low prices, and all-inclusive packages. The trade-off: low-cost clinics may have fewer safeguards. But at MediGo, we pick ones with safety standards comparable to the US.',
     destSlugs: ['istanbul'],
+    packageTypes: [
+      'FUE hair transplant (2,500 grafts)',
+      'Sapphire FUE package',
+      'DHI dense-pack session',
+      'Hairline restoration + PRP',
+      'Crown fill FUE',
+      'Beard & hairline combo',
+    ],
     fallbackClinics: [
       { name: 'Bosphorus Follicle Institute', focus: 'Hair & aesthetics' },
       { name: 'Marmara Aesthetic Hospital', focus: 'Multispecialty' },
@@ -719,8 +728,17 @@ const PROC_DEST_RANKING = [
   {
     country: 'Mexico',
     priceLabel: '$3,202',
+    avgUsd: 3202,
     copy: 'Close and affordable for patients in the U.S. and Canada. An estimated 40 to 60 percent of medical tourists there come from the U.S.',
     destSlugs: ['mexico-city', 'tijuana'],
+    packageTypes: [
+      'FUE hair transplant (2,000 grafts)',
+      'Hairline redesign package',
+      'FUE + overnight stay',
+      'DHI session',
+      'Temple & crown FUE',
+      'PRP boost add-on package',
+    ],
     fallbackClinics: [
       { name: 'Reforma Aesthetic Institute', focus: 'Cosmetic surgery' },
       { name: 'Pacific Border Surgery', focus: 'Surgical care' },
@@ -730,8 +748,19 @@ const PROC_DEST_RANKING = [
   {
     country: 'South Korea',
     priceLabel: '$6,000 to $8,000',
+    avgUsd: 7000,
+    priceMinUsd: 6000,
+    priceMaxUsd: 8000,
     copy: 'Hundreds of thousands of medical tourists visit each year. Most come for dermatology or plastic surgery.',
     destSlugs: ['seoul'],
+    packageTypes: [
+      'Premium FUE (3,000 grafts)',
+      'Facial hair transplant',
+      'Dense-pack hairline design',
+      'FUE + laser recovery plan',
+      'Female hairline package',
+      'Scar revision + FUE',
+    ],
     fallbackClinics: [
       { name: 'Gangnam Lumen Surgery', focus: 'Plastic surgery' },
       { name: 'Cheongdam SoftLift Clinic', focus: 'Facial aesthetics' },
@@ -741,8 +770,17 @@ const PROC_DEST_RANKING = [
   {
     country: 'Thailand',
     priceLabel: '$5,758',
+    avgUsd: 5758,
     copy: 'Clinics in Bangkok and Phuket. Easy to pair surgery with a vacation.',
     destSlugs: ['bangkok'],
+    packageTypes: [
+      'FUE vacation package',
+      'DHI hair transplant',
+      'Long-hair FUE session',
+      'Hairline + hotel package',
+      'Crown restoration FUE',
+      'Stem-assist FUE plan',
+    ],
     fallbackClinics: [
       { name: 'Chao Phraya Care Pavilion', focus: 'Multispecialty' },
       { name: 'Thonglor Follicle House', focus: 'Hair transplant' },
@@ -752,8 +790,17 @@ const PROC_DEST_RANKING = [
   {
     country: 'Hungary',
     priceLabel: '$3,650',
+    avgUsd: 3650,
     copy: 'A low-cost option. Medical tourism is projected to grow 15% a year through 2030.',
     destSlugs: [],
+    packageTypes: [
+      'FUE hair transplant (2,200 grafts)',
+      'DHI precision package',
+      'Hairline contour FUE',
+      'Crown density session',
+      'FUE + consult bundle',
+      'Temple restoration package',
+    ],
     fallbackClinics: [
       { name: 'Budapest Contour Atelier', focus: 'Cosmetic surgery' },
       { name: 'Danube Aesthetic Pavilion', focus: 'Aesthetics' },
@@ -763,8 +810,17 @@ const PROC_DEST_RANKING = [
   {
     country: 'Germany',
     priceLabel: '$7,372',
+    avgUsd: 7372,
     copy: 'Strict healthcare rules and clinics in Berlin. Known more for orthopedic surgery than cosmetic work.',
     destSlugs: [],
+    packageTypes: [
+      'Medical-grade FUE',
+      'Micro-FUE reconstruction',
+      'Hospital FUE package',
+      'Scar-aware transplant plan',
+      'Premium graft mapping FUE',
+      'Ortho + aesthetic consult package',
+    ],
     fallbackClinics: [
       { name: 'Berlin Ortho & Form Clinic', focus: 'Orthopedics' },
       { name: 'Mitte Profile Institute', focus: 'Specialty surgery' },
@@ -772,6 +828,43 @@ const PROC_DEST_RANKING = [
     ],
   },
 ];
+
+/** Synthetic packages for a clinic; prices cluster around the destination average. */
+function packagesForClinic(entry, clinicIndex, clinicName) {
+  const types = entry.packageTypes || [];
+  const seed = hashSeed(`${entry.country}:${clinicName}:${clinicIndex}`);
+  const pick = (offset) => types[(seed + offset * 3) % types.length];
+  const labels = [pick(0), pick(1), pick(2)].filter(Boolean);
+  // Keep three distinct labels when the catalog is large enough
+  const unique = [];
+  for (let i = 0; i < types.length && unique.length < 3; i++) {
+    const label = types[(seed + i * 5) % types.length];
+    if (!unique.includes(label)) unique.push(label);
+  }
+  const chosen = unique.length ? unique : labels;
+
+  const min = entry.priceMinUsd ?? Math.round(entry.avgUsd * 0.82);
+  const max = entry.priceMaxUsd ?? Math.round(entry.avgUsd * 1.18);
+  const mid = entry.avgUsd;
+  const jitter = (n, j) => Math.round((n + ((seed >> (j * 3)) % 17) * 10 - 80) / 10) * 10;
+  const raw = [
+    jitter(Math.max(min, mid * 0.88), 0),
+    jitter(mid, 1),
+    jitter(Math.min(max, mid * 1.12), 2),
+  ]
+    .map((n) => Math.min(max, Math.max(min, n)))
+    .sort((a, b) => a - b);
+
+  // Nudge so the clinic mean stays near the destination average
+  const mean = raw.reduce((a, b) => a + b, 0) / raw.length;
+  const shift = Math.round((mid - mean) / 10) * 10;
+  const prices = raw.map((n) => Math.min(max, Math.max(min, n + shift)));
+
+  return chosen.map((procedure, i) => ({
+    procedure,
+    price: money(prices[i] ?? mid),
+  }));
+}
 
 function clinicsForRank(entry, procedureClinicList) {
   const destIds = new Set(
@@ -781,7 +874,7 @@ function clinicsForRank(entry, procedureClinicList) {
   );
   const linked = procedureClinicList.filter((c) => destIds.has(c.destination_id)).slice(0, 3);
   if (linked.length) {
-    return linked.map((c) => ({
+    return linked.map((c, i) => ({
       name: c.name,
       focus: c.focus || '',
       href: `../clinics/${c.slug}.html`,
@@ -789,15 +882,31 @@ function clinicsForRank(entry, procedureClinicList) {
         destinations.find((d) => d.id === c.destination_id)?.slug || entry.destSlugs[0] || 'istanbul',
         1
       ),
+      packages: packagesForClinic(entry, i, c.name),
     }));
   }
   const primarySlug = entry.destSlugs[0];
-  return entry.fallbackClinics.slice(0, 3).map((c) => ({
+  return entry.fallbackClinics.slice(0, 3).map((c, i) => ({
     name: c.name,
     focus: c.focus || '',
     href: primarySlug ? `../destinations/${primarySlug}.html` : '../destinations.html',
     cover: destCover(primarySlug || 'istanbul', 1),
+    packages: packagesForClinic(entry, i, c.name),
   }));
+}
+
+function renderClinicPackages(packages) {
+  if (!packages?.length) return '';
+  return `<ul class="proc-clinic-card__packages">
+              ${packages
+                .map(
+                  (pkg) => `<li class="proc-clinic-card__pkg">
+                <span class="proc-clinic-card__pkg-name">${esc(pkg.procedure)}</span>
+                <span class="proc-clinic-card__pkg-price">${esc(pkg.price)}</span>
+              </li>`
+                )
+                .join('')}
+            </ul>`;
 }
 
 function renderRankedDestinations(procedureClinicList) {
@@ -816,6 +925,7 @@ function renderRankedDestinations(procedureClinicList) {
             <span class="proc-clinic-card__body">
               <span class="proc-clinic-card__name">${esc(c.name)}</span>
               ${c.focus ? `<span class="proc-clinic-card__focus">${esc(c.focus)}</span>` : ''}
+              ${renderClinicPackages(c.packages)}
             </span>
           </a>`
       )
