@@ -864,6 +864,13 @@ const RHINOPLASTY_DEST_RANKING = [
     ],
     destSlugs: ['istanbul'],
     maxClinics: 4,
+    // First Istanbul clinic card uses a rhinoplasty before/after still instead of city cover.
+    clinicCovers: {
+      0: {
+        src: '../assets/clinic-galata-rhinoplasty-before-after.png',
+        alt: 'Rhinoplasty before and after',
+      },
+    },
     packageTypes: [
       'Primary rhinoplasty',
       'Revision rhinoplasty',
@@ -1014,30 +1021,56 @@ function clinicsForRank(entry, procedureClinicList) {
       .map((slug) => destinations.find((d) => d.slug === slug)?.id)
       .filter(Boolean)
   );
+  const applyCover = (clinic, index) => {
+    const override = entry.clinicCovers?.[index];
+    if (override?.src) {
+      return {
+        ...clinic,
+        cover: override.src,
+        coverAlt: override.alt || '',
+        coverDecorative: false,
+      };
+    }
+    return clinic;
+  };
   const linked = procedureClinicList
     .filter((c) => destIds.has(c.destination_id))
     .slice(0, max)
-    .map((c, i) => ({
-      name: c.name,
-      focus: c.focus || '',
-      href: `../clinics/${c.slug}.html`,
-      cover: destCover(
-        destinations.find((d) => d.id === c.destination_id)?.slug || primarySlug || 'istanbul',
-        1
-      ),
-      packages: packagesForClinic(entry, i, c.name),
-    }));
+    .map((c, i) =>
+      applyCover(
+        {
+          name: c.name,
+          focus: c.focus || '',
+          href: `../clinics/${c.slug}.html`,
+          cover: destCover(
+            destinations.find((d) => d.id === c.destination_id)?.slug || primarySlug || 'istanbul',
+            1
+          ),
+          coverAlt: '',
+          coverDecorative: true,
+          packages: packagesForClinic(entry, i, c.name),
+        },
+        i
+      )
+    );
 
   const used = new Set(linked.map((c) => c.name.toLowerCase()));
   const fallbacks = (entry.fallbackClinics || [])
     .filter((c) => !used.has(String(c.name).toLowerCase()))
-    .map((c, i) => ({
-      name: c.name,
-      focus: c.focus || '',
-      href: primarySlug ? `../destinations/${primarySlug}.html` : '../destinations.html',
-      cover: destCover(primarySlug || 'istanbul', 1),
-      packages: packagesForClinic(entry, linked.length + i, c.name),
-    }));
+    .map((c, i) =>
+      applyCover(
+        {
+          name: c.name,
+          focus: c.focus || '',
+          href: primarySlug ? `../destinations/${primarySlug}.html` : '../destinations.html',
+          cover: destCover(primarySlug || 'istanbul', 1),
+          coverAlt: '',
+          coverDecorative: true,
+          packages: packagesForClinic(entry, linked.length + i, c.name),
+        },
+        linked.length + i
+      )
+    );
 
   return [...linked, ...fallbacks].slice(0, max);
 }
@@ -1080,18 +1113,19 @@ function renderRankedDestinations(ranking, procedureClinicList) {
     const title = entry.city ? `${entry.city}, ${entry.country}` : entry.country;
     const clinics = clinicsForRank(entry, procedureClinicList);
     const clinicCards = clinics
-      .map(
-        (c) => `<a class="proc-clinic-card" href="${c.href}">
-            <span class="proc-clinic-card__media" aria-hidden="true">
-              <img src="${c.cover}" alt="" width="320" height="214" loading="lazy" decoding="async">
+      .map((c) => {
+        const decorative = c.coverDecorative !== false && !c.coverAlt;
+        return `<a class="proc-clinic-card" href="${c.href}">
+            <span class="proc-clinic-card__media"${decorative ? ' aria-hidden="true"' : ''}>
+              <img src="${c.cover}" alt="${esc(c.coverAlt || '')}" width="320" height="214" loading="lazy" decoding="async">
             </span>
             <span class="proc-clinic-card__body">
               <span class="proc-clinic-card__name">${esc(c.name)}</span>
               ${c.focus ? `<span class="proc-clinic-card__focus">${esc(c.focus)}</span>` : ''}
               ${renderClinicPackages(c.packages)}
             </span>
-          </a>`
-      )
+          </a>`;
+      })
       .join('');
     const clinicsClass =
       (entry.maxClinics || 3) === 4
