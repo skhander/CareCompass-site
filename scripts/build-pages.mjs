@@ -1065,7 +1065,7 @@ function renderRankCopy(entry) {
     .map((t) => `<p class="proc-rank__copy">${esc(t)}</p>`)
     .join('');
   const why = entry.why
-    ? `<p class="proc-rank__why"><span class="proc-rank__why-label">Why it stands out:</span> ${esc(entry.why)}</p>`
+    ? `<p class="proc-rank__why"><span class="proc-rank__why-label">Why we recommend it:</span> ${esc(entry.why)}</p>`
     : '';
   return body + why;
 }
