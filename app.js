@@ -685,22 +685,6 @@
     }
   }
 
-  function initProcStats() {
-    document.querySelectorAll('[data-proc-stats]').forEach((root) => {
-      const track = root.querySelector('[data-proc-stats-track]');
-      const prev = root.querySelector('[data-proc-stats-prev]');
-      const next = root.querySelector('[data-proc-stats-next]');
-      if (!track) return;
-      const step = () => Math.max(160, Math.round(track.clientWidth * 0.7));
-      prev?.addEventListener('click', () => {
-        track.scrollBy({ left: -step(), behavior: 'smooth' });
-      });
-      next?.addEventListener('click', () => {
-        track.scrollBy({ left: step(), behavior: 'smooth' });
-      });
-    });
-  }
-
   // Fixed Demo pill — visible at top, disappears after scroll
   function initDemoBadge() {
     const badge = document.querySelector('[data-demo-badge]');
@@ -735,7 +719,6 @@
     initProcDirectory();
     initDestSuggest();
     initInquiry();
-    initProcStats();
     initDemoBadge();
     const index = await loadSearchIndex();
     initHeroSearch(index);
