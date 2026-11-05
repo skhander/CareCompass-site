@@ -370,7 +370,6 @@ function footer(depth) {
 
 function formCopy() {
   return `<div class="inquiry-copy">
-        <p class="t-eyebrow">Demo</p>
         <h2 class="t-h2">Plan your trip.</h2>
         <p class="t-body">Tell us what you need. We'll show you where to compare clinics.</p>
       </div>`;
