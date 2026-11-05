@@ -1218,10 +1218,6 @@ function renderRhinoplastyPage(p, clinicList, stats) {
           <div class="proc-guide__destinations">
             ${destHtml}
           </div>
-          <div class="proc-guide__cta">
-            <p class="proc-guide__cta-copy">Compare clinics side by side before you book.</p>
-            <a class="btn btn--plum proc-guide__cta-btn" href="#inquire">Plan your trip</a>
-          </div>
         </div>
       </section>
       ${inquiryForm({ depth: 1, procedure: p.name })}

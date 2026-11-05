@@ -2498,25 +2498,6 @@ body.menu-open {
   color: var(--guide-muted);
 }
 
-.proc-guide__cta {
-  display: grid;
-  gap: 1rem;
-  align-items: center;
-  margin-top: 2.5rem;
-  padding-top: 1.35rem;
-  border-top: 1px solid var(--guide-line);
-}
-
-.proc-guide__cta-copy {
-  margin: 0;
-  font-size: 1.05rem;
-  color: var(--guide-ink);
-}
-
-.proc-guide__cta-btn {
-  justify-self: start;
-}
-
 @media (min-width: 800px) {
   .proc-guide__dest-top {
     grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
@@ -2545,14 +2526,6 @@ body.menu-open {
     justify-items: end;
     text-align: right;
     min-width: 4.5rem;
-  }
-
-  .proc-guide__cta {
-    grid-template-columns: 1fr auto;
-  }
-
-  .proc-guide__cta-btn {
-    justify-self: end;
   }
 }
 
