@@ -960,12 +960,11 @@ const RHINOPLASTY_DEST_RANKING = [
     paragraphs: [
       'Close for U.S. travelers, with established private clinics and competitive pricing.',
     ],
-    // No unique Mexico BA provided yet — reuse Bogotá illustrative asset for layout parity.
     beforeAfter: {
-      src: '../assets/rhino-ba-bogota.png',
+      src: '../assets/rhino-ba-mexico-city.jpg',
       alt: 'Illustrative rhinoplasty before and after example for Mexico City',
-      width: 1358,
-      height: 1159,
+      width: 1325,
+      height: 784,
     },
     destSlugs: ['mexico-city'],
     maxClinics: 3,
