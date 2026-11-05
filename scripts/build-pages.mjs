@@ -861,7 +861,7 @@ const RHINOPLASTY_DEST_RANKING = [
     priceLabel: '$4,150',
     avgUsd: 4150,
     paragraphs: [
-      'Competitive pricing, surgeon availability, and established medical tourism infrastructure.',
+      'Strong surgeon supply and well-established medical tourism infrastructure.',
     ],
     beforeAfter: {
       src: '../assets/rhino-ba-istanbul.png',
@@ -870,7 +870,7 @@ const RHINOPLASTY_DEST_RANKING = [
       height: 1217,
     },
     destSlugs: ['istanbul'],
-    maxClinics: 4,
+    maxClinics: 3,
     packageTypes: [
       'Primary rhinoplasty',
       'Revision rhinoplasty',
@@ -882,7 +882,6 @@ const RHINOPLASTY_DEST_RANKING = [
     fallbackClinics: [
       { name: 'Galata Contour Surgery', focus: 'Plastic surgery' },
       { name: 'Marmara Aesthetic Hospital', focus: 'Multispecialty' },
-      { name: 'Nisantasi Profile Institute', focus: 'Facial surgery' },
       { name: 'Bebek Septum Clinic', focus: 'Rhinoplasty' },
     ],
   },
@@ -894,7 +893,7 @@ const RHINOPLASTY_DEST_RANKING = [
     priceMinUsd: 3500,
     priceMaxUsd: 8500,
     paragraphs: [
-      'Seoul\'s facial aesthetics scene is highly specialized, with detailed planning for bridge and tip refinement.',
+      'Highly specialized surgeons with detailed planning for bridge and tip refinement.',
     ],
     beforeAfter: {
       src: '../assets/rhino-ba-seoul.png',
@@ -903,7 +902,7 @@ const RHINOPLASTY_DEST_RANKING = [
       height: 1143,
     },
     destSlugs: ['seoul'],
-    maxClinics: 4,
+    maxClinics: 3,
     packageTypes: [
       'Primary rhinoplasty',
       'Revision rhinoplasty',
@@ -916,7 +915,6 @@ const RHINOPLASTY_DEST_RANKING = [
       { name: 'Cheongdam Lumen Plastic', focus: 'Plastic surgery' },
       { name: 'Apgujeong Vector Surgery', focus: 'Facial surgery' },
       { name: 'Gangnam Profile Atelier', focus: 'Facial aesthetics' },
-      { name: 'Sinsa Tip & Bridge Clinic', focus: 'Rhinoplasty' },
     ],
   },
   {
@@ -925,7 +923,7 @@ const RHINOPLASTY_DEST_RANKING = [
     priceLabel: '$3,850',
     avgUsd: 3850,
     paragraphs: [
-      'Bogotá is a major hub for facial plastic surgery, with competitive pricing for international patients.',
+      'Established plastic surgery hub with competitive pricing for international patients.',
     ],
     beforeAfter: {
       src: '../assets/rhino-ba-bogota.png',
@@ -936,7 +934,7 @@ const RHINOPLASTY_DEST_RANKING = [
     // No Bogotá hub in catalog yet — synthetic clinics; Colombia cover from Medellín asset.
     destSlugs: [],
     coverSlug: 'medellin',
-    maxClinics: 4,
+    maxClinics: 3,
     packageTypes: [
       'Primary rhinoplasty',
       'Revision rhinoplasty',
@@ -949,7 +947,6 @@ const RHINOPLASTY_DEST_RANKING = [
       { name: 'Chapinero Contour Surgery', focus: 'Plastic surgery' },
       { name: 'Zona T Facial Institute', focus: 'Facial surgery' },
       { name: 'Usaquén Profile Clinic', focus: 'Rhinoplasty' },
-      { name: 'Chicó Septorhinoplasty Center', focus: 'Facial surgery' },
     ],
   },
   {
@@ -958,7 +955,7 @@ const RHINOPLASTY_DEST_RANKING = [
     priceLabel: '$4,300',
     avgUsd: 4300,
     paragraphs: [
-      'Close for U.S. travelers, with established private clinics and competitive pricing for elective facial surgery.',
+      'Close for U.S. travelers, with established private clinics and competitive pricing.',
     ],
     // No unique Mexico BA provided yet — reuse Bogotá illustrative asset for layout parity.
     beforeAfter: {
@@ -968,7 +965,7 @@ const RHINOPLASTY_DEST_RANKING = [
       height: 1159,
     },
     destSlugs: ['mexico-city'],
-    maxClinics: 4,
+    maxClinics: 3,
     packageTypes: [
       'Primary rhinoplasty',
       'Revision rhinoplasty',
@@ -980,7 +977,6 @@ const RHINOPLASTY_DEST_RANKING = [
     fallbackClinics: [
       { name: 'Insurgentes Aesthetic Pavilion', focus: 'Cosmetic surgery' },
       { name: 'Pedregal Care Hospital', focus: 'Surgical care' },
-      { name: 'Polanco Profile Surgery', focus: 'Facial surgery' },
       { name: 'Roma Norte Rhinoplasty Studio', focus: 'Rhinoplasty' },
     ],
   },
@@ -1125,6 +1121,112 @@ function renderDestBeforeAfter(entry) {
         </figure>`;
 }
 
+function clinicServicesLine(packages) {
+  if (!packages?.length) return '';
+  const parts = packages.map((pkg) =>
+    String(pkg.procedure)
+      .replace(/\s*rhinoplasty$/i, '')
+      .trim()
+      .toLowerCase()
+  );
+  if (parts.length === 1) return `${parts[0]} rhinoplasty`;
+  if (parts.length === 2) return `${parts[0]} and ${parts[1]} rhinoplasty`;
+  return `${parts.slice(0, -1).join(', ')}, and ${parts[parts.length - 1]} rhinoplasty`;
+}
+
+function clinicFromPrice(packages) {
+  if (!packages?.length) return '';
+  const nums = packages
+    .map((pkg) => Number(String(pkg.price).replace(/[^0-9.]/g, '')))
+    .filter((n) => Number.isFinite(n) && n > 0);
+  if (!nums.length) return packages[0].price;
+  return money(Math.min(...nums));
+}
+
+function renderRhinoClinicRow(c) {
+  const services = clinicServicesLine(c.packages);
+  const fromPrice = clinicFromPrice(c.packages);
+  return `<a class="proc-clinic-row" href="${c.href}">
+            <span class="proc-clinic-row__main">
+              <span class="proc-clinic-row__name">${esc(c.name)}</span>
+              ${renderClinicRating(c.name)}
+            </span>
+            <span class="proc-clinic-row__services">${esc(services)}</span>
+            <span class="proc-clinic-row__price">
+              <span class="proc-clinic-row__amount">${esc(fromPrice)}</span>
+              <span class="proc-clinic-row__from">from</span>
+            </span>
+          </a>`;
+}
+
+function renderRhinoDestinations(ranking, procedureClinicList) {
+  return ranking
+    .map((entry) => {
+      const destSlug = entry.destSlugs[0] || entry.coverSlug;
+      const dest = destSlug ? destinations.find((d) => d.slug === destSlug) : null;
+      const titleHref = dest ? `../destinations/${dest.slug}.html` : '../destinations.html';
+      const title = entry.city ? `${entry.city}, ${entry.country}` : entry.country;
+      const clinics = clinicsForRank(entry, procedureClinicList);
+      const rows = clinics.map(renderRhinoClinicRow).join('');
+      const ba = entry.beforeAfter?.src
+        ? `<figure class="proc-guide__photo">
+            <img src="${entry.beforeAfter.src}" alt="${esc(entry.beforeAfter.alt || '')}" width="${entry.beforeAfter.width || 1360}" height="${entry.beforeAfter.height || 1160}" loading="lazy" decoding="async">
+          </figure>`
+        : `<div class="proc-guide__photo proc-guide__photo--empty" aria-hidden="true"></div>`;
+      const copy = (entry.paragraphs || []).map((t) => `<p class="proc-guide__dest-copy">${esc(t)}</p>`).join('');
+      return `<section class="proc-guide__dest">
+        <div class="proc-guide__dest-top">
+          <div class="proc-guide__dest-copy-block">
+            <h3 class="proc-guide__dest-title"><a href="${titleHref}">${esc(title)}</a></h3>
+            ${entry.priceLabel ? `<p class="proc-guide__dest-from">From ${esc(entry.priceLabel)}</p>` : ''}
+            ${copy}
+          </div>
+          ${ba}
+        </div>
+        <div class="proc-guide__clinics">${rows}</div>
+      </section>`;
+    })
+    .join('');
+}
+
+function renderRhinoplastyPage(p, clinicList, stats) {
+  const ranking = RHINOPLASTY_DEST_RANKING;
+  const destHtml = renderRhinoDestinations(ranking, clinicList);
+  return (
+    head({ title: `${p.name} — MediGo`, description: p.description, depth: 1 }) +
+    nav(1, 'procedures') +
+    `<main>
+      <section class="section proc-guide" aria-labelledby="proc-title">
+        <div class="container proc-guide__inner" data-reveal data-reveal-eager>
+          <p class="proc-guide__eyebrow">Cosmetic surgery</p>
+          <h1 id="proc-title" class="proc-guide__title">${esc(p.name)}</h1>
+          <p class="proc-guide__lede">Nose surgery costs far less in some countries. Here is where patients go, what it costs, and which clinics they choose.</p>
+          <div class="proc-guide__stats" role="group" aria-label="Procedure averages">
+            <div class="proc-guide__stat">
+              <span class="proc-guide__stat-value">${money(stats.avgCost)}</span>
+              <span class="proc-guide__stat-label">Average cost</span>
+            </div>
+            <div class="proc-guide__stat">
+              <span class="proc-guide__stat-value">${stats.tripDays} days</span>
+              <span class="proc-guide__stat-label">Average trip length</span>
+            </div>
+          </div>
+          <h2 class="proc-guide__section-title">Where to go</h2>
+          <div class="proc-guide__destinations">
+            ${destHtml}
+          </div>
+          <div class="proc-guide__cta">
+            <p class="proc-guide__cta-copy">Compare clinics side by side before you book.</p>
+            <a class="btn btn--plum proc-guide__cta-btn" href="#inquire">Plan your trip</a>
+          </div>
+        </div>
+      </section>
+      ${inquiryForm({ depth: 1, procedure: p.name })}
+    </main>` +
+    footer(1)
+  );
+}
+
 function renderRankedDestinations(ranking, procedureClinicList) {
   return ranking.map((entry, i) => {
     const rank = i + 1;
@@ -1179,6 +1281,12 @@ for (const p of procedures) {
   const clinicList = (p.clinic_ids || []).map((id) => byId.clinic[id]).filter(Boolean);
   const destPrices = prices.filter((x) => x.procedure_id === p.id && x.entity_type === 'destination');
   const stats = synthProcStats(p, destPrices);
+
+  if (p.slug === 'rhinoplasty') {
+    writeFileSync(join(SITE, 'procedures', `${p.slug}.html`), renderRhinoplastyPage(p, clinicList, stats));
+    continue;
+  }
+
   const blurb = shortBlurb(p);
   const ranking = rankingForProcedure(p);
   const rankedList = renderRankedDestinations(ranking, clinicList);

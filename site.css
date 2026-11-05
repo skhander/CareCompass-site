@@ -2232,6 +2232,290 @@ body.menu-open {
   }
 }
 
+/* Rhinoplasty guide layout (mockup) */
+.proc-guide {
+  --guide-ink: #40032b;
+  --guide-muted: #6b4a5c;
+  --guide-line: #ede0b6;
+  padding-block: var(--space-xl) var(--space-2xl, 3rem);
+  background: #fffbe6;
+  color: var(--guide-ink);
+}
+
+.proc-guide__inner {
+  display: grid;
+  gap: 0;
+  max-width: 52rem;
+  margin-inline: auto;
+}
+
+.proc-guide__eyebrow {
+  margin: 0 0 0.65rem;
+  font-size: 0.72rem;
+  font-weight: var(--weight-text);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--guide-muted);
+}
+
+.proc-guide__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 1.8rem + 2.2vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  text-transform: none;
+  color: var(--guide-ink);
+}
+
+.proc-guide__lede {
+  margin: 0.85rem 0 0;
+  max-width: 36rem;
+  font-size: 1.05rem;
+  line-height: 1.45;
+  color: var(--guide-muted);
+}
+
+.proc-guide__stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin-top: 1.75rem;
+  padding: 1.15rem 0;
+  border-top: 1px solid var(--guide-line);
+  border-bottom: 1px solid var(--guide-line);
+}
+
+.proc-guide__stat {
+  display: grid;
+  gap: 0.25rem;
+  padding-right: 1.25rem;
+}
+
+.proc-guide__stat + .proc-guide__stat {
+  padding-left: 1.25rem;
+  padding-right: 0;
+  border-left: 1px solid var(--guide-line);
+}
+
+.proc-guide__stat-value {
+  font-family: var(--font-display);
+  font-size: clamp(1.65rem, 1.35rem + 1vw, 2.1rem);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--guide-ink);
+}
+
+.proc-guide__stat-label {
+  font-size: 0.92rem;
+  font-weight: var(--weight-text);
+  color: var(--guide-muted);
+}
+
+.proc-guide__section-title {
+  margin: 2.25rem 0 0;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--guide-line);
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 1.25rem + 0.7vw, 1.85rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--guide-ink);
+}
+
+.proc-guide__destinations {
+  display: grid;
+  gap: 2.25rem;
+  margin-top: 1.75rem;
+}
+
+.proc-guide__dest-top {
+  display: grid;
+  gap: 1rem;
+  align-items: start;
+}
+
+.proc-guide__dest-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 1.2rem + 0.55vw, 1.65rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.proc-guide__dest-title a {
+  color: var(--guide-ink);
+  text-decoration: none;
+}
+
+.proc-guide__dest-title a:hover,
+.proc-guide__dest-title a:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.proc-guide__dest-from {
+  margin: 0.35rem 0 0;
+  font-size: 1rem;
+  color: var(--guide-muted);
+}
+
+.proc-guide__dest-copy {
+  margin: 0.45rem 0 0;
+  max-width: 28rem;
+  font-size: 1rem;
+  line-height: 1.45;
+  color: var(--guide-muted);
+}
+
+.proc-guide__photo {
+  margin: 0;
+  overflow: hidden;
+  background: #ede0b6;
+  aspect-ratio: 16 / 10;
+}
+
+.proc-guide__photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.proc-guide__photo--empty {
+  min-height: 10rem;
+}
+
+.proc-guide__clinics {
+  display: grid;
+  margin-top: 0.85rem;
+  border-top: 1px solid var(--guide-line);
+}
+
+.proc-clinic-row {
+  display: grid;
+  gap: 0.35rem 1rem;
+  align-items: start;
+  padding: 0.95rem 0;
+  border-bottom: 1px solid var(--guide-line);
+  color: var(--guide-ink);
+  text-decoration: none;
+}
+
+.proc-clinic-row:hover .proc-clinic-row__name,
+.proc-clinic-row:focus-visible .proc-clinic-row__name {
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+
+.proc-clinic-row:focus-visible {
+  outline: 2px solid #ffd75e;
+  outline-offset: 2px;
+}
+
+.proc-clinic-row__main {
+  display: grid;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.proc-clinic-row__name {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.proc-clinic-row .proc-clinic-card__rating {
+  margin-top: 0;
+}
+
+.proc-clinic-row .proc-clinic-card__stars,
+.proc-clinic-row .proc-clinic-card__score {
+  font-size: 0.78rem;
+}
+
+.proc-clinic-row__services {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: var(--guide-muted);
+}
+
+.proc-clinic-row__price {
+  display: grid;
+  justify-items: start;
+  gap: 0.1rem;
+}
+
+.proc-clinic-row__amount {
+  font-family: var(--font-text);
+  font-size: 1.05rem;
+  font-weight: var(--weight-text-semi, 600);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+  letter-spacing: 0;
+  color: var(--guide-ink);
+}
+
+.proc-clinic-row__from {
+  font-size: 0.72rem;
+  color: var(--guide-muted);
+}
+
+.proc-guide__cta {
+  display: grid;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 2.5rem;
+  padding-top: 1.35rem;
+  border-top: 1px solid var(--guide-line);
+}
+
+.proc-guide__cta-copy {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--guide-ink);
+}
+
+.proc-guide__cta-btn {
+  justify-self: start;
+}
+
+@media (min-width: 800px) {
+  .proc-guide__dest-top {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: 1.5rem 2rem;
+    align-items: center;
+  }
+
+  .proc-clinic-row {
+    grid-template-columns: minmax(11rem, 1.1fr) minmax(0, 1.4fr) auto;
+    align-items: center;
+    gap: 1rem 1.5rem;
+  }
+
+  .proc-clinic-row__price {
+    justify-items: end;
+    text-align: right;
+    min-width: 4.5rem;
+  }
+
+  .proc-guide__cta {
+    grid-template-columns: 1fr auto;
+  }
+
+  .proc-guide__cta-btn {
+    justify-self: end;
+  }
+}
+
 .detail-grid {
   display: grid;
   gap: var(--space-md);
