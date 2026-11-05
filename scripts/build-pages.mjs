@@ -1178,7 +1178,7 @@ function renderGuideClinicRow(c, { stripSuffix } = {}) {
 
 function guideDestPhoto(entry) {
   if (entry.beforeAfter?.src) {
-    const baFace = /rhino-ba-bogota|galata-rhinoplasty-before-after/.test(entry.beforeAfter.src);
+    const baFace = /rhino-ba-bogota|galata-rhinoplasty-before-after|hair-ba-istanbul/.test(entry.beforeAfter.src);
     return `<figure class="proc-guide__photo${baFace ? ' proc-guide__photo--face' : ''}">
             <img src="${entry.beforeAfter.src}" alt="${esc(entry.beforeAfter.alt || '')}" width="${entry.beforeAfter.width || 1360}" height="${entry.beforeAfter.height || 1160}" loading="lazy" decoding="async">
           </figure>`;
