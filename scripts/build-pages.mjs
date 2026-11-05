@@ -1110,10 +1110,6 @@ function renderDestBeforeAfter(entry) {
   return `<figure class="proc-rank__ba">
           <div class="proc-rank__ba-frame">
             <img src="${ba.src}" alt="${esc(ba.alt || 'Illustrative before and after')}" width="${w}" height="${h}" loading="lazy" decoding="async">
-            <span class="proc-rank__ba-labels" aria-hidden="true">
-              <span class="proc-rank__ba-label">Before</span>
-              <span class="proc-rank__ba-label">After</span>
-            </span>
           </div>
         </figure>`;
 }

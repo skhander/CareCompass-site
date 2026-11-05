@@ -1955,29 +1955,6 @@ body.menu-open {
   object-position: center top;
 }
 
-.proc-rank__ba-labels {
-  position: absolute;
-  inset: 0.45rem auto auto 0;
-  right: 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  pointer-events: none;
-  padding: 0 0.55rem;
-}
-
-.proc-rank__ba-label {
-  font-size: 0.62rem;
-  font-weight: var(--weight-text-medium, 500);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #fffbe6;
-  text-shadow: 0 1px 2px rgba(64, 3, 43, 0.55);
-}
-
-.proc-rank__ba-label:last-child {
-  text-align: right;
-}
-
 @media (min-width: 900px) {
   .proc-rank__intro {
     grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
