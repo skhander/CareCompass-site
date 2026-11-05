@@ -724,6 +724,12 @@ const HAIR_TRANSPLANT_DEST_RANKING = [
     priceLabel: '$3,500',
     avgUsd: 3500,
     copy: 'Skilled surgeons, accredited hospitals, low prices, and all-inclusive packages.',
+    beforeAfter: {
+      src: '../assets/hair-ba-istanbul.jpg',
+      alt: 'Illustrative hair transplant before and after example for Istanbul',
+      width: 1024,
+      height: 1024,
+    },
     destSlugs: ['istanbul'],
     maxClinics: 6,
     packageTypes: [
