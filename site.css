@@ -2400,12 +2400,36 @@ body.menu-open {
 
 .proc-clinic-row {
   display: grid;
-  gap: 0.35rem 1rem;
-  align-items: start;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  gap: 0.65rem 0.85rem;
+  align-items: center;
   padding: 0.95rem 0;
   border-bottom: 1px solid var(--guide-line);
   color: var(--guide-ink);
   text-decoration: none;
+}
+
+.proc-clinic-row__media {
+  grid-row: 1 / span 3;
+  display: block;
+  width: 4.5rem;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #ede0b6;
+  align-self: center;
+}
+
+.proc-clinic-row__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.proc-clinic-row__main,
+.proc-clinic-row__services,
+.proc-clinic-row__price {
+  grid-column: 2;
 }
 
 .proc-clinic-row:hover .proc-clinic-row__name,
@@ -2496,9 +2520,20 @@ body.menu-open {
   }
 
   .proc-clinic-row {
-    grid-template-columns: minmax(11rem, 1.1fr) minmax(0, 1.4fr) auto;
+    grid-template-columns: 5.5rem minmax(10rem, 1.05fr) minmax(0, 1.35fr) auto;
     align-items: center;
-    gap: 1rem 1.5rem;
+    gap: 1rem 1.25rem;
+  }
+
+  .proc-clinic-row__media {
+    grid-row: auto;
+    width: 5.5rem;
+  }
+
+  .proc-clinic-row__main,
+  .proc-clinic-row__services,
+  .proc-clinic-row__price {
+    grid-column: auto;
   }
 
   .proc-clinic-row__price {

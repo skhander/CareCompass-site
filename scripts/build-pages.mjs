@@ -1147,6 +1147,9 @@ function renderRhinoClinicRow(c) {
   const services = clinicServicesLine(c.packages);
   const fromPrice = clinicFromPrice(c.packages);
   return `<a class="proc-clinic-row" href="${c.href}">
+            <span class="proc-clinic-row__media" aria-hidden="true">
+              <img src="${c.cover}" alt="" width="96" height="72" loading="lazy" decoding="async">
+            </span>
             <span class="proc-clinic-row__main">
               <span class="proc-clinic-row__name">${esc(c.name)}</span>
               ${renderClinicRating(c.name)}
