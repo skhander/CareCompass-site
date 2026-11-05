@@ -723,6 +723,7 @@ const HAIR_TRANSPLANT_DEST_RANKING = [
     avgUsd: 3500,
     copy: 'Skilled surgeons, accredited hospitals, low prices, and all-inclusive packages.',
     destSlugs: ['istanbul'],
+    maxClinics: 6,
     packageTypes: [
       'FUE',
       'DHI',
@@ -735,6 +736,9 @@ const HAIR_TRANSPLANT_DEST_RANKING = [
       { name: 'Bosphorus Follicle Institute', focus: 'Hair & aesthetics' },
       { name: 'Marmara Aesthetic Hospital', focus: 'Multispecialty' },
       { name: 'Kadikoy Graft Atelier', focus: 'Hair transplant' },
+      { name: 'Besiktas Follicle Lab', focus: 'Hair transplant' },
+      { name: 'Cengelkoy Hair Pavilion', focus: 'Hair restoration' },
+      { name: 'Ortakoy Density Works', focus: 'Hair transplant' },
     ],
   },
   {
@@ -858,6 +862,7 @@ const RHINOPLASTY_DEST_RANKING = [
     ],
     why: 'Competitive pricing, surgeon availability, and established medical tourism infrastructure.',
     destSlugs: ['istanbul'],
+    maxClinics: 3,
     packageTypes: [
       'Primary rhinoplasty',
       'Revision rhinoplasty',
@@ -994,32 +999,39 @@ function packagesForClinic(entry, clinicIndex, clinicName) {
 }
 
 function clinicsForRank(entry, procedureClinicList) {
+  const max = entry.maxClinics || 3;
+  const primarySlug = entry.destSlugs[0] || entry.coverSlug;
   const destIds = new Set(
     entry.destSlugs
       .map((slug) => destinations.find((d) => d.slug === slug)?.id)
       .filter(Boolean)
   );
-  const linked = procedureClinicList.filter((c) => destIds.has(c.destination_id)).slice(0, 3);
-  if (linked.length) {
-    return linked.map((c, i) => ({
+  const linked = procedureClinicList
+    .filter((c) => destIds.has(c.destination_id))
+    .slice(0, max)
+    .map((c, i) => ({
       name: c.name,
       focus: c.focus || '',
       href: `../clinics/${c.slug}.html`,
       cover: destCover(
-        destinations.find((d) => d.id === c.destination_id)?.slug || entry.destSlugs[0] || 'istanbul',
+        destinations.find((d) => d.id === c.destination_id)?.slug || primarySlug || 'istanbul',
         1
       ),
       packages: packagesForClinic(entry, i, c.name),
     }));
-  }
-  const primarySlug = entry.destSlugs[0] || entry.coverSlug;
-  return entry.fallbackClinics.slice(0, 3).map((c, i) => ({
-    name: c.name,
-    focus: c.focus || '',
-    href: primarySlug ? `../destinations/${primarySlug}.html` : '../destinations.html',
-    cover: destCover(primarySlug || 'istanbul', 1),
-    packages: packagesForClinic(entry, i, c.name),
-  }));
+
+  const used = new Set(linked.map((c) => c.name.toLowerCase()));
+  const fallbacks = (entry.fallbackClinics || [])
+    .filter((c) => !used.has(String(c.name).toLowerCase()))
+    .map((c, i) => ({
+      name: c.name,
+      focus: c.focus || '',
+      href: primarySlug ? `../destinations/${primarySlug}.html` : '../destinations.html',
+      cover: destCover(primarySlug || 'istanbul', 1),
+      packages: packagesForClinic(entry, linked.length + i, c.name),
+    }));
+
+  return [...linked, ...fallbacks].slice(0, max);
 }
 
 function renderClinicPackages(packages) {
