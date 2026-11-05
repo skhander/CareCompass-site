@@ -764,6 +764,12 @@ const HAIR_TRANSPLANT_DEST_RANKING = [
     priceLabel: '$3,202',
     avgUsd: 3202,
     copy: 'Close and affordable for patients in the U.S. and Canada. An estimated 40 to 60 percent of medical tourists there come from the U.S.',
+    beforeAfter: {
+      src: '../assets/hair-ba-mexico-city.jpg',
+      alt: 'Illustrative hair transplant before and after example for Mexico City',
+      width: 1152,
+      height: 794,
+    },
     destSlugs: ['mexico-city', 'tijuana'],
     packageTypes: [
       'FUE',
@@ -1527,7 +1533,9 @@ function renderGuideClinicRow(c, { stripSuffix } = {}) {
 
 function guideDestPhoto(entry) {
   if (entry.beforeAfter?.src) {
-    const baFace = /rhino-ba-bogota|galata-rhinoplasty-before-after|hair-ba-istanbul/.test(entry.beforeAfter.src);
+    const baFace = /rhino-ba-bogota|galata-rhinoplasty-before-after|hair-ba-istanbul|hair-ba-mexico-city/.test(
+      entry.beforeAfter.src
+    );
     return `<figure class="proc-guide__photo${baFace ? ' proc-guide__photo--face' : ''}">
             <img src="${entry.beforeAfter.src}" alt="${esc(entry.beforeAfter.alt || '')}" width="${entry.beforeAfter.width || 1360}" height="${entry.beforeAfter.height || 1160}" loading="lazy" decoding="async">
           </figure>`;
