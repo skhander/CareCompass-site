@@ -2097,6 +2097,12 @@ body.menu-open {
   }
 }
 
+@media (min-width: 1024px) {
+  .clinic-ba-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
 @media (min-width: 640px) {
   .proc-rank__clinics {
     grid-template-columns: repeat(3, minmax(0, 1fr));
