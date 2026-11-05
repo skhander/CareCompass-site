@@ -686,6 +686,11 @@ function synthProcStats(p, destPrices) {
     : 2500 + (seed % 1500);
   // Abroad package averages — hair transplant aligns to Turkey list price
   if (p.slug === 'hair-transplant') avgCost = 3500;
+  // Typical abroad list prices for guide hero stats
+  if (p.slug === 'eyelid-surgery') avgCost = 2200;
+  if (p.slug === 'dental-implants') avgCost = 950;
+  if (p.slug === 'ivf') avgCost = 4800;
+  if (p.slug === 'injectables') avgCost = 280;
   const photos = 18 + (seed % 40);
   const doctorsClinics = Math.max(
     3,
@@ -695,6 +700,10 @@ function synthProcStats(p, destPrices) {
   let tripDays = 7 + (seed % 5);
   if (p.slug === 'hair-transplant') tripDays = 7;
   if (p.slug === 'rhinoplasty') tripDays = 10;
+  if (p.slug === 'eyelid-surgery') tripDays = 8;
+  if (p.slug === 'dental-implants') tripDays = 5;
+  if (p.slug === 'ivf') tripDays = 12;
+  if (p.slug === 'injectables') tripDays = 3;
   // Rhinoplasty: smaller marketplace stats; broad US avg from ASPS surgeon fee (~$7,637)
   if (p.slug === 'rhinoplasty') {
     return {
@@ -1002,11 +1011,11 @@ const PROC_PACKAGE_TYPES = {
   ],
   'dental-implants': [
     'Single implant',
-    'Implant crown',
-    'All-on-4',
-    'All-on-6',
-    'Bone graft implant',
+    'Implant + abutment',
+    'Implant + crown',
     'Zirconia implant',
+    'Bone graft + implant',
+    'Immediate implant',
   ],
   'smile-makeover': [
     'Porcelain veneers',
@@ -1019,10 +1028,10 @@ const PROC_PACKAGE_TYPES = {
   ivf: [
     'IVF cycle',
     'ICSI cycle',
-    'Egg freezing',
-    'Embryo transfer',
+    'IVF with medications',
     'Donor egg IVF',
-    'PGT screening',
+    'Egg freezing cycle',
+    'IVF + PGT',
   ],
   'breast-augmentation': [
     'Silicone implants',
@@ -1105,11 +1114,11 @@ const PROC_PACKAGE_TYPES = {
     'Revision jaw surgery',
   ],
   injectables: [
-    'Neuromodulator treatment',
-    'Hyaluronic filler',
-    'Lip filler',
-    'Cheek filler',
-    'Jawline filler',
+    'Botox (1 area)',
+    'Botox (3 areas)',
+    'Masseter Botox',
+    'Hyaluronic filler (1cc)',
+    'Lip filler (1cc)',
     'Skin booster',
   ],
   'oncology-care': [
@@ -1274,10 +1283,8 @@ function buildCatalogRanking(p) {
 
   const focusLabel = p.category || p.name;
   return list.map(({ dest, min, max, avgUsd }) => {
-    const priceLabel =
-      min != null && max != null && max - min >= 1500
-        ? `${money(min)} to ${money(max)}`
-        : money(avgUsd);
+    // Guide "From" uses the destination floor — more realistic for travelers.
+    const priceLabel = money(min ?? avgUsd);
     return {
       country: DEST_COUNTRY_LABEL[dest.country] || dest.country,
       city: dest.city || dest.name,
@@ -1305,6 +1312,34 @@ function guideOptionsForProcedure(p) {
   return {};
 }
 
+/** Relative multipliers so package rows track realistic list prices vs dest average. */
+const PACKAGE_PRICE_MULT = {
+  'Single implant': 1,
+  'Implant + abutment': 1.15,
+  'Implant + crown': 1.45,
+  'Zirconia implant': 1.3,
+  'Bone graft + implant': 1.55,
+  'Immediate implant': 1.2,
+  'Upper blepharoplasty': 0.85,
+  'Lower blepharoplasty': 1.15,
+  'Double eyelid surgery': 0.95,
+  'Ptosis repair': 1.25,
+  Canthoplasty: 0.75,
+  'Revision eyelid surgery': 1.55,
+  'IVF cycle': 1,
+  'ICSI cycle': 1.15,
+  'IVF with medications': 1.25,
+  'Donor egg IVF': 1.75,
+  'Egg freezing cycle': 0.85,
+  'IVF + PGT': 1.35,
+  'Botox (1 area)': 0.4,
+  'Botox (3 areas)': 0.85,
+  'Masseter Botox': 0.95,
+  'Hyaluronic filler (1cc)': 1.25,
+  'Lip filler (1cc)': 1.35,
+  'Skin booster': 1.1,
+};
+
 /** Synthetic packages for a clinic; prices cluster around the destination average. */
 function packagesForClinic(entry, clinicIndex, clinicName) {
   const types = entry.packageTypes || [];
@@ -1323,23 +1358,21 @@ function packagesForClinic(entry, clinicIndex, clinicName) {
   const max = entry.priceMaxUsd ?? Math.round(entry.avgUsd * 1.18);
   const mid = entry.avgUsd;
   const jitter = (n, j) => Math.round((n + ((seed >> (j * 3)) % 17) * 10 - 80) / 10) * 10;
-  const raw = [
-    jitter(Math.max(min, mid * 0.88), 0),
-    jitter(mid, 1),
-    jitter(Math.min(max, mid * 1.12), 2),
-  ]
-    .map((n) => Math.min(max, Math.max(min, n)))
-    .sort((a, b) => a - b);
 
-  // Nudge so the clinic mean stays near the destination average
-  const mean = raw.reduce((a, b) => a + b, 0) / raw.length;
-  const shift = Math.round((mid - mean) / 10) * 10;
-  const prices = raw.map((n) => Math.min(max, Math.max(min, n + shift)));
-
-  return chosen.map((procedure, i) => ({
-    procedure,
-    price: money(prices[i] ?? mid),
-  }));
+  return chosen.map((procedure, i) => {
+    const mult = PACKAGE_PRICE_MULT[procedure] ?? 1;
+    const base = mid * mult;
+    // Expensive packages (All-on-X, donor IVF) are not clamped to single-unit dest max.
+    const loose = mult >= 1.5;
+    const floor = loose ? Math.round(base * 0.88) : min;
+    const ceil = loose ? Math.round(base * 1.18) : Math.max(max, Math.round(base * 1.05));
+    const priced = jitter(Math.min(ceil, Math.max(floor, base)), i);
+    const rounded = Math.max(40, Math.round(priced / 10) * 10);
+    return {
+      procedure,
+      price: money(rounded),
+    };
+  });
 }
 
 function clinicsForRank(entry, procedureClinicList) {
