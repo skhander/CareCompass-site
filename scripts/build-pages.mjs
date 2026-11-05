@@ -864,10 +864,6 @@ const RHINOPLASTY_DEST_RANKING = [
     ],
     destSlugs: ['istanbul'],
     maxClinics: 4,
-    beforeAfter: {
-      src: '../assets/clinic-galata-rhinoplasty-before-after.png',
-      alt: 'Rhinoplasty before and after',
-    },
     packageTypes: [
       'Primary rhinoplasty',
       'Revision rhinoplasty',
@@ -896,10 +892,6 @@ const RHINOPLASTY_DEST_RANKING = [
     why: 'Facial aesthetics expertise, detailed surgical planning, and experience with Asian rhinoplasty.',
     destSlugs: ['seoul'],
     maxClinics: 4,
-    beforeAfter: {
-      src: '../assets/clinic-galata-rhinoplasty-before-after.png',
-      alt: 'Rhinoplasty before and after',
-    },
     packageTypes: [
       'Primary rhinoplasty',
       'Revision rhinoplasty',
@@ -928,10 +920,6 @@ const RHINOPLASTY_DEST_RANKING = [
     destSlugs: [],
     coverSlug: 'medellin',
     maxClinics: 4,
-    beforeAfter: {
-      src: '../assets/clinic-galata-rhinoplasty-before-after.png',
-      alt: 'Rhinoplasty before and after',
-    },
     packageTypes: [
       'Primary rhinoplasty',
       'Revision rhinoplasty',
@@ -958,10 +946,6 @@ const RHINOPLASTY_DEST_RANKING = [
     why: 'Geographic proximity, established private healthcare infrastructure, and competitive pricing.',
     destSlugs: ['mexico-city'],
     maxClinics: 4,
-    beforeAfter: {
-      src: '../assets/clinic-galata-rhinoplasty-before-after.png',
-      alt: 'Rhinoplasty before and after',
-    },
     packageTypes: [
       'Primary rhinoplasty',
       'Revision rhinoplasty',
@@ -1042,7 +1026,6 @@ function clinicsForRank(entry, procedureClinicList) {
         1
       ),
       packages: packagesForClinic(entry, i, c.name),
-      beforeAfter: entry.beforeAfter || null,
     }));
 
   const used = new Set(linked.map((c) => c.name.toLowerCase()));
@@ -1054,7 +1037,6 @@ function clinicsForRank(entry, procedureClinicList) {
       href: primarySlug ? `../destinations/${primarySlug}.html` : '../destinations.html',
       cover: destCover(primarySlug || 'istanbul', 1),
       packages: packagesForClinic(entry, linked.length + i, c.name),
-      beforeAfter: entry.beforeAfter || null,
     }));
 
   return [...linked, ...fallbacks].slice(0, max);
@@ -1099,12 +1081,6 @@ function renderRankedDestinations(ranking, procedureClinicList) {
     const clinics = clinicsForRank(entry, procedureClinicList);
     const clinicCards = clinics
       .map((c) => {
-        const ba = c.beforeAfter?.src
-          ? `<figure class="proc-clinic-card__ba">
-              <figcaption class="proc-clinic-card__ba-label">Before / after</figcaption>
-              <img src="${c.beforeAfter.src}" alt="${esc(c.beforeAfter.alt || 'Before and after')}" width="680" height="580" loading="lazy" decoding="async">
-            </figure>`
-          : '';
         return `<a class="proc-clinic-card" href="${c.href}">
             <span class="proc-clinic-card__media" aria-hidden="true">
               <img src="${c.cover}" alt="" width="320" height="214" loading="lazy" decoding="async">
@@ -1113,7 +1089,6 @@ function renderRankedDestinations(ranking, procedureClinicList) {
               <span class="proc-clinic-card__name">${esc(c.name)}</span>
               ${c.focus ? `<span class="proc-clinic-card__focus">${esc(c.focus)}</span>` : ''}
               ${renderClinicPackages(c.packages)}
-              ${ba}
             </span>
           </a>`;
       })
