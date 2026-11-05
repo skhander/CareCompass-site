@@ -736,8 +736,8 @@ const HAIR_TRANSPLANT_DEST_RANKING = [
     beforeAfter: {
       src: '../assets/hair-ba-istanbul.jpg',
       alt: 'Illustrative hair transplant before and after example for Istanbul',
-      width: 1024,
-      height: 1024,
+      width: 1141,
+      height: 854,
     },
     destSlugs: ['istanbul'],
     maxClinics: 6,
