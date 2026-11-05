@@ -685,25 +685,26 @@ function synthProcStats(p, destPrices) {
     : 2500 + (seed % 1500);
   // Abroad package averages — hair transplant aligns to Turkey list price
   if (p.slug === 'hair-transplant') avgCost = 3500;
-  let photos = 18 + (seed % 40);
-  let questions = 12 + (seed % 28);
-  let community = 3 + (seed % 10);
-  let doctorsClinics = Math.max(
+  const photos = 18 + (seed % 40);
+  const doctorsClinics = Math.max(
     3,
     Math.min(8, (p.clinic_ids || []).length || 3 + (seed % 4))
   );
+  // Typical abroad stay for recovery / follow-up
+  let tripDays = 7 + (seed % 5);
+  if (p.slug === 'hair-transplant') tripDays = 7;
+  if (p.slug === 'rhinoplasty') tripDays = 10;
   // Rhinoplasty: smaller marketplace stats; broad US avg from ASPS surgeon fee (~$7,637)
   if (p.slug === 'rhinoplasty') {
     return {
       worth: 91,
       avgCost: 7650,
       photos: 48,
-      questions: 26,
-      community: 7,
       doctorsClinics: 12,
+      tripDays: 10,
     };
   }
-  return { worth, avgCost, photos, questions, community, doctorsClinics };
+  return { worth, avgCost, photos, doctorsClinics, tripDays };
 }
 
 function shortBlurb(p) {
@@ -1158,17 +1159,10 @@ for (const p of procedures) {
               </li>
               <li class="proc-stats__item">
                 <span class="proc-stats__icon" aria-hidden="true">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M6 7.5h12a2 2 0 0 1 2 2V14a2 2 0 0 1-2 2h-5.2L8 19.2V16H6a2 2 0 0 1-2-2V9.5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M10.2 11.2h.01M12 11.2h.01M13.8 11.2h.01" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5" width="17" height="15" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 9.5h17M8 3.5v3M16 3.5v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
                 </span>
-                <span class="proc-stats__value">${stats.questions.toLocaleString('en-US')}</span>
-                <span class="proc-stats__label">Questions asked</span>
-              </li>
-              <li class="proc-stats__item">
-                <span class="proc-stats__icon" aria-hidden="true">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M5.5 8.2h8.2A1.8 1.8 0 0 1 15.5 10v3.2a1.8 1.8 0 0 1-1.8 1.8H9.2L6.8 17v-2H5.5A1.8 1.8 0 0 1 3.7 13.2V10A1.8 1.8 0 0 1 5.5 8.2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M10.8 6.2h7.7A1.8 1.8 0 0 1 20.3 8v3a1.8 1.8 0 0 1-1.8 1.8h-.4" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
-                </span>
-                <span class="proc-stats__value">${stats.community}</span>
-                <span class="proc-stats__label">Community discussions</span>
+                <span class="proc-stats__value">${stats.tripDays} days</span>
+                <span class="proc-stats__label">Average trip duration</span>
               </li>
             </ul>
             <button class="proc-stats__nav proc-stats__nav--next" type="button" aria-label="Next stats" data-proc-stats-next>
