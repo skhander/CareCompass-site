@@ -1358,19 +1358,26 @@ function packagesForClinic(entry, clinicIndex, clinicName) {
   const max = entry.priceMaxUsd ?? Math.round(entry.avgUsd * 1.18);
   const mid = entry.avgUsd;
   const jitter = (n, j) => Math.round((n + ((seed >> (j * 3)) % 17) * 10 - 80) / 10) * 10;
+  const raw = [
+    jitter(Math.max(min, mid * 0.88), 0),
+    jitter(mid, 1),
+    jitter(Math.min(max, mid * 1.12), 2),
+  ]
+    .map((n) => Math.min(max, Math.max(min, n)))
+    .sort((a, b) => a - b);
+
+  // Nudge so the clinic mean stays near the destination average
+  const mean = raw.reduce((a, b) => a + b, 0) / raw.length;
+  const shift = Math.round((mid - mean) / 10) * 10;
+  const prices = raw.map((n) => Math.min(max, Math.max(min, n + shift)));
 
   return chosen.map((procedure, i) => {
     const mult = PACKAGE_PRICE_MULT[procedure] ?? 1;
-    const base = mid * mult;
-    // Expensive packages (All-on-X, donor IVF) are not clamped to single-unit dest max.
-    const loose = mult >= 1.5;
-    const floor = loose ? Math.round(base * 0.88) : min;
-    const ceil = loose ? Math.round(base * 1.18) : Math.max(max, Math.round(base * 1.05));
-    const priced = jitter(Math.min(ceil, Math.max(floor, base)), i);
-    const rounded = Math.max(40, Math.round(priced / 10) * 10);
+    const base = prices[i] ?? mid;
+    const priced = Math.max(40, Math.round((base * mult) / 10) * 10);
     return {
       procedure,
-      price: money(rounded),
+      price: money(priced),
     };
   });
 }
