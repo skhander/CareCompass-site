@@ -859,7 +859,7 @@ const RHINOPLASTY_DEST_RANKING = [
     priceLabel: '$4,150',
     avgUsd: 4150,
     paragraphs: [
-      'Istanbul has a large concentration of plastic surgery clinics catering to international patients. Patients can find surgeons offering primary and revision rhinoplasty, with a wide range of aesthetic approaches.',
+      'Istanbul has a large concentration of plastic surgery clinics catering to international patients. Surgeons offer primary and revision rhinoplasty, with a wide range of aesthetic approaches.',
     ],
     why: 'Competitive pricing, surgeon availability, and established medical tourism infrastructure.',
     destSlugs: ['istanbul'],
