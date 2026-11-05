@@ -990,10 +990,319 @@ const RHINOPLASTY_DEST_RANKING = [
   },
 ];
 
+/** Package label pools for synthetic clinic rows on guide pages. */
+const PROC_PACKAGE_TYPES = {
+  'eyelid-surgery': [
+    'Upper blepharoplasty',
+    'Lower blepharoplasty',
+    'Double eyelid surgery',
+    'Ptosis repair',
+    'Canthoplasty',
+    'Revision eyelid surgery',
+  ],
+  'dental-implants': [
+    'Single implant',
+    'Implant crown',
+    'All-on-4',
+    'All-on-6',
+    'Bone graft implant',
+    'Zirconia implant',
+  ],
+  'smile-makeover': [
+    'Porcelain veneers',
+    'Composite veneers',
+    'Whitening package',
+    'Full smile redesign',
+    'Gum contouring',
+    'Bonding package',
+  ],
+  ivf: [
+    'IVF cycle',
+    'ICSI cycle',
+    'Egg freezing',
+    'Embryo transfer',
+    'Donor egg IVF',
+    'PGT screening',
+  ],
+  'breast-augmentation': [
+    'Silicone implants',
+    'Saline implants',
+    'Fat transfer',
+    'Implant exchange',
+    'Dual-plane augmentation',
+    'Revision augmentation',
+  ],
+  liposuction: [
+    'Abdominal liposuction',
+    'Flank liposuction',
+    'Thigh liposuction',
+    'Arm liposuction',
+    'VASER liposuction',
+    'Chin liposuction',
+  ],
+  'tummy-tuck': [
+    'Full abdominoplasty',
+    'Mini tummy tuck',
+    'Extended tummy tuck',
+    'Tummy tuck with lipo',
+    'Muscle repair',
+    'Revision abdominoplasty',
+  ],
+  facelift: [
+    'SMAS facelift',
+    'Deep-plane facelift',
+    'Mini facelift',
+    'Neck lift',
+    'Midface lift',
+    'Revision facelift',
+  ],
+  'gastric-sleeve': [
+    'Sleeve gastrectomy',
+    'Sleeve with consult',
+    'Revision sleeve',
+    'Metabolic package',
+    'Nutrition follow-up',
+    'Bariatric pathway',
+  ],
+  lasik: [
+    'LASIK both eyes',
+    'PRK both eyes',
+    'SMILE laser',
+    'Wavefront LASIK',
+    'Enhancement LASIK',
+    'Screening package',
+  ],
+  'cardiac-bypass': [
+    'CABG package',
+    'On-pump bypass',
+    'Off-pump bypass',
+    'Cardiac evaluation',
+    'ICU recovery package',
+    'Valve + bypass',
+  ],
+  'knee-replacement': [
+    'Total knee replacement',
+    'Partial knee replacement',
+    'Bilateral knee package',
+    'Revision knee',
+    'Robotic-assisted knee',
+    'Physio package',
+  ],
+  'hip-replacement': [
+    'Total hip replacement',
+    'Anterior approach hip',
+    'Posterior approach hip',
+    'Revision hip',
+    'Bilateral hip package',
+    'Physio package',
+  ],
+  'jaw-contouring': [
+    'V-line surgery',
+    'Mandible reduction',
+    'Chin contouring',
+    'Square jaw reduction',
+    'Soft-tissue contouring',
+    'Revision jaw surgery',
+  ],
+  injectables: [
+    'Neuromodulator treatment',
+    'Hyaluronic filler',
+    'Lip filler',
+    'Cheek filler',
+    'Jawline filler',
+    'Skin booster',
+  ],
+  'oncology-care': [
+    'Oncology evaluation',
+    'MDT review package',
+    'Surgery pathway',
+    'Systemic therapy plan',
+    'Imaging package',
+    'Second opinion',
+  ],
+};
+
+/** Editorial destination blurbs keyed by procedure → dest slug. */
+const PROC_DEST_COPY = {
+  'eyelid-surgery': {
+    seoul:
+      'Dense supply of eyelid specialists in Gangnam, including double-eyelid approaches common for East Asian anatomy.',
+  },
+  'dental-implants': {
+    istanbul: 'High clinic volume for single implants and full-arch work, with competitive package pricing.',
+    bangkok: 'Hospital and boutique dental centers that pair implant work with easy recovery stays.',
+    tijuana: 'Border access for U.S. patients, with same-day consult and implant pathways.',
+    'mexico-city': 'Private dental ateliers and hospital settings close for North American travelers.',
+    'san-jose': 'Established dental tourism with English-friendly implant and crown packages.',
+    delhi: 'Lower list prices for titanium and zirconia implants in accredited private clinics.',
+  },
+  ivf: {
+    bangkok: 'Multispecialty hospitals and fertility pavilions with full IVF lab support.',
+    delhi: 'Lower-cost IVF cycles in private fertility labs with strong embryology capacity.',
+    barcelona: 'EU-regulated fertility care with clear donor frameworks and high lab standards.',
+    prague: 'Popular European IVF hub with competitive cycle pricing and short wait times.',
+  },
+  'breast-augmentation': {
+    istanbul: 'High aesthetic surgery volume with implant and fat-transfer options.',
+    bangkok: 'Private hospitals that combine augmentation with recovery-friendly stays.',
+    'mexico-city': 'Close for U.S. travelers, with private clinics and competitive implant pricing.',
+    medellin: 'Growing cosmetic surgery hub with strong value for implant packages.',
+  },
+  liposuction: {
+    tijuana: 'Border access for body-contouring packages with short travel times from the U.S.',
+    medellin: 'Competitive liposuction pricing in established private cosmetic clinics.',
+  },
+  'tummy-tuck': {
+    istanbul: 'Experienced body-contour surgeons and all-inclusive recovery packages.',
+    tijuana: 'Convenient for U.S. patients seeking abdominoplasty without a long-haul flight.',
+    medellin: 'Strong cosmetic surgery reputation with competitive tummy-tuck pricing.',
+  },
+  facelift: {
+    seoul: 'Highly specialized facial surgeons with detailed SMAS and deep-plane planning.',
+    'mexico-city': 'Private aesthetic clinics offering facelift packages close to the U.S.',
+    medellin: 'Established plastic surgery hub with competitive facial rejuvenation pricing.',
+  },
+  'gastric-sleeve': {
+    tijuana: 'High-volume bariatric corridor for U.S. patients, with sleeve packages and follow-up plans.',
+  },
+  lasik: {
+    bangkok: 'Hospital-based laser vision correction with thorough corneal screening.',
+    'mexico-city': 'Private eye clinics offering LASIK and PRK at a fraction of U.S. list prices.',
+  },
+  'cardiac-bypass': {
+    delhi: 'Tertiary heart centers with CABG pathways built for international records transfer.',
+  },
+  'knee-replacement': {
+    'san-jose': 'Orthopedic institutes with implant choice counseling and physio planning.',
+    delhi: 'High-volume joint replacement centers at lower list prices than U.S. hospitals.',
+  },
+  'hip-replacement': {
+    'san-jose': 'Orthopedic teams experienced with anterior and posterior hip approaches.',
+    delhi: 'Accredited joint institutes offering total hip packages for medical travelers.',
+  },
+  'jaw-contouring': {
+    seoul: 'Specialized lower-face contouring, including V-line and mandible reduction planning.',
+  },
+  injectables: {
+    seoul: 'Dermatology-first destination for neuromodulators, fillers, and skin boosters.',
+  },
+  'oncology-care': {
+    delhi: 'Coordinated oncology pathways with imaging, MDT review, and treatment planning.',
+  },
+  'smile-makeover': {
+    tijuana: 'Full-smile redesign packages within easy reach of the U.S. border.',
+    'san-jose': 'Veneers and restorative smile plans in English-friendly dental clinics.',
+  },
+};
+
+const DEST_COUNTRY_LABEL = {
+  Türkiye: 'Turkey',
+  Czechia: 'Czech Republic',
+};
+
+const DEST_FALLBACK_PREFIXES = {
+  istanbul: ['Galata', 'Bebek', 'Nisantasi', 'Kadikoy', 'Besiktas'],
+  seoul: ['Gangnam', 'Cheongdam', 'Apgujeong', 'Hannam', 'Seocho'],
+  bangkok: ['Sukhumvit', 'Silom', 'Thonglor', 'Asok', 'Sathorn'],
+  tijuana: ['Zona Río', 'Playas', 'Otay', 'Hipodromo', 'Agua Caliente'],
+  'mexico-city': ['Roma Norte', 'Polanco', 'Condesa', 'Pedregal', 'Insurgentes'],
+  medellin: ['El Poblado', 'Laureles', 'Provenza', 'Envigado', 'Laureles'],
+  delhi: ['Hauz Khas', 'Defence Colony', 'Connaught', 'Saket', 'Vasant Vihar'],
+  'san-jose': ['Escazú', 'Sabana', 'Barrio Amón', 'Rohrmoser', 'Santa Ana'],
+  barcelona: ['Eixample', 'Gràcia', 'Diagonal', 'Born', 'Sarrià'],
+  prague: ['Vinohrady', 'Karlín', 'Letná', 'Vinohrady', 'Smíchov'],
+};
+
+function packageTypesForProcedure(p) {
+  return (
+    PROC_PACKAGE_TYPES[p.slug] || [
+      p.name,
+      `${p.name} consult`,
+      `${p.name} package`,
+      `Revision ${p.name.toLowerCase()}`,
+      `Premium ${p.name.toLowerCase()}`,
+      `Follow-up package`,
+    ]
+  );
+}
+
+function destCopyForProcedure(p, destSlug, dest) {
+  const editorial = PROC_DEST_COPY[p.slug]?.[destSlug];
+  if (editorial) return editorial;
+  if (dest?.focus) return dest.focus;
+  return `Established ${p.name.toLowerCase()} options for international patients.`;
+}
+
+function synthFallbackClinics(destSlug, focusLabel, count = 3) {
+  const prefixes = DEST_FALLBACK_PREFIXES[destSlug] || ['Central', 'Harbor', 'Summit', 'Park', 'Metro'];
+  const suffixes = ['Clinic', 'Institute', 'Atelier', 'Pavilion', 'Care Center'];
+  const seed = hashSeed(`fallback:${destSlug}:${focusLabel}`);
+  const out = [];
+  for (let i = 0; i < count; i++) {
+    const prefix = prefixes[(seed + i * 3) % prefixes.length];
+    const suffix = suffixes[(seed + i * 5) % suffixes.length];
+    out.push({ name: `${prefix} ${suffix}`, focus: focusLabel });
+  }
+  return out;
+}
+
+/** Build guide rankings from catalog destinations + prices for a procedure. */
+function buildCatalogRanking(p) {
+  const destPrices = prices.filter(
+    (x) => x.procedure_id === p.id && x.entity_type === 'destination'
+  );
+  const ranked = destPrices
+    .map((pr) => {
+      const dest = byId.destination[pr.entity_id];
+      if (!dest) return null;
+      const min = Number(pr.min_usd);
+      const max = Number(pr.max_usd);
+      const avgUsd = Math.round(((min + max) / 2) / 50) * 50;
+      return { dest, min, max, avgUsd };
+    })
+    .filter(Boolean)
+    .sort((a, b) => a.avgUsd - b.avgUsd);
+
+  // Fall back to linked destination_ids when price rows are missing
+  const list =
+    ranked.length > 0
+      ? ranked
+      : (p.destination_ids || [])
+          .map((id) => byId.destination[id])
+          .filter(Boolean)
+          .map((dest) => ({ dest, min: null, max: null, avgUsd: 3500 }));
+
+  const focusLabel = p.category || p.name;
+  return list.map(({ dest, min, max, avgUsd }) => {
+    const priceLabel =
+      min != null && max != null && max - min >= 1500
+        ? `${money(min)} to ${money(max)}`
+        : money(avgUsd);
+    return {
+      country: DEST_COUNTRY_LABEL[dest.country] || dest.country,
+      city: dest.city || dest.name,
+      priceLabel,
+      avgUsd,
+      priceMinUsd: min ?? undefined,
+      priceMaxUsd: max ?? undefined,
+      copy: destCopyForProcedure(p, dest.slug, dest),
+      destSlugs: [dest.slug],
+      maxClinics: 3,
+      packageTypes: packageTypesForProcedure(p),
+      fallbackClinics: synthFallbackClinics(dest.slug, focusLabel, 3),
+    };
+  });
+}
+
 function rankingForProcedure(p) {
   if (p.slug === 'rhinoplasty') return RHINOPLASTY_DEST_RANKING;
   if (p.slug === 'hair-transplant') return HAIR_TRANSPLANT_DEST_RANKING;
-  return HAIR_TRANSPLANT_DEST_RANKING;
+  return buildCatalogRanking(p);
+}
+
+function guideOptionsForProcedure(p) {
+  if (p.slug === 'rhinoplasty') return { stripSuffix: 'rhinoplasty' };
+  return {};
 }
 
 /** Synthetic packages for a clinic; prices cluster around the destination average. */
@@ -1316,75 +1625,11 @@ for (const p of procedures) {
   const clinicList = (p.clinic_ids || []).map((id) => byId.clinic[id]).filter(Boolean);
   const destPrices = prices.filter((x) => x.procedure_id === p.id && x.entity_type === 'destination');
   const stats = synthProcStats(p, destPrices);
-
-  if (p.slug === 'rhinoplasty') {
-    writeFileSync(
-      join(SITE, 'procedures', `${p.slug}.html`),
-      renderProcedureGuidePage(p, clinicList, stats, RHINOPLASTY_DEST_RANKING, {
-        stripSuffix: 'rhinoplasty',
-      })
-    );
-    continue;
-  }
-
-  if (p.slug === 'hair-transplant') {
-    writeFileSync(
-      join(SITE, 'procedures', `${p.slug}.html`),
-      renderProcedureGuidePage(p, clinicList, stats, HAIR_TRANSPLANT_DEST_RANKING)
-    );
-    continue;
-  }
-
-  const blurb = shortBlurb(p);
   const ranking = rankingForProcedure(p);
-  const rankedList = renderRankedDestinations(ranking, clinicList);
-  const rankHasBa = ranking.some((e) => e.beforeAfter?.src);
-
-  const html =
-    head({ title: `${p.name} — MediGo`, description: p.description, depth: 1 }) +
-    nav(1, 'procedures') +
-    `<main>
-      <section class="section proc-overview" aria-labelledby="proc-title">
-        <div class="container proc-overview__inner" data-reveal data-reveal-eager>
-          <h1 id="proc-title" class="proc-overview__title">${esc(p.name)}</h1>
-          <div class="proc-stats">
-            <ul class="proc-stats__track">
-              <li class="proc-stats__item">
-                <span class="proc-stats__icon" aria-hidden="true">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M8 10v10H5.5A1.5 1.5 0 0 1 4 18.5v-5A1.5 1.5 0 0 1 5.5 12H8Zm0 0V9a3 3 0 0 1 3-3h.4c.9 0 1.7.5 2.1 1.3L15 11h3.5A1.5 1.5 0 0 1 20 12.5v2.2c0 .4-.1.7-.4 1l-2.3 3.1c-.4.5-1 .8-1.6.8H10a2 2 0 0 1-2-2v-7.6Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
-                </span>
-                <span class="proc-stats__value">${stats.worth}%</span>
-                <span class="proc-stats__label">Worth it rating</span>
-              </li>
-              <li class="proc-stats__item">
-                <span class="proc-stats__icon" aria-hidden="true">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.25" stroke="currentColor" stroke-width="1.6"/><path d="M12 7.5v9M14.2 9.2c-.5-.6-1.2-.9-2.2-.9-1.4 0-2.3.7-2.3 1.8s.9 1.6 2.5 1.9c1.7.3 2.7.8 2.7 2.1s-1 2-2.6 2c-1.1 0-1.9-.4-2.4-1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-                </span>
-                <span class="proc-stats__value">${money(stats.avgCost)}</span>
-                <span class="proc-stats__label">Average cost</span>
-              </li>
-              <li class="proc-stats__item">
-                <span class="proc-stats__icon" aria-hidden="true">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5" width="17" height="15" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 9.5h17M8 3.5v3M16 3.5v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-                </span>
-                <span class="proc-stats__value">${stats.tripDays} days</span>
-                <span class="proc-stats__label">Average trip duration</span>
-              </li>
-            </ul>
-          </div>
-          ${blurb ? `<p class="proc-overview__blurb">${esc(blurb)}</p>` : ''}
-          <div class="proc-overview__destinations" aria-labelledby="proc-hubs-title">
-            <h2 id="proc-hubs-title" class="t-h2">Top destinations</h2>
-            <ol class="proc-rank${rankHasBa ? ' proc-rank--ba' : ''}">
-              ${rankedList}
-            </ol>
-          </div>
-        </div>
-      </section>
-      ${inquiryForm({ depth: 1, procedure: p.name })}
-    </main>` +
-    footer(1);
-  writeFileSync(join(SITE, 'procedures', `${p.slug}.html`), html);
+  writeFileSync(
+    join(SITE, 'procedures', `${p.slug}.html`),
+    renderProcedureGuidePage(p, clinicList, stats, ranking, guideOptionsForProcedure(p))
+  );
 }
 
 // ---------- Destinations index ----------
