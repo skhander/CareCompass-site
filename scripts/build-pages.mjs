@@ -1093,7 +1093,7 @@ function renderRankedDestinations(ranking, procedureClinicList) {
       )
       .join('');
     const clinicsClass =
-      (entry.maxClinics || clinics.length) >= 4
+      (entry.maxClinics || 3) === 4
         ? 'proc-rank__clinics proc-rank__clinics--4'
         : 'proc-rank__clinics';
     return `<li class="proc-rank__item">
