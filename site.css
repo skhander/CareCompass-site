@@ -2388,9 +2388,13 @@ body.menu-open {
   object-position: center top;
 }
 
-/* Keep mid/lower face in frame when the wide crop would clip the nose */
+/* Portrait BA photos: taller frame + mid focal point so hairline and face stay visible */
+.proc-guide__photo--face {
+  aspect-ratio: 5 / 4;
+}
+
 .proc-guide__photo--face img {
-  object-position: center bottom;
+  object-position: center 30%;
 }
 
 .proc-guide__photo--empty {
