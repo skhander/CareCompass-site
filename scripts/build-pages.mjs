@@ -815,6 +815,8 @@ const HAIR_TRANSPLANT_DEST_RANKING = [
     avgUsd: 3650,
     copy: 'A low-cost option. Medical tourism is projected to grow 15% a year through 2030.',
     destSlugs: [],
+    photoSrc: '../assets/procedure-hair-transplant-before-after.jpg',
+    photoAlt: 'Illustrative hair transplant before and after',
     packageTypes: [
       'FUE',
       'DHI',
@@ -836,6 +838,8 @@ const HAIR_TRANSPLANT_DEST_RANKING = [
     avgUsd: 7372,
     copy: 'Strict healthcare rules and clinics in Berlin. Known more for orthopedic surgery than cosmetic work.',
     destSlugs: [],
+    photoSrc: '../assets/procedure-hair-transplant.jpg',
+    photoAlt: 'Hair transplant procedure',
     packageTypes: [
       'FUE',
       'DHI',
@@ -1120,17 +1124,23 @@ function renderDestBeforeAfter(entry) {
         </figure>`;
 }
 
-function clinicServicesLine(packages) {
+function clinicServicesLine(packages, { stripSuffix } = {}) {
   if (!packages?.length) return '';
-  const parts = packages.map((pkg) =>
-    String(pkg.procedure)
-      .replace(/\s*rhinoplasty$/i, '')
-      .trim()
-      .toLowerCase()
-  );
-  if (parts.length === 1) return `${parts[0]} rhinoplasty`;
-  if (parts.length === 2) return `${parts[0]} and ${parts[1]} rhinoplasty`;
-  return `${parts.slice(0, -1).join(', ')}, and ${parts[parts.length - 1]} rhinoplasty`;
+  if (stripSuffix) {
+    const parts = packages.map((pkg) =>
+      String(pkg.procedure)
+        .replace(new RegExp(`\\s*${stripSuffix}$`, 'i'), '')
+        .trim()
+        .toLowerCase()
+    );
+    if (parts.length === 1) return `${parts[0]} ${stripSuffix}`;
+    if (parts.length === 2) return `${parts[0]} and ${parts[1]} ${stripSuffix}`;
+    return `${parts.slice(0, -1).join(', ')}, and ${parts[parts.length - 1]} ${stripSuffix}`;
+  }
+  const parts = packages.map((pkg) => String(pkg.procedure).trim()).filter(Boolean);
+  if (parts.length === 1) return parts[0];
+  if (parts.length === 2) return `${parts[0]} and ${parts[1]}`;
+  return `${parts.slice(0, -1).join(', ')}, and ${parts[parts.length - 1]}`;
 }
 
 function clinicFromPrice(packages) {
@@ -1142,8 +1152,8 @@ function clinicFromPrice(packages) {
   return money(Math.min(...nums));
 }
 
-function renderRhinoClinicRow(c) {
-  const services = clinicServicesLine(c.packages);
+function renderGuideClinicRow(c, { stripSuffix } = {}) {
+  const services = clinicServicesLine(c.packages, { stripSuffix });
   const fromPrice = clinicFromPrice(c.packages);
   return `<a class="proc-clinic-row" href="${c.href}">
             <span class="proc-clinic-row__media" aria-hidden="true">
@@ -1161,31 +1171,54 @@ function renderRhinoClinicRow(c) {
           </a>`;
 }
 
-function renderRhinoDestinations(ranking, procedureClinicList) {
+function guideDestPhoto(entry) {
+  if (entry.beforeAfter?.src) {
+    const baFace = /rhino-ba-bogota|galata-rhinoplasty-before-after/.test(entry.beforeAfter.src);
+    return `<figure class="proc-guide__photo${baFace ? ' proc-guide__photo--face' : ''}">
+            <img src="${entry.beforeAfter.src}" alt="${esc(entry.beforeAfter.alt || '')}" width="${entry.beforeAfter.width || 1360}" height="${entry.beforeAfter.height || 1160}" loading="lazy" decoding="async">
+          </figure>`;
+  }
+  const destSlug = entry.destSlugs?.[0] || entry.coverSlug;
+  if (destSlug && DEST_COVER[destSlug]) {
+    return `<figure class="proc-guide__photo">
+            <img src="${destCover(destSlug, 1)}" alt="" width="800" height="500" loading="lazy" decoding="async">
+          </figure>`;
+  }
+  if (entry.photoSrc) {
+    return `<figure class="proc-guide__photo">
+            <img src="${entry.photoSrc}" alt="${esc(entry.photoAlt || '')}" width="800" height="500" loading="lazy" decoding="async">
+          </figure>`;
+  }
+  return `<div class="proc-guide__photo proc-guide__photo--empty" aria-hidden="true"></div>`;
+}
+
+function guideDestCopy(entry) {
+  const paras = entry.paragraphs?.length ? entry.paragraphs : entry.copy ? [entry.copy] : [];
+  return paras.map((t) => `<p class="proc-guide__dest-copy">${esc(t)}</p>`).join('');
+}
+
+function renderGuideDestinations(ranking, procedureClinicList, { stripSuffix } = {}) {
   return ranking
     .map((entry) => {
-      const destSlug = entry.destSlugs[0] || entry.coverSlug;
+      const destSlug = entry.destSlugs?.[0] || entry.coverSlug;
       const dest = destSlug ? destinations.find((d) => d.slug === destSlug) : null;
       const titleHref = dest ? `../destinations/${dest.slug}.html` : '../destinations.html';
       const title = entry.city ? `${entry.city}, ${entry.country}` : entry.country;
       const clinics = clinicsForRank(entry, procedureClinicList);
-      const rows = clinics.map(renderRhinoClinicRow).join('');
-      const baFace =
-        entry.beforeAfter?.src && /rhino-ba-bogota|galata-rhinoplasty-before-after/.test(entry.beforeAfter.src);
-      const ba = entry.beforeAfter?.src
-        ? `<figure class="proc-guide__photo${baFace ? ' proc-guide__photo--face' : ''}">
-            <img src="${entry.beforeAfter.src}" alt="${esc(entry.beforeAfter.alt || '')}" width="${entry.beforeAfter.width || 1360}" height="${entry.beforeAfter.height || 1160}" loading="lazy" decoding="async">
-          </figure>`
-        : `<div class="proc-guide__photo proc-guide__photo--empty" aria-hidden="true"></div>`;
-      const copy = (entry.paragraphs || []).map((t) => `<p class="proc-guide__dest-copy">${esc(t)}</p>`).join('');
+      const rows = clinics.map((c) => renderGuideClinicRow(c, { stripSuffix })).join('');
+      const fromLabel = entry.priceLabel
+        ? entry.priceLabel.trim().startsWith('$') || entry.priceLabel.trim().startsWith('From')
+          ? `From ${entry.priceLabel.replace(/^From\s+/i, '')}`
+          : `From ${entry.priceLabel}`
+        : '';
       return `<section class="proc-guide__dest">
         <div class="proc-guide__dest-top">
           <div class="proc-guide__dest-copy-block">
             <h3 class="proc-guide__dest-title"><a href="${titleHref}">${esc(title)}</a></h3>
-            ${entry.priceLabel ? `<p class="proc-guide__dest-from">From ${esc(entry.priceLabel)}</p>` : ''}
-            ${copy}
+            ${fromLabel ? `<p class="proc-guide__dest-from">${esc(fromLabel)}</p>` : ''}
+            ${guideDestCopy(entry)}
           </div>
-          ${ba}
+          ${guideDestPhoto(entry)}
         </div>
         <div class="proc-guide__clinics">${rows}</div>
       </section>`;
@@ -1193,9 +1226,8 @@ function renderRhinoDestinations(ranking, procedureClinicList) {
     .join('');
 }
 
-function renderRhinoplastyPage(p, clinicList, stats) {
-  const ranking = RHINOPLASTY_DEST_RANKING;
-  const destHtml = renderRhinoDestinations(ranking, clinicList);
+function renderProcedureGuidePage(p, clinicList, stats, ranking, { stripSuffix } = {}) {
+  const destHtml = renderGuideDestinations(ranking, clinicList, { stripSuffix });
   return (
     head({ title: `${p.name} — MediGo`, description: p.description, depth: 1 }) +
     nav(1, 'procedures') +
@@ -1281,7 +1313,20 @@ for (const p of procedures) {
   const stats = synthProcStats(p, destPrices);
 
   if (p.slug === 'rhinoplasty') {
-    writeFileSync(join(SITE, 'procedures', `${p.slug}.html`), renderRhinoplastyPage(p, clinicList, stats));
+    writeFileSync(
+      join(SITE, 'procedures', `${p.slug}.html`),
+      renderProcedureGuidePage(p, clinicList, stats, RHINOPLASTY_DEST_RANKING, {
+        stripSuffix: 'rhinoplasty',
+      })
+    );
+    continue;
+  }
+
+  if (p.slug === 'hair-transplant') {
+    writeFileSync(
+      join(SITE, 'procedures', `${p.slug}.html`),
+      renderProcedureGuidePage(p, clinicList, stats, HAIR_TRANSPLANT_DEST_RANKING)
+    );
     continue;
   }
 
