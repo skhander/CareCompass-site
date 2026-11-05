@@ -1923,17 +1923,6 @@ body.menu-open {
   max-width: none;
 }
 
-.proc-rank__aesthetic {
-  margin: 0;
-  font-size: var(--type-caption);
-  line-height: 1.45;
-  color: #40032b;
-}
-
-.proc-rank__aesthetic-label {
-  font-weight: var(--weight-text-semi, 600);
-}
-
 .proc-rank__ba {
   margin: 0;
   min-width: 0;

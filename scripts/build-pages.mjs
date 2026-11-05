@@ -863,8 +863,6 @@ const RHINOPLASTY_DEST_RANKING = [
     paragraphs: [
       'Competitive pricing, surgeon availability, and established medical tourism infrastructure.',
     ],
-    aesthetic:
-      'Example look: a smoother dorsal line and lifted tip in front and profile views—balanced, natural facial harmony.',
     beforeAfter: {
       src: '../assets/rhino-ba-istanbul.png',
       alt: 'Illustrative rhinoplasty before and after example for Istanbul',
@@ -898,8 +896,6 @@ const RHINOPLASTY_DEST_RANKING = [
     paragraphs: [
       'Seoul\'s facial aesthetics scene is highly specialized, with detailed planning for bridge and tip refinement.',
     ],
-    aesthetic:
-      'Example look: a higher, more defined bridge and a refined tip—often associated with soft, sculpted front-facing balance.',
     beforeAfter: {
       src: '../assets/rhino-ba-seoul.png',
       alt: 'Illustrative rhinoplasty before and after example for Seoul',
@@ -931,8 +927,6 @@ const RHINOPLASTY_DEST_RANKING = [
     paragraphs: [
       'Bogotá is a major hub for facial plastic surgery, with competitive pricing for international patients.',
     ],
-    aesthetic:
-      'Example look: a narrower bridge and more delicate tip on a front-facing view—subtle refinement without a pinched appearance.',
     beforeAfter: {
       src: '../assets/rhino-ba-bogota.png',
       alt: 'Illustrative rhinoplasty before and after example for Bogotá',
@@ -966,8 +960,6 @@ const RHINOPLASTY_DEST_RANKING = [
     paragraphs: [
       'Close for U.S. travelers, with established private clinics and competitive pricing for elective facial surgery.',
     ],
-    aesthetic:
-      'Example look: a softer midface contour with a slimmer bridge and defined tip—an illustrative refined front view.',
     // No unique Mexico BA provided yet — reuse Bogotá illustrative asset for layout parity.
     beforeAfter: {
       src: '../assets/rhino-ba-bogota.png',
@@ -1145,22 +1137,17 @@ function renderRankedDestinations(ranking, procedureClinicList) {
           <a class="proc-rank__title" href="${titleHref}">${esc(title)}</a>
           ${entry.priceLabel ? `<span class="proc-rank__price">· ${esc(entry.priceLabel)}</span>` : ''}
         </h3>`;
-    const aesthetic = entry.aesthetic
-      ? `<p class="proc-rank__aesthetic"><span class="proc-rank__aesthetic-label">Example aesthetic:</span> ${esc(entry.aesthetic)}</p>`
-      : '';
     const ba = renderDestBeforeAfter(entry);
     const intro = ba
       ? `<div class="proc-rank__intro">
         <div class="proc-rank__intro-copy">
           ${heading}
           ${renderRankCopy(entry)}
-          ${aesthetic}
         </div>
         ${ba}
       </div>`
       : `${heading}
-        ${renderRankCopy(entry)}
-        ${aesthetic}`;
+        ${renderRankCopy(entry)}`;
     return `<li class="proc-rank__item${ba ? ' proc-rank__item--ba' : ''}">
         ${intro}
         <div class="${clinicsClass}">${clinicCards}</div>
