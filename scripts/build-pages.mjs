@@ -1201,9 +1201,7 @@ function renderRhinoplastyPage(p, clinicList, stats) {
     `<main>
       <section class="section proc-guide" aria-labelledby="proc-title">
         <div class="container proc-guide__inner" data-reveal data-reveal-eager>
-          <p class="proc-guide__eyebrow">Cosmetic surgery</p>
           <h1 id="proc-title" class="proc-guide__title">${esc(p.name)}</h1>
-          <p class="proc-guide__lede">Nose surgery costs far less in some countries. Here is where patients go, what it costs, and which clinics they choose.</p>
           <div class="proc-guide__stats" role="group" aria-label="Procedure averages">
             <div class="proc-guide__stat">
               <span class="proc-guide__stat-value">${money(stats.avgCost)}</span>
@@ -1214,7 +1212,7 @@ function renderRhinoplastyPage(p, clinicList, stats) {
               <span class="proc-guide__stat-label">Average trip length</span>
             </div>
           </div>
-          <h2 class="proc-guide__section-title">Where to go</h2>
+          <h2 class="proc-guide__section-title">Top Destinations</h2>
           <div class="proc-guide__destinations">
             ${destHtml}
           </div>
