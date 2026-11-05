@@ -864,12 +864,9 @@ const RHINOPLASTY_DEST_RANKING = [
     ],
     destSlugs: ['istanbul'],
     maxClinics: 4,
-    // First Istanbul clinic card uses a rhinoplasty before/after still instead of city cover.
-    clinicCovers: {
-      0: {
-        src: '../assets/clinic-galata-rhinoplasty-before-after.png',
-        alt: 'Rhinoplasty before and after',
-      },
+    beforeAfter: {
+      src: '../assets/clinic-galata-rhinoplasty-before-after.png',
+      alt: 'Rhinoplasty before and after',
     },
     packageTypes: [
       'Primary rhinoplasty',
@@ -899,6 +896,10 @@ const RHINOPLASTY_DEST_RANKING = [
     why: 'Facial aesthetics expertise, detailed surgical planning, and experience with Asian rhinoplasty.',
     destSlugs: ['seoul'],
     maxClinics: 4,
+    beforeAfter: {
+      src: '../assets/clinic-galata-rhinoplasty-before-after.png',
+      alt: 'Rhinoplasty before and after',
+    },
     packageTypes: [
       'Primary rhinoplasty',
       'Revision rhinoplasty',
@@ -927,6 +928,10 @@ const RHINOPLASTY_DEST_RANKING = [
     destSlugs: [],
     coverSlug: 'medellin',
     maxClinics: 4,
+    beforeAfter: {
+      src: '../assets/clinic-galata-rhinoplasty-before-after.png',
+      alt: 'Rhinoplasty before and after',
+    },
     packageTypes: [
       'Primary rhinoplasty',
       'Revision rhinoplasty',
@@ -953,6 +958,10 @@ const RHINOPLASTY_DEST_RANKING = [
     why: 'Geographic proximity, established private healthcare infrastructure, and competitive pricing.',
     destSlugs: ['mexico-city'],
     maxClinics: 4,
+    beforeAfter: {
+      src: '../assets/clinic-galata-rhinoplasty-before-after.png',
+      alt: 'Rhinoplasty before and after',
+    },
     packageTypes: [
       'Primary rhinoplasty',
       'Revision rhinoplasty',
@@ -1021,56 +1030,32 @@ function clinicsForRank(entry, procedureClinicList) {
       .map((slug) => destinations.find((d) => d.slug === slug)?.id)
       .filter(Boolean)
   );
-  const applyCover = (clinic, index) => {
-    const override = entry.clinicCovers?.[index];
-    if (override?.src) {
-      return {
-        ...clinic,
-        cover: override.src,
-        coverAlt: override.alt || '',
-        coverDecorative: false,
-      };
-    }
-    return clinic;
-  };
   const linked = procedureClinicList
     .filter((c) => destIds.has(c.destination_id))
     .slice(0, max)
-    .map((c, i) =>
-      applyCover(
-        {
-          name: c.name,
-          focus: c.focus || '',
-          href: `../clinics/${c.slug}.html`,
-          cover: destCover(
-            destinations.find((d) => d.id === c.destination_id)?.slug || primarySlug || 'istanbul',
-            1
-          ),
-          coverAlt: '',
-          coverDecorative: true,
-          packages: packagesForClinic(entry, i, c.name),
-        },
-        i
-      )
-    );
+    .map((c, i) => ({
+      name: c.name,
+      focus: c.focus || '',
+      href: `../clinics/${c.slug}.html`,
+      cover: destCover(
+        destinations.find((d) => d.id === c.destination_id)?.slug || primarySlug || 'istanbul',
+        1
+      ),
+      packages: packagesForClinic(entry, i, c.name),
+      beforeAfter: entry.beforeAfter || null,
+    }));
 
   const used = new Set(linked.map((c) => c.name.toLowerCase()));
   const fallbacks = (entry.fallbackClinics || [])
     .filter((c) => !used.has(String(c.name).toLowerCase()))
-    .map((c, i) =>
-      applyCover(
-        {
-          name: c.name,
-          focus: c.focus || '',
-          href: primarySlug ? `../destinations/${primarySlug}.html` : '../destinations.html',
-          cover: destCover(primarySlug || 'istanbul', 1),
-          coverAlt: '',
-          coverDecorative: true,
-          packages: packagesForClinic(entry, linked.length + i, c.name),
-        },
-        linked.length + i
-      )
-    );
+    .map((c, i) => ({
+      name: c.name,
+      focus: c.focus || '',
+      href: primarySlug ? `../destinations/${primarySlug}.html` : '../destinations.html',
+      cover: destCover(primarySlug || 'istanbul', 1),
+      packages: packagesForClinic(entry, linked.length + i, c.name),
+      beforeAfter: entry.beforeAfter || null,
+    }));
 
   return [...linked, ...fallbacks].slice(0, max);
 }
@@ -1114,15 +1099,21 @@ function renderRankedDestinations(ranking, procedureClinicList) {
     const clinics = clinicsForRank(entry, procedureClinicList);
     const clinicCards = clinics
       .map((c) => {
-        const decorative = c.coverDecorative !== false && !c.coverAlt;
+        const ba = c.beforeAfter?.src
+          ? `<figure class="proc-clinic-card__ba">
+              <figcaption class="proc-clinic-card__ba-label">Before / after</figcaption>
+              <img src="${c.beforeAfter.src}" alt="${esc(c.beforeAfter.alt || 'Before and after')}" width="680" height="580" loading="lazy" decoding="async">
+            </figure>`
+          : '';
         return `<a class="proc-clinic-card" href="${c.href}">
-            <span class="proc-clinic-card__media"${decorative ? ' aria-hidden="true"' : ''}>
-              <img src="${c.cover}" alt="${esc(c.coverAlt || '')}" width="320" height="214" loading="lazy" decoding="async">
+            <span class="proc-clinic-card__media" aria-hidden="true">
+              <img src="${c.cover}" alt="" width="320" height="214" loading="lazy" decoding="async">
             </span>
             <span class="proc-clinic-card__body">
               <span class="proc-clinic-card__name">${esc(c.name)}</span>
               ${c.focus ? `<span class="proc-clinic-card__focus">${esc(c.focus)}</span>` : ''}
               ${renderClinicPackages(c.packages)}
+              ${ba}
             </span>
           </a>`;
       })
@@ -1414,6 +1405,24 @@ for (const c of clinics) {
   const procs = (c.procedure_ids || []).map((id) => byId.procedure[id]).filter(Boolean);
   const clinicPrices = prices.filter((x) => x.entity_id === c.id);
   const sent = sentimentBlock(c.name, 'clinic');
+  const offersRhinoplasty = procs.some((p) => p.slug === 'rhinoplasty');
+  const baBlock = offersRhinoplasty
+    ? `<section class="section">
+        <div class="container" data-reveal>
+          <h2 class="t-h3">Before / after</h2>
+          <div class="placeholder-frame placeholder-frame--ba">
+            <img src="../assets/clinic-galata-rhinoplasty-before-after.png" alt="Rhinoplasty before and after" width="1358" height="1159" loading="lazy" decoding="async">
+          </div>
+        </div>
+      </section>`
+    : `<section class="section">
+        <div class="container" data-reveal>
+          <h2 class="t-h3">Before / after placeholders</h2>
+          <div class="placeholder-frame">
+            <img src="../assets/placeholders/before-after.svg" alt="Synthetic before after" width="1200" height="600" loading="lazy">
+          </div>
+        </div>
+      </section>`;
 
   const html =
     head({ title: `${c.name} — MediGo`, description: c.summary, depth: 1 }) +
@@ -1461,14 +1470,7 @@ for (const c of clinics) {
           </div>
         </div>
       </section>
-      <section class="section">
-        <div class="container" data-reveal>
-          <h2 class="t-h3">Before / after placeholders</h2>
-          <div class="placeholder-frame">
-            <img src="../assets/placeholders/before-after.svg" alt="Synthetic before after" width="1200" height="600" loading="lazy">
-          </div>
-        </div>
-      </section>
+      ${baBlock}
       <div class="container">${sent}</div>
       ${inquiryForm({
         depth: 1,

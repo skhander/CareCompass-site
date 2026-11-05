@@ -2045,6 +2045,42 @@ body.menu-open {
   color: #40032b;
 }
 
+.proc-clinic-card__ba {
+  margin: 0.65rem 0 0;
+  padding: 0.5rem 0 0;
+  border-top: 1px solid #ede0b6;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.proc-clinic-card__ba-label {
+  font-size: 0.68rem;
+  font-weight: var(--weight-text-medium);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #40032b;
+}
+
+.proc-clinic-card__ba img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1358 / 1159;
+  object-fit: cover;
+  object-position: center top;
+  background: #ede0b6;
+}
+
+.placeholder-frame--ba {
+  max-width: 42rem;
+}
+
+.placeholder-frame--ba img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
 @media (min-width: 640px) {
   .proc-rank__clinics {
     grid-template-columns: repeat(3, minmax(0, 1fr));
