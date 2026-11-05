@@ -2081,6 +2081,22 @@ body.menu-open {
   object-fit: contain;
 }
 
+.clinic-ba-grid {
+  display: grid;
+  gap: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .clinic-ba-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .clinic-ba-grid .placeholder-frame--ba {
+    max-width: none;
+  }
+}
+
 @media (min-width: 640px) {
   .proc-rank__clinics {
     grid-template-columns: repeat(3, minmax(0, 1fr));

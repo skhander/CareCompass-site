@@ -1410,8 +1410,13 @@ for (const c of clinics) {
     ? `<section class="section">
         <div class="container" data-reveal>
           <h2 class="t-h3">Before / after</h2>
-          <div class="placeholder-frame placeholder-frame--ba">
-            <img src="../assets/clinic-galata-rhinoplasty-before-after.png" alt="Rhinoplasty before and after" width="1358" height="1159" loading="lazy" decoding="async">
+          <div class="clinic-ba-grid">
+            <div class="placeholder-frame placeholder-frame--ba">
+              <img src="../assets/clinic-galata-rhinoplasty-before-after.png" alt="Rhinoplasty before and after" width="1358" height="1159" loading="lazy" decoding="async">
+            </div>
+            <div class="placeholder-frame placeholder-frame--ba">
+              <img src="../assets/clinic-rhinoplasty-before-after-2.png" alt="Rhinoplasty before and after" width="1376" height="1143" loading="lazy" decoding="async">
+            </div>
           </div>
         </div>
       </section>`
