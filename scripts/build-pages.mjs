@@ -768,7 +768,7 @@ const HAIR_TRANSPLANT_DEST_RANKING = [
       src: '../assets/hair-ba-mexico-city.jpg',
       alt: 'Illustrative hair transplant before and after example for Mexico City',
       width: 1152,
-      height: 794,
+      height: 926,
     },
     destSlugs: ['mexico-city', 'tijuana'],
     packageTypes: [
