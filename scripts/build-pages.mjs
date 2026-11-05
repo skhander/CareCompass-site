@@ -1115,7 +1115,6 @@ function renderDestBeforeAfter(entry) {
               <span class="proc-rank__ba-label">After</span>
             </span>
           </div>
-          <figcaption class="proc-rank__ba-caption">Illustrative aesthetic example — not an actual patient result.</figcaption>
         </figure>`;
 }
 

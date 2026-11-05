@@ -1978,13 +1978,6 @@ body.menu-open {
   text-align: right;
 }
 
-.proc-rank__ba-caption {
-  margin: 0.4rem 0 0;
-  font-size: 0.68rem;
-  line-height: 1.35;
-  color: var(--color-text-muted, #6b4a5c);
-}
-
 @media (min-width: 900px) {
   .proc-rank__intro {
     grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
