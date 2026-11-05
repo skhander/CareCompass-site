@@ -1065,6 +1065,25 @@ function clinicsForRank(entry, procedureClinicList) {
   return [...linked, ...fallbacks].slice(0, max);
 }
 
+function synthClinicRating(clinicName) {
+  const seed = hashSeed(`rating:${clinicName}`);
+  // Synthetic demo scores from 4.1–5.0
+  const tenths = 41 + (seed % 10);
+  return (tenths / 10).toFixed(1);
+}
+
+function renderClinicRating(clinicName) {
+  const score = synthClinicRating(clinicName);
+  const pct = (Number(score) / 5) * 100;
+  return `<span class="proc-clinic-card__rating" aria-label="${score} out of 5">
+              <span class="proc-clinic-card__stars" style="--rating-pct: ${pct}%" aria-hidden="true">
+                <span class="proc-clinic-card__stars-track">★★★★★</span>
+                <span class="proc-clinic-card__stars-fill">★★★★★</span>
+              </span>
+              <span class="proc-clinic-card__score">${score}</span>
+            </span>`;
+}
+
 function renderClinicPackages(packages) {
   if (!packages?.length) return '';
   return `<ul class="proc-clinic-card__packages">
@@ -1122,7 +1141,7 @@ function renderRankedDestinations(ranking, procedureClinicList) {
             </span>
             <span class="proc-clinic-card__body">
               <span class="proc-clinic-card__name">${esc(c.name)}</span>
-              ${c.focus ? `<span class="proc-clinic-card__focus">${esc(c.focus)}</span>` : ''}
+              ${renderClinicRating(c.name)}
               ${renderClinicPackages(c.packages)}
             </span>
           </a>`;
