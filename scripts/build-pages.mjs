@@ -862,8 +862,15 @@ const RHINOPLASTY_DEST_RANKING = [
     avgUsd: 4150,
     paragraphs: [
       'Competitive pricing, surgeon availability, and established medical tourism infrastructure.',
-      'Surgeons offer primary and revision rhinoplasty, with a wide range of aesthetic approaches.',
     ],
+    aesthetic:
+      'Example look: a smoother dorsal line and lifted tip in front and profile views—balanced, natural facial harmony.',
+    beforeAfter: {
+      src: '../assets/rhino-ba-istanbul.png',
+      alt: 'Illustrative rhinoplasty before and after example for Istanbul',
+      width: 1293,
+      height: 1217,
+    },
     destSlugs: ['istanbul'],
     maxClinics: 4,
     packageTypes: [
@@ -889,9 +896,16 @@ const RHINOPLASTY_DEST_RANKING = [
     priceMinUsd: 3500,
     priceMaxUsd: 8500,
     paragraphs: [
-      'South Korea is internationally recognized for cosmetic facial surgery. Seoul has a particularly developed aesthetic surgery industry.',
+      'Seoul\'s facial aesthetics scene is highly specialized, with detailed planning for bridge and tip refinement.',
     ],
-    why: 'Facial aesthetics expertise, detailed surgical planning, and experience with Asian rhinoplasty.',
+    aesthetic:
+      'Example look: a higher, more defined bridge and a refined tip—often associated with soft, sculpted front-facing balance.',
+    beforeAfter: {
+      src: '../assets/rhino-ba-seoul.png',
+      alt: 'Illustrative rhinoplasty before and after example for Seoul',
+      width: 1376,
+      height: 1143,
+    },
     destSlugs: ['seoul'],
     maxClinics: 4,
     packageTypes: [
@@ -915,9 +929,16 @@ const RHINOPLASTY_DEST_RANKING = [
     priceLabel: '$3,850',
     avgUsd: 3850,
     paragraphs: [
-      'Colombia has a well-established cosmetic surgery industry, with Bogotá serving as a major hub for plastic and facial surgery. The city attracts international patients seeking experienced surgeons and more affordable treatment.',
+      'Bogotá is a major hub for facial plastic surgery, with competitive pricing for international patients.',
     ],
-    why: 'Established plastic surgery expertise, competitive pricing, and proximity to the United States.',
+    aesthetic:
+      'Example look: a narrower bridge and more delicate tip on a front-facing view—subtle refinement without a pinched appearance.',
+    beforeAfter: {
+      src: '../assets/rhino-ba-bogota.png',
+      alt: 'Illustrative rhinoplasty before and after example for Bogotá',
+      width: 1358,
+      height: 1159,
+    },
     // No Bogotá hub in catalog yet — synthetic clinics; Colombia cover from Medellín asset.
     destSlugs: [],
     coverSlug: 'medellin',
@@ -943,9 +964,17 @@ const RHINOPLASTY_DEST_RANKING = [
     priceLabel: '$4,300',
     avgUsd: 4300,
     paragraphs: [
-      'Mexico is an established destination for Americans seeking more affordable elective procedures.',
+      'Close for U.S. travelers, with established private clinics and competitive pricing for elective facial surgery.',
     ],
-    why: 'Geographic proximity, established private healthcare infrastructure, and competitive pricing.',
+    aesthetic:
+      'Example look: a softer midface contour with a slimmer bridge and defined tip—an illustrative refined front view.',
+    // No unique Mexico BA provided yet — reuse Bogotá illustrative asset for layout parity.
+    beforeAfter: {
+      src: '../assets/rhino-ba-bogota.png',
+      alt: 'Illustrative rhinoplasty before and after example for Mexico City',
+      width: 1358,
+      height: 1159,
+    },
     destSlugs: ['mexico-city'],
     maxClinics: 4,
     packageTypes: [
@@ -1073,6 +1102,23 @@ function renderRankCopy(entry) {
   return body + why;
 }
 
+function renderDestBeforeAfter(entry) {
+  const ba = entry.beforeAfter;
+  if (!ba?.src) return '';
+  const w = ba.width || 1360;
+  const h = ba.height || 1160;
+  return `<figure class="proc-rank__ba">
+          <div class="proc-rank__ba-frame">
+            <img src="${ba.src}" alt="${esc(ba.alt || 'Illustrative before and after')}" width="${w}" height="${h}" loading="lazy" decoding="async">
+            <span class="proc-rank__ba-labels" aria-hidden="true">
+              <span class="proc-rank__ba-label">Before</span>
+              <span class="proc-rank__ba-label">After</span>
+            </span>
+          </div>
+          <figcaption class="proc-rank__ba-caption">Illustrative aesthetic example — not an actual patient result.</figcaption>
+        </figure>`;
+}
+
 function renderRankedDestinations(ranking, procedureClinicList) {
   return ranking.map((entry, i) => {
     const rank = i + 1;
@@ -1099,13 +1145,29 @@ function renderRankedDestinations(ranking, procedureClinicList) {
       (entry.maxClinics || 3) === 4
         ? 'proc-rank__clinics proc-rank__clinics--4'
         : 'proc-rank__clinics';
-    return `<li class="proc-rank__item">
-        <h3 class="proc-rank__heading">
+    const heading = `<h3 class="proc-rank__heading">
           <span class="proc-rank__n">${rank}.</span>
           <a class="proc-rank__title" href="${titleHref}">${esc(title)}</a>
           ${entry.priceLabel ? `<span class="proc-rank__price">· ${esc(entry.priceLabel)}</span>` : ''}
-        </h3>
+        </h3>`;
+    const aesthetic = entry.aesthetic
+      ? `<p class="proc-rank__aesthetic"><span class="proc-rank__aesthetic-label">Example aesthetic:</span> ${esc(entry.aesthetic)}</p>`
+      : '';
+    const ba = renderDestBeforeAfter(entry);
+    const intro = ba
+      ? `<div class="proc-rank__intro">
+        <div class="proc-rank__intro-copy">
+          ${heading}
+          ${renderRankCopy(entry)}
+          ${aesthetic}
+        </div>
+        ${ba}
+      </div>`
+      : `${heading}
         ${renderRankCopy(entry)}
+        ${aesthetic}`;
+    return `<li class="proc-rank__item${ba ? ' proc-rank__item--ba' : ''}">
+        ${intro}
         <div class="${clinicsClass}">${clinicCards}</div>
       </li>`;
   }).join('');
@@ -1117,7 +1179,9 @@ for (const p of procedures) {
   const destPrices = prices.filter((x) => x.procedure_id === p.id && x.entity_type === 'destination');
   const stats = synthProcStats(p, destPrices);
   const blurb = shortBlurb(p);
-  const rankedList = renderRankedDestinations(rankingForProcedure(p), clinicList);
+  const ranking = rankingForProcedure(p);
+  const rankedList = renderRankedDestinations(ranking, clinicList);
+  const rankHasBa = ranking.some((e) => e.beforeAfter?.src);
 
   const html =
     head({ title: `${p.name} — MediGo`, description: p.description, depth: 1 }) +
@@ -1154,7 +1218,7 @@ for (const p of procedures) {
           ${blurb ? `<p class="proc-overview__blurb">${esc(blurb)}</p>` : ''}
           <div class="proc-overview__destinations" aria-labelledby="proc-hubs-title">
             <h2 id="proc-hubs-title" class="t-h2">Top destinations</h2>
-            <ol class="proc-rank">
+            <ol class="proc-rank${rankHasBa ? ' proc-rank--ba' : ''}">
               ${rankedList}
             </ol>
           </div>
