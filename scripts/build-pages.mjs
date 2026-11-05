@@ -1158,14 +1158,6 @@ for (const p of procedures) {
           </div>
         </div>
       </section>
-      <section class="section">
-        <div class="container" data-reveal>
-          <h2 class="t-h3">Before / after</h2>
-          <div class="placeholder-frame">
-            <img src="${p.slug === 'hair-transplant' ? '../assets/procedure-hair-transplant-before-after.jpg' : '../assets/placeholders/before-after.svg'}" alt="${p.slug === 'hair-transplant' ? 'Hair Transplants before and after' : 'Synthetic before and after placeholder'}" width="${p.slug === 'hair-transplant' ? 1774 : 1200}" height="${p.slug === 'hair-transplant' ? 887 : 600}" loading="lazy"${p.slug === 'hair-transplant' ? ' decoding="async"' : ''}>
-          </div>
-        </div>
-      </section>
       ${inquiryForm({ depth: 1, procedure: p.name, heading: `Inquire about ${p.name}` })}
     </main>` +
     footer(1);
