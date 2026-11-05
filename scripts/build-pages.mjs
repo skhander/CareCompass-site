@@ -718,6 +718,7 @@ function shortBlurb(p) {
 const HAIR_TRANSPLANT_DEST_RANKING = [
   {
     country: 'Turkey',
+    city: 'Istanbul',
     priceLabel: '$3,500',
     avgUsd: 3500,
     copy: 'Skilled surgeons, accredited hospitals, low prices, and all-inclusive packages.',
@@ -738,6 +739,7 @@ const HAIR_TRANSPLANT_DEST_RANKING = [
   },
   {
     country: 'Mexico',
+    city: 'Mexico City',
     priceLabel: '$3,202',
     avgUsd: 3202,
     copy: 'Close and affordable for patients in the U.S. and Canada. An estimated 40 to 60 percent of medical tourists there come from the U.S.',
@@ -758,6 +760,7 @@ const HAIR_TRANSPLANT_DEST_RANKING = [
   },
   {
     country: 'South Korea',
+    city: 'Seoul',
     priceLabel: '$6,000 to $8,000',
     avgUsd: 7000,
     priceMinUsd: 6000,
@@ -780,6 +783,7 @@ const HAIR_TRANSPLANT_DEST_RANKING = [
   },
   {
     country: 'Thailand',
+    city: 'Bangkok',
     priceLabel: '$5,758',
     avgUsd: 5758,
     copy: 'Clinics in Bangkok and Phuket. Easy to pair surgery with a vacation.',
@@ -800,6 +804,7 @@ const HAIR_TRANSPLANT_DEST_RANKING = [
   },
   {
     country: 'Hungary',
+    city: 'Budapest',
     priceLabel: '$3,650',
     avgUsd: 3650,
     copy: 'A low-cost option. Medical tourism is projected to grow 15% a year through 2030.',
@@ -820,6 +825,7 @@ const HAIR_TRANSPLANT_DEST_RANKING = [
   },
   {
     country: 'Germany',
+    city: 'Berlin',
     priceLabel: '$7,372',
     avgUsd: 7372,
     copy: 'Strict healthcare rules and clinics in Berlin. Known more for orthopedic surgery than cosmetic work.',
@@ -848,7 +854,6 @@ const RHINOPLASTY_DEST_RANKING = [
     priceLabel: '$4,150',
     avgUsd: 4150,
     paragraphs: [
-      "Turkey is probably the strongest starting point for MediGo's rhinoplasty category.",
       'Istanbul has a large concentration of plastic surgery clinics catering to international patients. Patients can find surgeons offering primary and revision rhinoplasty, with a wide range of aesthetic approaches.',
     ],
     why: 'Competitive pricing, surgeon availability, and established medical tourism infrastructure.',
@@ -1052,7 +1057,7 @@ function renderRankedDestinations(ranking, procedureClinicList) {
     const destSlug = entry.destSlugs[0] || entry.coverSlug;
     const dest = destSlug ? destinations.find((d) => d.slug === destSlug) : null;
     const titleHref = dest ? `../destinations/${dest.slug}.html` : '../destinations.html';
-    const title = entry.city ? `${entry.country}: ${entry.city}` : entry.country;
+    const title = entry.city ? `${entry.city}, ${entry.country}` : entry.country;
     const clinicCards = clinicsForRank(entry, procedureClinicList)
       .map(
         (c) => `<a class="proc-clinic-card" href="${c.href}">
