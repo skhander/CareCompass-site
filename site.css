@@ -1775,29 +1775,21 @@ body.menu-open {
 
 /* Procedure overview (stats strip + hubs) */
 .proc-overview {
-  --proc-headline: clamp(2rem, 1.7rem + 1.4vw, 2.75rem);
-  --proc-subhead: 1.25rem;
-  --proc-body: var(--type-body);
   padding-block: var(--space-lg) var(--space-xl);
-  text-align: left;
+  text-align: center;
   background: #fffbe6;
   color: #40032b;
-  font-family: var(--font-text);
-  font-size: var(--proc-body);
-  font-weight: var(--weight-text);
-  line-height: 1.5;
 }
 
 .proc-overview__inner {
   display: grid;
   gap: var(--space-md);
-  justify-items: stretch;
+  justify-items: center;
   max-width: 56rem;
-  margin-inline: 0;
 }
 
 .proc-overview__destinations {
-  width: 100%;
+  width: min(100%, 48rem);
   margin-top: var(--space-sm);
   text-align: left;
   justify-self: stretch;
@@ -1805,31 +1797,23 @@ body.menu-open {
 
 .proc-overview__destinations .t-h2 {
   margin: 0;
-  font-family: var(--font-text);
-  font-size: var(--proc-subhead);
-  font-weight: var(--weight-text-medium);
-  line-height: 1.3;
-  letter-spacing: -0.01em;
   text-align: left;
   color: #40032b;
 }
 
 .proc-overview__title {
   margin: 0;
-  justify-self: start;
   font-family: var(--font-display);
-  font-weight: var(--weight-display-semi);
-  font-size: var(--proc-headline);
-  letter-spacing: -0.025em;
-  line-height: 1.1;
-  text-transform: none;
-  text-align: left;
+  font-weight: 900;
+  font-size: clamp(2rem, 1.4rem + 2.4vw, 3.25rem);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  text-transform: uppercase;
   color: #40032b;
 }
 
 .proc-stats {
   width: min(100%, 40rem);
-  justify-self: start;
 }
 
 .proc-stats__track {
@@ -1843,17 +1827,16 @@ body.menu-open {
 
 .proc-stats__item {
   display: grid;
-  justify-items: start;
+  justify-items: center;
   align-content: start;
-  gap: 0.3rem;
-  min-height: 0;
-  padding: 0.35rem 1rem 0.35rem 0;
+  gap: 0.35rem;
+  min-height: 7.5rem;
+  padding: 0.5rem 0.85rem;
   border-right: 1px solid #ede0b6;
 }
 
 .proc-stats__item:last-child {
   border-right: 0;
-  padding-right: 0;
 }
 
 .proc-stats__icon {
@@ -1862,39 +1845,26 @@ body.menu-open {
 }
 
 .proc-stats__value {
-  font-family: var(--font-text);
-  font-weight: var(--weight-text);
-  font-size: var(--proc-body);
-  font-variant-numeric: tabular-nums;
-  line-height: 1.25;
-  color: #40032b;
-}
-
-.proc-stats__value--price,
-.proc-rank__price,
-.proc-clinic-card__pkg-price {
-  font-family: var(--font-text);
-  font-size: var(--proc-body);
-  font-weight: var(--weight-text-medium);
-  font-variant-numeric: tabular-nums;
-  font-feature-settings: "tnum" 1;
-  letter-spacing: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.35rem;
+  line-height: 1.1;
   color: #40032b;
 }
 
 .proc-stats__label {
-  font-size: var(--proc-body);
-  font-weight: var(--weight-text);
-  letter-spacing: 0;
-  text-transform: none;
-  line-height: 1.35;
+  font-size: 0.68rem;
+  font-weight: var(--weight-text-medium);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.25;
   color: #40032b;
 }
 
 .proc-overview__blurb {
   margin: 0;
   max-width: 40rem;
-  font-size: var(--proc-body);
+  font-size: var(--type-body-lg);
   line-height: 1.5;
   color: #40032b;
 }
@@ -1992,23 +1962,20 @@ body.menu-open {
   flex-wrap: wrap;
   align-items: baseline;
   gap: 0.35rem 0.5rem;
-  font-family: var(--font-text);
-  font-size: var(--proc-subhead);
-  font-weight: var(--weight-text-medium);
-  line-height: 1.3;
-  letter-spacing: -0.01em;
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  font-weight: 800;
+  line-height: 1.25;
   color: #40032b;
 }
 
 .proc-rank__n {
   font-variant-numeric: tabular-nums;
-  font-weight: var(--weight-text);
 }
 
 .proc-rank__title {
   color: #40032b;
   text-decoration: none;
-  font-weight: var(--weight-text-medium);
 }
 
 .proc-rank__title:hover,
@@ -2019,18 +1986,13 @@ body.menu-open {
 }
 
 .proc-rank__price {
-  font-family: var(--font-text);
-  font-size: var(--proc-body);
-  font-weight: var(--weight-text-medium);
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0;
+  font-weight: 700;
 }
 
 .proc-rank__copy {
   margin: 0;
   max-width: 42rem;
-  font-size: var(--proc-body);
-  font-weight: var(--weight-text);
+  font-size: var(--type-body);
   line-height: 1.5;
   color: #40032b;
 }
@@ -2042,14 +2004,13 @@ body.menu-open {
 .proc-rank__why {
   margin: 0.65rem 0 0;
   max-width: 42rem;
-  font-size: var(--proc-body);
-  font-weight: var(--weight-text);
+  font-size: var(--type-body);
   line-height: 1.5;
   color: #40032b;
 }
 
 .proc-rank__why-label {
-  font-weight: var(--weight-text);
+  font-weight: var(--weight-text-semi, 600);
 }
 
 .proc-rank__clinics {
@@ -2105,10 +2066,8 @@ body.menu-open {
 }
 
 .proc-clinic-card__name {
-  font-family: var(--font-text);
-  font-size: var(--proc-body);
-  font-weight: var(--weight-text-medium);
-  line-height: 1.3;
+  font-weight: var(--weight-text-semi, 600);
+  line-height: 1.25;
 }
 
 .proc-clinic-card__rating {
@@ -2122,8 +2081,8 @@ body.menu-open {
 .proc-clinic-card__stars {
   position: relative;
   display: inline-block;
-  font-size: var(--proc-body);
-  letter-spacing: 0.04em;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
   line-height: 1;
 }
 
@@ -2147,11 +2106,10 @@ body.menu-open {
 }
 
 .proc-clinic-card__score {
-  font-family: var(--font-text);
-  font-size: var(--proc-body);
-  font-weight: var(--weight-text);
+  font-size: 0.78rem;
+  font-weight: var(--weight-text-semi, 600);
   font-variant-numeric: tabular-nums;
-  letter-spacing: 0;
+  letter-spacing: -0.01em;
   color: #40032b;
 }
 
@@ -2169,10 +2127,8 @@ body.menu-open {
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 0.5rem;
   align-items: baseline;
-  font-family: var(--font-text);
-  font-size: var(--proc-body);
-  font-weight: var(--weight-text);
-  line-height: 1.35;
+  font-size: 0.72rem;
+  line-height: 1.3;
 }
 
 .proc-clinic-card__pkg-name {
@@ -2181,9 +2137,7 @@ body.menu-open {
 }
 
 .proc-clinic-card__pkg-price {
-  font-family: var(--font-text);
-  font-size: var(--proc-body);
-  font-weight: var(--weight-text-medium);
+  font-weight: 700;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
   color: #40032b;
