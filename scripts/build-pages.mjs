@@ -862,7 +862,7 @@ const RHINOPLASTY_DEST_RANKING = [
     ],
     why: 'Competitive pricing, surgeon availability, and established medical tourism infrastructure.',
     destSlugs: ['istanbul'],
-    maxClinics: 3,
+    maxClinics: 4,
     packageTypes: [
       'Primary rhinoplasty',
       'Revision rhinoplasty',
@@ -875,6 +875,7 @@ const RHINOPLASTY_DEST_RANKING = [
       { name: 'Galata Contour Surgery', focus: 'Plastic surgery' },
       { name: 'Marmara Aesthetic Hospital', focus: 'Multispecialty' },
       { name: 'Nisantasi Profile Institute', focus: 'Facial surgery' },
+      { name: 'Bebek Septum Clinic', focus: 'Rhinoplasty' },
     ],
   },
   {
@@ -889,6 +890,7 @@ const RHINOPLASTY_DEST_RANKING = [
     ],
     why: 'Facial aesthetics expertise, detailed surgical planning, and experience with Asian rhinoplasty.',
     destSlugs: ['seoul'],
+    maxClinics: 4,
     packageTypes: [
       'Primary rhinoplasty',
       'Revision rhinoplasty',
@@ -901,6 +903,7 @@ const RHINOPLASTY_DEST_RANKING = [
       { name: 'Cheongdam Lumen Plastic', focus: 'Plastic surgery' },
       { name: 'Apgujeong Vector Surgery', focus: 'Facial surgery' },
       { name: 'Gangnam Profile Atelier', focus: 'Facial aesthetics' },
+      { name: 'Sinsa Tip & Bridge Clinic', focus: 'Rhinoplasty' },
     ],
   },
   {
@@ -915,6 +918,7 @@ const RHINOPLASTY_DEST_RANKING = [
     // No Bogotá hub in catalog yet — synthetic clinics; Colombia cover from Medellín asset.
     destSlugs: [],
     coverSlug: 'medellin',
+    maxClinics: 4,
     packageTypes: [
       'Primary rhinoplasty',
       'Revision rhinoplasty',
@@ -927,6 +931,7 @@ const RHINOPLASTY_DEST_RANKING = [
       { name: 'Chapinero Contour Surgery', focus: 'Plastic surgery' },
       { name: 'Zona T Facial Institute', focus: 'Facial surgery' },
       { name: 'Usaquén Profile Clinic', focus: 'Rhinoplasty' },
+      { name: 'Chicó Septorhinoplasty Center', focus: 'Facial surgery' },
     ],
   },
   {
@@ -939,6 +944,7 @@ const RHINOPLASTY_DEST_RANKING = [
     ],
     why: 'Geographic proximity, established private healthcare infrastructure, and competitive pricing.',
     destSlugs: ['mexico-city'],
+    maxClinics: 4,
     packageTypes: [
       'Primary rhinoplasty',
       'Revision rhinoplasty',
@@ -951,6 +957,7 @@ const RHINOPLASTY_DEST_RANKING = [
       { name: 'Insurgentes Aesthetic Pavilion', focus: 'Cosmetic surgery' },
       { name: 'Pedregal Care Hospital', focus: 'Surgical care' },
       { name: 'Polanco Profile Surgery', focus: 'Facial surgery' },
+      { name: 'Roma Norte Rhinoplasty Studio', focus: 'Rhinoplasty' },
     ],
   },
 ];
@@ -1070,7 +1077,8 @@ function renderRankedDestinations(ranking, procedureClinicList) {
     const dest = destSlug ? destinations.find((d) => d.slug === destSlug) : null;
     const titleHref = dest ? `../destinations/${dest.slug}.html` : '../destinations.html';
     const title = entry.city ? `${entry.city}, ${entry.country}` : entry.country;
-    const clinicCards = clinicsForRank(entry, procedureClinicList)
+    const clinics = clinicsForRank(entry, procedureClinicList);
+    const clinicCards = clinics
       .map(
         (c) => `<a class="proc-clinic-card" href="${c.href}">
             <span class="proc-clinic-card__media" aria-hidden="true">
@@ -1084,6 +1092,10 @@ function renderRankedDestinations(ranking, procedureClinicList) {
           </a>`
       )
       .join('');
+    const clinicsClass =
+      (entry.maxClinics || clinics.length) >= 4
+        ? 'proc-rank__clinics proc-rank__clinics--4'
+        : 'proc-rank__clinics';
     return `<li class="proc-rank__item">
         <h3 class="proc-rank__heading">
           <span class="proc-rank__n">${rank}.</span>
@@ -1091,7 +1103,7 @@ function renderRankedDestinations(ranking, procedureClinicList) {
           ${entry.priceLabel ? `<span class="proc-rank__price">· ${esc(entry.priceLabel)}</span>` : ''}
         </h3>
         ${renderRankCopy(entry)}
-        <div class="proc-rank__clinics">${clinicCards}</div>
+        <div class="${clinicsClass}">${clinicCards}</div>
       </li>`;
   }).join('');
 }

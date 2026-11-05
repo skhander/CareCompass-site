@@ -2080,6 +2080,10 @@ body.menu-open {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  .proc-rank__clinics--4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
   .proc-clinic-card {
     grid-template-columns: 1fr;
     align-items: stretch;
@@ -2094,6 +2098,12 @@ body.menu-open {
   .proc-clinic-card__body {
     padding: 0.65rem 0.75rem 0.85rem;
     align-content: start;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 900px) {
+  .proc-rank__clinics--4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
