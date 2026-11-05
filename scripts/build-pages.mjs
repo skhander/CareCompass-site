@@ -368,14 +368,19 @@ function footer(depth) {
 `;
 }
 
-function contactForm({ depth = 0, heading = 'Get in touch' } = {}) {
+function formCopy() {
+  return `<div class="inquiry-copy">
+        <p class="t-eyebrow">Demo</p>
+        <h2 class="t-h2">Plan your trip.</h2>
+        <p class="t-body">Tell us what you need. We'll show you where to compare clinics.</p>
+      </div>`;
+}
+
+function contactForm({ depth = 0 } = {}) {
   const action = rel(depth, 'contact.html');
   return `<section class="inquiry section section--lavender" id="inquire" data-reveal>
     <div class="container inquiry-wrap">
-      <div class="inquiry-copy">
-        <h2 class="t-h2">${esc(heading)}</h2>
-        <p class="t-body">Demo form only, nothing is transmitted to a server.</p>
-      </div>
+      ${formCopy()}
       <form class="inquiry-form" action="${action}" method="get" data-contact-form>
         <div class="field field--light">
           <label for="contact-name">Name</label>
@@ -389,14 +394,14 @@ function contactForm({ depth = 0, heading = 'Get in touch' } = {}) {
           <label for="contact-message">Message</label>
           <textarea id="contact-message" name="message" rows="5" placeholder="How can we help?" required></textarea>
         </div>
-        <button class="btn btn--plum" type="submit">Send message</button>
-        <p class="t-caption inquiry-note">Demo contact — submissions stay on this page. Nothing is emailed.</p>
+        <button class="btn btn--plum" type="submit">Get my plan</button>
+        <p class="t-caption inquiry-note">This is a demo. Nothing is sent. This is not a medical booking.</p>
       </form>
     </div>
   </section>`;
 }
 
-function inquiryForm({ depth, procedure = '', destination = '', heading = 'Plan this trip' }) {
+function inquiryForm({ depth, procedure = '', destination = '' } = {}) {
   const action = rel(depth, 'contact.html');
   const procOpts = procedures
     .map((p) => `<option value="${esc(p.name)}"${p.name === procedure ? ' selected' : ''}>${esc(p.name)}</option>`)
@@ -409,10 +414,7 @@ function inquiryForm({ depth, procedure = '', destination = '', heading = 'Plan 
     .join('');
   return `<section class="inquiry section section--lavender" id="inquire" data-reveal>
     <div class="container inquiry-wrap">
-      <div class="inquiry-copy">
-        <h2 class="t-h2">${esc(heading)}</h2>
-        <p class="t-body">Tell us the procedure, destination, and budget. A concierge can help shape a full trip plan — demo form only, nothing is sent.</p>
-      </div>
+      ${formCopy()}
       <form class="inquiry-form" action="${action}" method="get" data-inquiry>
         <div class="field field--light">
           <label for="inq-procedure">Procedure</label>
@@ -436,8 +438,8 @@ function inquiryForm({ depth, procedure = '', destination = '', heading = 'Plan 
           <label for="inq-email">Email</label>
           <input id="inq-email" name="email" type="email" placeholder="you@example.com" required>
         </div>
-        <button class="btn btn--plum" type="submit">Request a plan</button>
-        <p class="t-caption inquiry-note">Demo inquiry — submissions stay on this page / contact confirmation. Not a medical booking.</p>
+        <button class="btn btn--plum" type="submit">Get my plan</button>
+        <p class="t-caption inquiry-note">This is a demo. Nothing is sent. This is not a medical booking.</p>
       </form>
     </div>
   </section>`;
@@ -557,7 +559,7 @@ const indexHtml =
       </div>
     </section>
 
-    ${inquiryForm({ depth: 0, heading: 'Plan your trip.' })}
+    ${inquiryForm({ depth: 0 })}
   </main>
 ` +
   footer(0);
@@ -1158,7 +1160,7 @@ for (const p of procedures) {
           </div>
         </div>
       </section>
-      ${inquiryForm({ depth: 1, procedure: p.name, heading: `Inquire about ${p.name}` })}
+      ${inquiryForm({ depth: 1, procedure: p.name })}
     </main>` +
     footer(1);
   writeFileSync(join(SITE, 'procedures', `${p.slug}.html`), html);
@@ -1328,7 +1330,7 @@ for (const d of destinations) {
         </div>
       </section>
       <div class="container">${sent}</div>
-      ${inquiryForm({ depth: 1, destination: `${d.name}, ${d.country}`, heading: `Plan a trip to ${d.name}` })}
+      ${inquiryForm({ depth: 1, destination: `${d.name}, ${d.country}` })}
     </main>` +
     footer(1);
   writeFileSync(join(SITE, 'destinations', `${d.slug}.html`), html);
@@ -1459,7 +1461,6 @@ for (const c of clinics) {
         depth: 1,
         destination: dest ? `${dest.name}, ${dest.country}` : '',
         procedure: procs[0]?.name || '',
-        heading: `Inquire about ${c.name}`,
       })}
     </main>` +
     footer(1);
@@ -1498,7 +1499,6 @@ for (const d of doctors) {
         depth: 1,
         destination: dest ? `${dest.name}, ${dest.country}` : '',
         procedure: procs[0]?.name || '',
-        heading: `Inquire about care with ${d.name}`,
       })}
     </main>` +
     footer(1);
@@ -1552,7 +1552,7 @@ const contact =
         <h1 class="t-display">Contact</h1>
       </div>
     </section>
-    ${contactForm({ depth: 0, heading: 'Get in touch' })}
+    ${contactForm({ depth: 0 })}
     <section class="section">
       <div class="container" data-reveal>
         <div class="panel" data-contact-result hidden>
