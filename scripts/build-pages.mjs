@@ -507,7 +507,7 @@ const indexHtml =
               <div class="search-panel__section">
                 <h3 class="search-panel__heading">Popular procedures</h3>
                 <ul class="search-panel__list">
-                  <li><a class="search-panel__item" href="./procedures/hair-transplant.html"><span class="search-panel__icon search-panel__icon--plum" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="12" rx="8.5" ry="9.5" stroke="currentColor" stroke-width="2"/><path fill="currentColor" d="M9 18.2c.15-1.5 1.15-2.55 2.25-3.25-.15-.55-.25-1.2-.25-1.95 0-1.7.55-3.15 1.55-4 .35-.3.8-.4 1.15-.25.25-.65.8-1.1 1.55-1.1.65 0 1.2.35 1.5.9.3-.2.75-.15 1.05.25.55.55.45 1.4 0 1.9.7.55 1.15 1.4 1.15 2.4 0 .95-.4 1.8-1.15 2.4v.25c1.05.7 1.8 1.75 1.8 3.1 0 .45-.35.75-.8.75H9.75c-.5 0-.85-.4-.75-.95z"/></svg></span><span class="search-panel__copy"><span class="search-panel__title">Hair transplant</span><span class="search-panel__sub">Aesthetics</span></span></a></li>
+                  <li><a class="search-panel__item" href="./procedures/hair-transplant.html"><span class="search-panel__icon search-panel__icon--plum" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="12" rx="8.5" ry="9.5" stroke="currentColor" stroke-width="2"/><path fill="currentColor" d="M9 18.2c.15-1.5 1.15-2.55 2.25-3.25-.15-.55-.25-1.2-.25-1.95 0-1.7.55-3.15 1.55-4 .35-.3.8-.4 1.15-.25.25-.65.8-1.1 1.55-1.1.65 0 1.2.35 1.5.9.3-.2.75-.15 1.05.25.55.55.45 1.4 0 1.9.7.55 1.15 1.4 1.15 2.4 0 .95-.4 1.8-1.15 2.4v.25c1.05.7 1.8 1.75 1.8 3.1 0 .45-.35.75-.8.75H9.75c-.5 0-.85-.4-.75-.95z"/></svg></span><span class="search-panel__copy"><span class="search-panel__title">Hair Transplants</span><span class="search-panel__sub">Aesthetics</span></span></a></li>
                   <li><a class="search-panel__item" href="./procedures/rhinoplasty.html"><span class="search-panel__icon search-panel__icon--flame" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M8.5 4v8.2c0 1.1.55 2.1 1.7 3L15 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.5 12.5c2.8.6 5.4 2.2 7 4.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M15 19c-1.1.9-2.1 2.1-2.6 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span class="search-panel__copy"><span class="search-panel__title">Rhinoplasty</span><span class="search-panel__sub">Plastic surgery</span></span></a></li>
                   <li><a class="search-panel__item" href="./procedures/ivf.html"><span class="search-panel__icon search-panel__icon--pink" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="9.5" r="5.5" stroke="currentColor" stroke-width="2"/><circle cx="9.8" cy="9.2" r="1.1" fill="currentColor"/><circle cx="14.2" cy="9.2" r="1.1" fill="currentColor"/><path d="M9.6 11.8c.9 1.3 1.9 1.9 2.4 1.9s1.5-.6 2.4-1.9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M7.5 18.5c1.3 1.8 2.8 2.7 4.5 2.7s3.2-.9 4.5-2.7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 4V2.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span class="search-panel__copy"><span class="search-panel__title">IVF</span><span class="search-panel__sub">Fertility</span></span></a></li>
                   <li><a class="search-panel__item" href="./procedures/dental-implants.html"><span class="search-panel__icon search-panel__icon--blue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 3.5c-1.9 0-3.2 1.5-3.2 3.4 0 1.7.4 3.8 1.1 6.2L8.2 21h2.4l.9-6.5.9 6.5h2.4l1.3-7.9c.7-2.4 1.1-4.5 1.1-6.2 0-1.9-1.3-3.4-3.2-3.4-1.1 0-2 .5-2.2 1-.2-.5-1.1-1-2.2-1z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span><span class="search-panel__copy"><span class="search-panel__title">Dental implants</span><span class="search-panel__sub">Dental</span></span></a></li>
@@ -1145,10 +1145,10 @@ for (const p of procedures) {
               </li>
               <li class="proc-stats__item">
                 <span class="proc-stats__icon" aria-hidden="true">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="6.5" width="17" height="12" rx="2" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12.5" r="3.2" stroke="currentColor" stroke-width="1.6"/><path d="M8 6.5 9.2 4.8h5.6L16 6.5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5" width="17" height="15" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 9.5h17M8 3.5v3M16 3.5v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
                 </span>
-                <span class="proc-stats__value">${stats.photos.toLocaleString('en-US')}</span>
-                <span class="proc-stats__label">Before &amp; after photos</span>
+                <span class="proc-stats__value">${stats.tripDays} days</span>
+                <span class="proc-stats__label">Average trip duration</span>
               </li>
               <li class="proc-stats__item">
                 <span class="proc-stats__icon" aria-hidden="true">
@@ -1156,13 +1156,6 @@ for (const p of procedures) {
                 </span>
                 <span class="proc-stats__value">${stats.doctorsClinics}</span>
                 <span class="proc-stats__label">Doctors &amp; clinics</span>
-              </li>
-              <li class="proc-stats__item">
-                <span class="proc-stats__icon" aria-hidden="true">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5" width="17" height="15" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 9.5h17M8 3.5v3M16 3.5v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-                </span>
-                <span class="proc-stats__value">${stats.tripDays} days</span>
-                <span class="proc-stats__label">Average trip duration</span>
               </li>
             </ul>
             <button class="proc-stats__nav proc-stats__nav--next" type="button" aria-label="Next stats" data-proc-stats-next>
@@ -1182,7 +1175,7 @@ for (const p of procedures) {
         <div class="container" data-reveal>
           <h2 class="t-h3">Before / after</h2>
           <div class="placeholder-frame">
-            <img src="${p.slug === 'hair-transplant' ? '../assets/procedure-hair-transplant-before-after.jpg' : '../assets/placeholders/before-after.svg'}" alt="${p.slug === 'hair-transplant' ? 'Hair transplant before and after' : 'Synthetic before and after placeholder'}" width="${p.slug === 'hair-transplant' ? 1774 : 1200}" height="${p.slug === 'hair-transplant' ? 887 : 600}" loading="lazy"${p.slug === 'hair-transplant' ? ' decoding="async"' : ''}>
+            <img src="${p.slug === 'hair-transplant' ? '../assets/procedure-hair-transplant-before-after.jpg' : '../assets/placeholders/before-after.svg'}" alt="${p.slug === 'hair-transplant' ? 'Hair Transplants before and after' : 'Synthetic before and after placeholder'}" width="${p.slug === 'hair-transplant' ? 1774 : 1200}" height="${p.slug === 'hair-transplant' ? 887 : 600}" loading="lazy"${p.slug === 'hair-transplant' ? ' decoding="async"' : ''}>
           </div>
         </div>
       </section>
@@ -1208,7 +1201,7 @@ const destIndex =
               <option value="" selected disabled>Choose a procedure</option>
               <option value="breast-augmentation">Breast augmentation</option>
               <option value="rhinoplasty">Rhinoplasty</option>
-              <option value="hair-transplant">Hair transplant</option>
+              <option value="hair-transplant">Hair Transplants</option>
               <option value="dental-implants">Dental implants</option>
             </select>
           </div>

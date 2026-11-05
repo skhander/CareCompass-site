@@ -12,7 +12,7 @@
   "procedures": [
     {
       "id": "proc_hair_transplant",
-      "name": "Hair transplant",
+      "name": "Hair Transplants",
       "slug": "hair-transplant",
       "category": "Aesthetics",
       "home_tile_name": "Hair Transplants",
@@ -22053,7 +22053,7 @@
       "type": "procedure",
       "id": "proc_hair_transplant",
       "slug": "hair-transplant",
-      "name": "Hair transplant",
+      "name": "Hair Transplants",
       "href": "./procedures/hair-transplant.html",
       "category": "Aesthetics"
     },
