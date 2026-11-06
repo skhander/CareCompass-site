@@ -5,6 +5,13 @@
 import { readFileSync, writeFileSync, mkdirSync, rmSync, readdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import {
+  destCompareProfile,
+  clinicCompareProfile,
+  renderDestComparePage,
+  renderClinicComparePage,
+  countryLabel as compareCountryLabel,
+} from './compare-render.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const SITE = join(__dirname, '..');
@@ -470,6 +477,7 @@ clearDirKeep(join(SITE, 'procedures'));
 clearDirKeep(join(SITE, 'destinations'));
 clearDirKeep(join(SITE, 'clinics'));
 clearDirKeep(join(SITE, 'doctors'));
+clearDirKeep(join(SITE, 'compare'));
 
 // ---------- Homepage ----------
 const popularProcs = procedures.filter((p) => p.popular);
@@ -1567,13 +1575,29 @@ function renderGuideDestinations(ranking, procedureClinicList, { stripSuffix } =
 
 function renderProcedureGuidePage(p, clinicList, stats, ranking, { stripSuffix } = {}) {
   const destHtml = renderGuideDestinations(ranking, clinicList, { stripSuffix });
+  const realDestSlugs = [
+    ...new Set(
+      ranking
+        .map((e) => e.destSlugs?.[0] || e.coverSlug)
+        .filter((slug) => slug && destinations.some((d) => d.slug === slug))
+    ),
+  ];
+  let compareAction = '';
+  if (realDestSlugs.length >= 2) {
+    compareAction = `<a class="btn btn--plum proc-guide__compare" href="../compare/${p.slug}.html">Compare destinations</a>`;
+  } else if (realDestSlugs.length === 1) {
+    compareAction = `<a class="btn btn--plum proc-guide__compare" href="../compare/${p.slug}-${realDestSlugs[0]}.html">Compare clinics</a>`;
+  }
   return (
     head({ title: `${p.name} — MediGo`, description: p.description, depth: 1 }) +
     nav(1, 'procedures') +
     `<main>
       <section class="section proc-guide" aria-labelledby="proc-title">
         <div class="container proc-guide__inner" data-reveal data-reveal-eager>
-          <h1 id="proc-title" class="proc-guide__title">${esc(p.name)}</h1>
+          <div class="proc-guide__title-row">
+            <h1 id="proc-title" class="proc-guide__title">${esc(p.name)}</h1>
+            ${compareAction}
+          </div>
           <div class="proc-guide__stats" role="group" aria-label="Procedure averages">
             <div class="proc-guide__stat">
               <span class="proc-guide__stat-value">${money(stats.avgCost)}</span>
@@ -1710,6 +1734,7 @@ const destIndex =
                       Reviews <span class="find-dest-sort__ind" aria-hidden="true"></span>
                     </button>
                   </th>
+                  <th scope="col">Compare</th>
                 </tr>
               </thead>
               <tbody data-find-tbody></tbody>
@@ -1737,6 +1762,11 @@ for (const d of destinations) {
   const destProcs = (d.top_procedure_ids || []).map((id) => byId.procedure[id]).filter(Boolean);
   const destPrices = prices.filter((x) => x.entity_id === d.id && x.entity_type === 'destination');
   const sent = sentimentBlock(d.name, 'destination');
+  const compareProc = destProcs[0] || procedures[0];
+  const compareClinicsHref = compareProc
+    ? `../compare/${compareProc.slug}-${d.slug}.html`
+    : '../compare/';
+  const compareClinicsLabel = `Compare clinics in ${d.name}`;
 
   const html =
     head({ title: `${d.name}, ${d.country} — MediGo`, description: d.focus, depth: 1 }) +
@@ -1748,6 +1778,9 @@ for (const d of destinations) {
           <h1 class="t-display">${esc(d.name)}</h1>
           <p class="t-lead">${esc(d.country)} · ${esc(d.focus)}</p>
           <p class="banner-demo">Synthetic destination intel for product design.</p>
+          <p class="page-hero__actions">
+            <a class="btn btn--plum" href="${compareClinicsHref}" data-compare-clinics data-dest-slug="${esc(d.slug)}">${esc(compareClinicsLabel)}</a>
+          </p>
         </div>
       </section>
       <section class="section">
@@ -2056,6 +2089,145 @@ const contact =
   footer(0);
 writeFileSync(join(SITE, 'contact.html'), contact);
 
+// ---------- Compare pages (destinations → clinics → inquiry) ----------
+mkdirSync(join(SITE, 'compare'), { recursive: true });
+let compareDestPages = 0;
+let compareClinicPages = 0;
+
+for (const p of procedures) {
+  const ranking = rankingForProcedure(p);
+  const clinicList = (p.clinic_ids || []).map((id) => byId.clinic[id]).filter(Boolean);
+
+  const destEntries = ranking
+    .map((entry) => {
+      const destSlug = entry.destSlugs?.[0] || entry.coverSlug;
+      const dest = destSlug ? destinations.find((d) => d.slug === destSlug) : null;
+      if (!dest) return null;
+      return {
+        dest,
+        priceLabel: entry.priceLabel,
+        avgUsd: entry.avgUsd,
+        profile: destCompareProfile(dest, p.slug, { avgUsd: entry.avgUsd }),
+        rankingEntry: entry,
+      };
+    })
+    .filter(Boolean)
+    .slice(0, 4);
+
+  if (destEntries.length >= 1) {
+    writeFileSync(
+      join(SITE, 'compare', `${p.slug}.html`),
+      renderDestComparePage({
+        head,
+        nav,
+        footer,
+        esc,
+        money,
+        destCover,
+        procedure: p,
+        entries: destEntries,
+        depth: 1,
+      })
+    );
+    compareDestPages += 1;
+  }
+
+  // Clinic compare pages for each real destination in the ranking
+  const destSlugs = [
+    ...new Set(
+      ranking.flatMap((e) => e.destSlugs || []).filter((slug) => destinations.some((d) => d.slug === slug))
+    ),
+  ];
+  for (const destSlug of destSlugs) {
+    const dest = destinations.find((d) => d.slug === destSlug);
+    if (!dest) continue;
+    const entry =
+      ranking.find((e) => (e.destSlugs || []).includes(destSlug)) || {
+        avgUsd: 3500,
+        packageTypes: packageTypesForProcedure(p),
+        destSlugs: [destSlug],
+        fallbackClinics: [],
+        maxClinics: 3,
+        country: compareCountryLabel(dest.country),
+        city: dest.city || dest.name,
+      };
+    const rankedClinics = clinicsForRank(entry, clinicList).slice(0, 4);
+    // Prefer real linked clinics from catalog for this dest+procedure
+    const linked = clinicList.filter((c) => c.destination_id === dest.id).slice(0, 4);
+    const clinicObjs = (linked.length ? linked : []).map((c, i) => {
+      const fromPrice =
+        c.price_min_usd ??
+        prices.find(
+          (pr) => pr.entity_type === 'clinic' && pr.entity_id === c.id && pr.procedure_id === p.id
+        )?.min_usd ??
+        entry.avgUsd;
+      return {
+        clinic: c,
+        fromPrice,
+        profile: clinicCompareProfile(c, dest, p.slug),
+      };
+    });
+    // Pad from ranked clinics (may be fallbacks with href to dest)
+    if (clinicObjs.length < 3) {
+      for (const rc of rankedClinics) {
+        if (clinicObjs.length >= 4) break;
+        if (clinicObjs.some((x) => x.clinic.name === rc.name)) continue;
+        const fake = {
+          name: rc.name,
+          slug: rc.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''),
+          focus: rc.focus || p.name,
+          accreditations: [],
+          price_min_usd: entry.avgUsd,
+        };
+        clinicObjs.push({
+          clinic: fake,
+          fromPrice: entry.avgUsd,
+          profile: clinicCompareProfile(fake, dest, p.slug),
+          synthetic: true,
+        });
+      }
+    }
+    if (clinicObjs.length < 2) continue;
+
+    // For synthetic clinics without a page, CTA still goes to contact; media links to dest
+    const html = renderClinicComparePage({
+      head,
+      nav,
+      footer,
+      inquiryForm,
+      esc,
+      money,
+      destCover,
+      procedure: p,
+      destination: dest,
+      clinics: clinicObjs.map((item) => {
+        if (item.synthetic) {
+          return {
+            ...item,
+            clinic: {
+              ...item.clinic,
+              // Point title link at destination when clinic page may not exist
+              _hrefOverride: `../destinations/${dest.slug}.html`,
+            },
+          };
+        }
+        return item;
+      }),
+      depth: 1,
+    });
+    // Patch synthetic clinic hrefs in HTML (renderer uses clinics/{slug}.html)
+    let clinicHtml = html;
+    for (const item of clinicObjs) {
+      if (!item.synthetic) continue;
+      const bad = `../clinics/${item.clinic.slug}.html`;
+      const good = `../destinations/${dest.slug}.html`;
+      clinicHtml = clinicHtml.split(bad).join(good);
+    }
+    writeFileSync(join(SITE, 'compare', `${p.slug}-${dest.slug}.html`), clinicHtml);
+    compareClinicPages += 1;
+  }
+}
+
 // Write search index for app.js
 writeFileSync(
   join(SITE, 'data', 'search-index.json'),
@@ -2078,8 +2250,16 @@ const pages = {
   destinations: destinations.length,
   clinics: clinics.length,
   doctors: doctors.length,
+  compare_destinations: compareDestPages,
+  compare_clinics: compareClinicPages,
 };
 const total =
-  pages.root.length + pages.procedures + pages.destinations + pages.clinics + pages.doctors;
+  pages.root.length +
+  pages.procedures +
+  pages.destinations +
+  pages.clinics +
+  pages.doctors +
+  compareDestPages +
+  compareClinicPages;
 
 console.log(JSON.stringify({ total_html_pages: total, ...pages }, null, 2));

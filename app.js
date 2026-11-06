@@ -206,7 +206,13 @@
       suggestBox.innerHTML = hits
         .map((h) => {
           const href = h.href.replace(/^\.\//, prefix);
-          return `<a href="${href}"><span class="search-suggest__type">${h.type}</span>${h.name}</a>`;
+          const isProc = String(h.type || '').toLowerCase() === 'procedure' || /\/procedures\//.test(h.href);
+          const slug = (h.slug || (h.href.match(/procedures\/([^/.]+)/) || [])[1] || '').trim();
+          const compare =
+            isProc && slug
+              ? ` <a class="search-suggest__compare" href="${prefix}compare/${slug}.html">Compare destinations</a>`
+              : '';
+          return `<a href="${href}"><span class="search-suggest__type">${h.type}</span>${h.name}</a>${compare}`;
         })
         .join('');
       suggestBox.hidden = false;
@@ -435,14 +441,14 @@
     if (!form || !out || !tbody) return;
 
     const DESTINATIONS = [
-      { city: 'Istanbul', country: 'Türkiye', clinic: 'Bosphorus Contour Atelier' },
-      { city: 'Seoul', country: 'South Korea', clinic: 'Gangnam Lumen Surgery' },
-      { city: 'Bangkok', country: 'Thailand', clinic: 'Chao Phraya Care Pavilion' },
-      { city: 'Mexico City', country: 'Mexico', clinic: 'Reforma Aesthetic Institute' },
-      { city: 'Tijuana', country: 'Mexico', clinic: 'Pacific Border Surgery' },
-      { city: 'Medellín', country: 'Colombia', clinic: 'Andes Contour Center' },
-      { city: 'Delhi', country: 'India', clinic: 'Yamuna Multicare Hospital' },
-      { city: 'Barcelona', country: 'Spain', clinic: 'Gothic Quarter Clinic' },
+      { city: 'Istanbul', country: 'Türkiye', clinic: 'Bosphorus Contour Atelier', slug: 'istanbul' },
+      { city: 'Seoul', country: 'South Korea', clinic: 'Gangnam Lumen Surgery', slug: 'seoul' },
+      { city: 'Bangkok', country: 'Thailand', clinic: 'Chao Phraya Care Pavilion', slug: 'bangkok' },
+      { city: 'Mexico City', country: 'Mexico', clinic: 'Reforma Aesthetic Institute', slug: 'mexico-city' },
+      { city: 'Tijuana', country: 'Mexico', clinic: 'Pacific Border Surgery', slug: 'tijuana' },
+      { city: 'Medellín', country: 'Colombia', clinic: 'Andes Contour Center', slug: 'medellin' },
+      { city: 'Delhi', country: 'India', clinic: 'Yamuna Multicare Hospital', slug: 'delhi' },
+      { city: 'Barcelona', country: 'Spain', clinic: 'Gothic Quarter Clinic', slug: 'barcelona' },
     ];
 
     const BASE_FROM = {
@@ -519,6 +525,8 @@
         return {
           destination: `${d.city}, ${d.country}`,
           clinic: d.clinic,
+          slug: d.slug,
+          procedure,
           from,
           reviews,
           recommended: false,
@@ -559,6 +567,7 @@
           const badge = row.recommended
             ? '<span class="find-dest-badge">Recommended</span>'
             : '';
+          const compareHref = `./compare/${row.procedure}-${row.slug}.html`;
           return `<tr>
             <td>
               <span class="find-dest-dest">${row.destination}</span>
@@ -567,6 +576,7 @@
             <td>${row.clinic}</td>
             <td>$${row.from.toLocaleString('en-US')}</td>
             <td class="find-dest-col--reviews">${row.reviews.toLocaleString('en-US')}</td>
+            <td><a class="find-dest-compare" href="${compareHref}">Compare</a></td>
           </tr>`;
         })
         .join('');
@@ -713,6 +723,40 @@
     );
   }
 
+  function initComparePage() {
+    const page = document.querySelector('[data-compare-page]');
+    if (!page) return;
+    const cols = [...page.querySelectorAll('[data-compare-col]')];
+    const pins = [...page.querySelectorAll('[data-compare-pin]')];
+    const setActive = (id) => {
+      cols.forEach((col) => col.classList.toggle('is-active', col.getAttribute('data-compare-col') === id));
+      pins.forEach((pin) => pin.classList.toggle('is-active', pin.getAttribute('data-compare-pin') === id));
+    };
+    pins.forEach((pin) => {
+      pin.addEventListener('click', () => {
+        const id = pin.getAttribute('data-compare-pin');
+        setActive(id);
+        const col = page.querySelector(`[data-compare-col="${CSS.escape(id)}"]`);
+        col?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      });
+    });
+    cols.forEach((col) => {
+      col.addEventListener('mouseenter', () => setActive(col.getAttribute('data-compare-col')));
+      col.addEventListener('focusin', () => setActive(col.getAttribute('data-compare-col')));
+    });
+  }
+
+  function initCompareClinicsCta() {
+    const link = document.querySelector('[data-compare-clinics]');
+    if (!link) return;
+    const params = new URLSearchParams(window.location.search);
+    const proc = params.get('procedure');
+    const destSlug = link.getAttribute('data-dest-slug');
+    if (proc && destSlug) {
+      link.href = `../compare/${proc}-${destSlug}.html`;
+    }
+  }
+
   async function boot() {
     // Wire page filters immediately — do not wait on catalog fetch
     initListFilters();
@@ -720,6 +764,8 @@
     initDestSuggest();
     initInquiry();
     initDemoBadge();
+    initComparePage();
+    initCompareClinicsCta();
     const index = await loadSearchIndex();
     initHeroSearch(index);
   }
